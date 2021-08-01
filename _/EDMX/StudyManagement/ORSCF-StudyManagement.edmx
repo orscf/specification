@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DataModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DomainModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ResearchStudies" EntityType="DomainModel.ResearchStudy" />
+          <EntitySet Name="Institutes" EntityType="DomainModel.Institute" />
+          <AssociationSet Name="InstituteResearchStudy" Association="DomainModel.InstituteResearchStudy">
+            <End Role="Institute" EntitySet="Institutes" />
+            <End Role="ResearchStudy" EntitySet="ResearchStudies" />
+          </AssociationSet>
+          <EntitySet Name="Sites" EntityType="DomainModel.Site" />
+          <AssociationSet Name="InstituteSiteParticipation" Association="DomainModel.InstituteSiteParticipation">
+            <End Role="Institute" EntitySet="Institutes" />
+            <End Role="SiteParticipation" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="ResearchStudySiteParticipation" Association="DomainModel.ResearchStudySiteParticipation">
+            <End Role="ResearchStudy" EntitySet="ResearchStudies" />
+            <End Role="SiteParticipation" EntitySet="Sites" />
+          </AssociationSet>
+          <EntitySet Name="Subjects" EntityType="DomainModel.Subject" />
+          <AssociationSet Name="SitesSubject" Association="DomainModel.SitesSubject">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="SitesSubject1" Association="DomainModel.SitesSubject1">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="ResearchStudySubject" Association="DomainModel.ResearchStudySubject">
+            <End Role="ResearchStudy" EntitySet="ResearchStudies" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ResearchStudy">
+          <Documentation>
+            <Summary>entity, which relates to &lt;see href="https://www.hl7.org/fhir/researchstudy.html"&gt;HL7.ResearchStudy&lt;/see&gt;</Summary>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="StudyIdentifier" />
+          </Key>
+          <Property Name="StudyIdentifier" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="250" />
+          <Property Name="StudyTitle" Type="String" Nullable="false" />
+          <NavigationProperty Name="SponsoringInstitute" Relationship="DomainModel.InstituteResearchStudy" FromRole="ResearchStudy" ToRole="Institute" />
+          <Property Name="SponsoringInstituteUid" Type="Guid" Nullable="false" />
+          <Property Name="StudyWorkflowName" Type="String" Nullable="false" />
+          <Property Name="StudyWorkflowVersion" Type="String" Nullable="false" />
+          <Property Name="Phase" Type="String" Nullable="true" >
+            <Documentation>
+              <Summary>AS DECLARED BY &lt;see href="https://www.hl7.org/fhir/valueset-research-study-phase.html"&gt;HL7.ResearchStudyPhase&lt;/see&gt;:
+n-a | early-phase-1 | phase-1 | phase-1-phase-2 | phase-2 | phase-2-phase-3 | phase-3 | phase-4</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="LKP" Type="String" Nullable="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="true" />
+          <Property Name="TerminationDate" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="SiteParticipations" Relationship="DomainModel.ResearchStudySiteParticipation" FromRole="ResearchStudy" ToRole="SiteParticipation" />
+          <NavigationProperty Name="Subjects" Relationship="DomainModel.ResearchStudySubject" FromRole="ResearchStudy" ToRole="Subject" />
+          <Property Name="SubjectIdentifierTitle" Type="String" Nullable="false" >
+            <Documentation>
+              <Summary>A title which informs about the sematic of the SubjectIdentifer (which concrete value is used): "Randomization-Number", "Screening-Number", ...</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ImsApiUrl" Type="String" Nullable="true" >
+            <Documentation>
+              <Summary>Url of the API Endpoint which provides access to the 'IdentityManagementSystem' for this study (following the ORSCF-Standard)</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="VdrApiUrl" Type="String" Nullable="true" >
+            <Documentation>
+              <Summary>Url of the API Endpoint which provides access to the 'VisitDataRepository' for this study (following the ORSCF-Standard)</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="BdrApiUrl" Type="String" Nullable="true" >
+            <Documentation>
+              <Summary>Url of the API Endpoint which provides access to the 'BillingDataRepository' for this study (following the ORSCF-Standard)</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="WdrApiUrl" Type="String" Nullable="true" >
+            <Documentation>
+              <Summary>Url of the API Endpoint which provides access to the 'WorkflowDefinitionRepository' for this study (following the ORSCF-Standard)</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Status" Type="String" Nullable="false" >
+            <Documentation>
+              <Summary>AS DECLARED BY &lt;see href="https://www.hl7.org/fhir/valueset-research-study-status.html"&gt;HL7.ResearchStudyStatus&lt;/see&gt;:
+active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="TerminatedReason" Type="String" Nullable="true" />
+          <Property Name="IsArchived" Type="Boolean" Nullable="false" DefaultValue="false" />
+        </EntityType>
+        <EntityType Name="Institute">
+          <Key>
+            <PropertyRef Name="InstituteUid" />
+          </Key>
+          <Property Name="InstituteUid" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="SponsoredStudies" Relationship="DomainModel.InstituteResearchStudy" FromRole="Institute" ToRole="ResearchStudy" />
+          <Property Name="InstituteTitle" Type="String" Nullable="false" />
+          <NavigationProperty Name="RepresentedSites" Relationship="DomainModel.InstituteSiteParticipation" FromRole="Institute" ToRole="SiteParticipation" />
+          <Property Name="IsArchived" Type="Boolean" Nullable="false" DefaultValue="false" />
+        </EntityType>
+        <Association Name="InstituteResearchStudy">
+          <End Type="DomainModel.Institute" Role="Institute" Multiplicity="1" />
+          <End Type="DomainModel.ResearchStudy" Role="ResearchStudy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institute">
+              <PropertyRef Name="InstituteUid" />
+            </Principal>
+            <Dependent Role="ResearchStudy">
+              <PropertyRef Name="SponsoringInstituteUid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteIdentifier" />
+            <PropertyRef Name="StudyIdentifier" />
+          </Key>
+          <Property Name="SiteIdentifier" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="250" />
+          <NavigationProperty Name="RepresentingInstitute" Relationship="DomainModel.InstituteSiteParticipation" FromRole="SiteParticipation" ToRole="Institute" />
+          <Property Name="RepresentingInstituteUid" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Study" Relationship="DomainModel.ResearchStudySiteParticipation" FromRole="SiteParticipation" ToRole="ResearchStudy" />
+          <Property Name="StudyIdentifier" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="EnrollmentDate" Type="DateTime" Nullable="true" />
+          <Property Name="TerminationDate" Type="DateTime" Nullable="true" />
+          <Property Name="TerminatedReason" Type="String" Nullable="true" />
+          <Property Name="SiteTitle" Type="String" Nullable="false" />
+          <NavigationProperty Name="ActualSubjects" Relationship="DomainModel.SitesSubject" FromRole="Sites" ToRole="Subject" />
+          <NavigationProperty Name="EnrolledSubjects" Relationship="DomainModel.SitesSubject1" FromRole="Sites" ToRole="Subject" />
+          <Property Name="Status" Type="String" Nullable="false" >
+            <Documentation>
+              <Summary>AS DECLARED BY HL7</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <Association Name="InstituteSiteParticipation">
+          <End Type="DomainModel.Institute" Role="Institute" Multiplicity="1" />
+          <End Type="DomainModel.Site" Role="SiteParticipation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institute">
+              <PropertyRef Name="InstituteUid" />
+            </Principal>
+            <Dependent Role="SiteParticipation">
+              <PropertyRef Name="RepresentingInstituteUid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResearchStudySiteParticipation">
+          <End Type="DomainModel.ResearchStudy" Role="ResearchStudy" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DomainModel.Site" Role="SiteParticipation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResearchStudy">
+              <PropertyRef Name="StudyIdentifier" />
+            </Principal>
+            <Dependent Role="SiteParticipation">
+              <PropertyRef Name="StudyIdentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Subject">
+          <Documentation>
+            <Summary>entity, which relates to &lt;see href="https://www.hl7.org/fhir/researchsubject.html"&gt;HL7.ResearchSubject&lt;/see&gt;</Summary>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="CandidateIdentifier" />
+            <PropertyRef Name="StudyIdentifier" />
+          </Key>
+          <Property Name="CandidateIdentifier" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="250" />
+          <NavigationProperty Name="ActualSite" Relationship="DomainModel.SitesSubject" FromRole="Subject" ToRole="Sites" />
+          <Property Name="ActualSiteIdentifier" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="StudyIdentifier" Type="String" Nullable="false" cg:GetterAccess="Public" MaxLength="250" />
+          <NavigationProperty Name="EnrollingSite" Relationship="DomainModel.SitesSubject1" FromRole="Subject" ToRole="Sites" />
+          <Property Name="EnrollingSiteIdentifier" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="EnrollmentDate" Type="DateTime" Nullable="true" />
+          <Property Name="TerminationDate" Type="DateTime" Nullable="true" />
+          <Property Name="TerminatedReason" Type="String" Nullable="true" />
+          <NavigationProperty Name="Study" Relationship="DomainModel.ResearchStudySubject" FromRole="Subject" ToRole="ResearchStudy" />
+          <Property Name="SubjectIdentifier" Type="String" Nullable="true" >
+            <Documentation>
+              <LongDescription>UNQ1</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="Status" Type="String" Nullable="false" >
+            <Documentation>
+              <Summary>AS DECLARED BY &lt;see href="https://www.hl7.org/fhir/valueset-research-subject-status.html"&gt;HL7.ResearchSubjectStatus&lt;/see&gt;:
+candidate | eligible | follow-up | ineligible | not-registered | off-study | on-study | on-study-intervention | on-study-observation | pending-on-study | potential-candidate | screening | withdrawn</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CustomDisplayTitle" Type="String" Nullable="true" />
+          <Property Name="SiteSpecificPatientIdentifier" Type="String" Nullable="true" />
+        </EntityType>
+        <Association Name="SitesSubject">
+          <End Type="DomainModel.Site" Role="Sites" Multiplicity="1" />
+          <End Type="DomainModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteIdentifier" />
+              <PropertyRef Name="StudyIdentifier" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="ActualSiteIdentifier" />
+              <PropertyRef Name="StudyIdentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SitesSubject1">
+          <End Type="DomainModel.Site" Role="Sites" Multiplicity="1" />
+          <End Type="DomainModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteIdentifier" />
+              <PropertyRef Name="StudyIdentifier" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="EnrollingSiteIdentifier" />
+              <PropertyRef Name="StudyIdentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResearchStudySubject">
+          <End Type="DomainModel.ResearchStudy" Role="ResearchStudy" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DomainModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResearchStudy">
+              <PropertyRef Name="StudyIdentifier" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="StudyIdentifier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DataModel" />
+        <Alias Key="Target" Value="DataModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model" StorageEntityContainer="DataModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="ProcessDependentTemplatesOnSave" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1e673f0774584ac2be5350aef5de4487" Name="Schema" ZoomLevel="117">
+        <EntityTypeShape EntityType="DomainModel.ResearchStudy" Width="2.125" PointX="7.875" PointY="0.625" FillColor="128, 255, 255" />
+        <EntityTypeShape EntityType="DomainModel.Institute" Width="2" PointX="5" PointY="1.375" FillColor="128, 255, 255" />
+        <AssociationConnector Association="DomainModel.InstituteResearchStudy" />
+        <EntityTypeShape EntityType="DomainModel.Site" Width="2" PointX="5" PointY="4" FillColor="Aqua" />
+        <AssociationConnector Association="DomainModel.InstituteSiteParticipation" />
+        <AssociationConnector Association="DomainModel.ResearchStudySiteParticipation" />
+        <EntityTypeShape EntityType="DomainModel.Subject" Width="2.125" PointX="10.875" PointY="4" FillColor="Aqua" />
+        <AssociationConnector Association="DomainModel.SitesSubject" />
+        <AssociationConnector Association="DomainModel.SitesSubject1" />
+        <AssociationConnector Association="DomainModel.ResearchStudySubject" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

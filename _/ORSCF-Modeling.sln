@@ -21,9 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		ORSCF.BillingData.Model.nuspec = ORSCF.BillingData.Model.nuspec
 		ORSCF.IdentityManagement.Model.nuspec = ORSCF.IdentityManagement.Model.nuspec
+		ORSCF.StudyManagement.Model.nuspec = ORSCF.StudyManagement.Model.nuspec
 		ORSCF.StudyWorkflowDefinition.Model.nuspec = ORSCF.StudyWorkflowDefinition.Model.nuspec
 		ORSCF.VisitData.Model.nuspec = ORSCF.VisitData.Model.nuspec
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyManagement.Model", "Libs\StudyManagement.Model\StudyManagement.Model.csproj", "{0683E591-117E-415B-B9EE-4CA03549F465}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +54,10 @@ Global
 		{90370E6E-BCFA-4853-9251-7104850A193F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90370E6E-BCFA-4853-9251-7104850A193F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90370E6E-BCFA-4853-9251-7104850A193F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0683E591-117E-415B-B9EE-4CA03549F465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0683E591-117E-415B-B9EE-4CA03549F465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0683E591-117E-415B-B9EE-4CA03549F465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0683E591-117E-415B-B9EE-4CA03549F465}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +68,7 @@ Global
 		{E27C2EF0-E020-4608-9715-F19347454809} = {6E183B79-2AE6-407B-A237-45977EF65F35}
 		{02B49EFE-95EE-44B4-B49F-2A1672018197} = {6E183B79-2AE6-407B-A237-45977EF65F35}
 		{90370E6E-BCFA-4853-9251-7104850A193F} = {6E183B79-2AE6-407B-A237-45977EF65F35}
+		{0683E591-117E-415B-B9EE-4CA03549F465} = {6E183B79-2AE6-407B-A237-45977EF65F35}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {174839FD-71CD-40F0-9F70-CAE01B1C345A}
