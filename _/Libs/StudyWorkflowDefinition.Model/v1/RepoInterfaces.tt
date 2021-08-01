@@ -10,7 +10,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                           //
-//     Copyright: Tobias Korn / version: 22.05.2021                                          //
+//     Copyright: Tobias Korn / version: 31.07.2021                                          //
 //                                                                                           //
 //     this template is open source (under Apache-2 license) and originated here:            //
 //     https://github.com/KornSW/EntityFrameworkCore.ModelFirst                              //
@@ -25,9 +25,11 @@
 
        const bool onlyRootPrincipals = true;
 
-       const string outputNamespace = "MedicalResearch.Workflow.Access";
+       const string outputNamespace = "MedicalResearch.Workflow.StoreAccess";
        const string itemClassNamePattern = "{E}";
        const string interfaceNamePattern = "I{P}";
+       const string removalActionName = "Delete";
+
 #>
 using MedicalResearch.Workflow.Model;
 <#
@@ -159,10 +161,16 @@ public partial interface <#=interfaceNamePattern.Replace("{E}", entity.Name).Rep
   /// <param name="<#=pkParamName#>"> <#=pkFieldSummary#> </param>
   /// <param name="<#=Ftl(ressolvedItemName)#>"> <#=ressolvedItemName#> containing the new values (the primary identifier fields within the given <#=ressolvedItemName#> will be ignored) </param>
   bool Update<#=ressolvedItemName#>By<#=pkNameInSignaure#>(<#=pkFieldType#> <#=Escape(pkParamName)#>, <#=ressolvedItemName#> <#=Escape(Ftl(ressolvedItemName))#>);
+<#
+  if(!String.IsNullOrWhiteSpace(removalActionName)){
+#>
 
   /// <summary> Deletes a specific <#=ressolvedItemName#> addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.</summary>
   /// <param name="<#=pkParamName#>"> <#=pkFieldSummary#> </param>
-  bool Delete<#=ressolvedItemName#>By<#=pkNameInSignaure#>(<#=pkFieldType#> <#=Escape(pkParamName)#>);
+  bool <#=removalActionName#><#=ressolvedItemName#>By<#=pkNameInSignaure#>(<#=pkFieldType#> <#=Escape(pkParamName)#>);
+<#
+  }
+#>
 
 }<#=pkCompositeTypeDeclaration#>
 <#

@@ -28,7 +28,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityAnnotations" Version="2.0.1.387" />
+    <PackageReference Include="EntityAnnotations" Version="2.2.0.423" />
+    <PackageReference Include="Hl7.Fhir.R4" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>

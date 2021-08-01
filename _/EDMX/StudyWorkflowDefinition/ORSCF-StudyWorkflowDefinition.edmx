@@ -1246,7 +1246,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e673f0774584ac2be5350aef5de4487" Name="Schema" ZoomLevel="92">
+      <Diagram DiagramId="1e673f0774584ac2be5350aef5de4487" Name="Schema" ZoomLevel="51">
         <EntityTypeShape EntityType="DomainModel.ResearchStudyDefinition" Width="2.625" PointX="10.625" PointY="1.75" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.StudyEvent" Width="2.625" PointX="0.5" PointY="0.625" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.Arm" Width="2.625" PointX="6" PointY="5.625" IsExpanded="true" FillColor="0, 64, 0" />

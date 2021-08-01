@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StudyManagement\ORSCF-StudyManagement.Designer.cs">
+      <DependentUpon>ORSCF-StudyManagement.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="VisitData\ORSCF-VisitData.Designer.cs">
       <DependentUpon>ORSCF-VisitData.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -117,6 +122,22 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </None>
+    <EntityDeploy Include="StudyManagement\ORSCF-StudyManagement.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ORSCF-StudyManagement.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="StudyManagement\ORSCF-StudyManagement.md">
+      <DependentUpon>ORSCF-StudyManagement.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </None>
+    <None Include="StudyManagement\ORSCF-StudyManagement.Schema.json">
+      <DependentUpon>ORSCF-StudyManagement.Schema.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </None>
     <None Include="StudyWorkflowDefinition\ORSCF-StudyWorkflowDefinition.Schema.json">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -148,6 +169,14 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ORSCF-IdentityManagement.Schema.json</LastGenOutput>
     </Content>
+    <Content Include="StudyManagement\ORSCF-StudyManagement.Schema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ORSCF-StudyManagement.Schema.json</LastGenOutput>
+    </Content>
+    <None Include="StudyManagement\ORSCF-StudyManagement.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ORSCF-StudyManagement.md</LastGenOutput>
+    </None>
     <Content Include="StudyWorkflowDefinition\ORSCF-StudyWorkflowDefinition.Schema.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ORSCF-StudyWorkflowDefinition.Schema.json</LastGenOutput>

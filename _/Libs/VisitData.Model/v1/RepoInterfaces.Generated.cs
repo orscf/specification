@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.ObjectModel;
 
-namespace MedicalResearch.VisitData.Access {
+namespace MedicalResearch.VisitData.StoreAccess {
 
 /// <summary> Provides CRUD access to stored DataRecordings (based on schema version '1.3.0') </summary>
 public partial interface IDataRecordings {

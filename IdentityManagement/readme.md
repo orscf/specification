@@ -36,25 +36,25 @@
 * StudyWorkflowName + StudyWorkflowVersion **(primary)**
 
 #### StudyScope.**StudyWorkflowName** (Field)
-```
+
 the official invariant name of the study as given by the sponsor
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 100 characters.
 * after the record has been created, the value of this field must not be changed any more!
 
 #### StudyScope.**StudyWorkflowVersion** (Field)
-```
+
 version of the workflow
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 20 characters.
 * after the record has been created, the value of this field must not be changed any more!
 
 #### StudyScope.**ParticipantIdentifierSemantic** (Field)
-```
+
  for example "Screening-Number" or "Randomization-Number"
-```
+
 
 
 ### Relations
@@ -87,15 +87,15 @@ Target: [SubjectParticipation](#SubjectParticipation)
 * StudyExecutionIdentifier **(primary)**
 
 #### StudyExecutionScope.**StudyExecutionIdentifier** (Field)
-```
+
 a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field represents the identity (PK) of the record
 
 #### StudyExecutionScope.**ExecutingInstituteIdentifier** (Field)
-```
+
 the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)
-```
+
 
 #### StudyExecutionScope.**StudyWorkflowName** (Field)
 * this field is used as foreign key to address the related 'StudyScope'
@@ -115,7 +115,7 @@ the institute which is executing the study (this should be an invariant technica
 
 ##### **StudyScope** (parent of this StudyExecutionScope)
 Target Type: [StudyScope](#StudyScope)
-Addressed by: [StudyWorkflowName](#StudyExecutionScopeStudyWorkflowName-Field), [StudyWorkflowVersion](#StudyExecutionScopeStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#StudyExecutionScopeStudyWorkflowName-Field) + [StudyWorkflowVersion](#StudyExecutionScopeStudyWorkflowVersion-Field).
 ##### **CreatedParticipations** (refering to this StudyExecutionScope)
 Target: [SubjectParticipation](#SubjectParticipation)
 
@@ -139,9 +139,9 @@ Target: [SubjectParticipation](#SubjectParticipation)
 * ParticipantIdentifier **(primary)**
 
 #### SubjectParticipation.**ParticipantIdentifier** (Field)
-```
+
 identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 50 characters.
 
@@ -177,7 +177,7 @@ Target Type: [StudyExecutionScope](#StudyExecutionScope)
 Addressed by: [CreatedForStudyExecutionIdentifier](#SubjectParticipationCreatedForStudyExecutionIdentifier-Field).
 ##### **StudyScope** (parent of this SubjectParticipation)
 Target Type: [StudyScope](#StudyScope)
-Addressed by: [StudyWorkflowName](#SubjectParticipationStudyWorkflowName-Field), [StudyWorkflowVersion](#SubjectParticipationStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#SubjectParticipationStudyWorkflowName-Field) + [StudyWorkflowVersion](#SubjectParticipationStudyWorkflowVersion-Field).
 ##### **Identity** (lookup from this SubjectParticipation)
 Target Type: [SubjectIdentity](#SubjectIdentity)
 Addressed by: [SubjectIdentityRecordId](#SubjectParticipationSubjectIdentityRecordId-Field).
@@ -293,9 +293,9 @@ Target: [SubjectIdentity](#SubjectIdentity)
 * this field is optional, so that '*null*' values are supported
 
 #### SubjectIdentity.**Gender** (Field)
-```
+
 0=Male / 1=Female / 2=Other
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### SubjectIdentity.**DateOfBirth** (Field)
@@ -305,9 +305,9 @@ Target: [SubjectIdentity](#SubjectIdentity)
 * this field is optional, so that '*null*' values are supported
 
 #### SubjectIdentity.**FullNamePattern** (Field)
-```
+
 can be used to specify the full salutation including all academic grades by a string containing the placeholders: "{G}"=Gender {F}="FirstName" {L}="LastName". If not specified, a generic fallback can be used
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### SubjectIdentity.**Language** (Field)

@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.ObjectModel;
 
-namespace MedicalResearch.IdentityManagement.Access {
+namespace MedicalResearch.IdentityManagement.StoreAccess {
 
 /// <summary> Provides CRUD access to stored AdditionalSubjectParticipationIdentifiers (based on schema version '1.3.0') </summary>
 public partial interface IAdditionalSubjectParticipationIdentifiers {

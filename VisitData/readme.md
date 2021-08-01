@@ -41,37 +41,37 @@
 * EventGuid **(primary)**
 
 #### StudyEvent.**EventGuid** (Field)
-```
+
 a global unique id of a concrete study-event occurrence which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field represents the identity (PK) of the record
 
 #### StudyEvent.**ParticipantIdentifier** (Field)
-```
+
 identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)
-```
+
 
 #### StudyEvent.**StudyExecutionIdentifier** (Field)
-```
+
 a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field is used as foreign key to address the related 'StudyExecution'
 
 #### StudyEvent.**StudyEventName** (Field)
-```
+
 unique invariant name of the event as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### StudyEvent.**ExtendedMetaData** (Field)
-```
+
 optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### StudyEvent.**AdditionalNotes** (Field)
-```
+
 additional notes (supplied by the execution person)
-```
+
 * this field is optional, so that '*null*' values are supported
 
 
@@ -104,36 +104,36 @@ Addressed by: [StudyExecutionIdentifier](#StudyEventStudyExecutionIdentifier-Fie
 * StudyExecutionIdentifier **(primary)**
 
 #### StudyExecutionScope.**StudyExecutionIdentifier** (Field)
-```
+
 a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field represents the identity (PK) of the record
 * after the record has been created, the value of this field must not be changed any more!
 
 #### StudyExecutionScope.**ExecutingInstituteIdentifier** (Field)
-```
+
 the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)
-```
+
 * after the record has been created, the value of this field must not be changed any more!
 
 #### StudyExecutionScope.**StudyWorkflowName** (Field)
-```
+
 the official invariant name of the study as given by the sponsor
-```
+
 * the maximum length of the content within this field is 100 characters.
 * after the record has been created, the value of this field must not be changed any more!
 
 #### StudyExecutionScope.**StudyWorkflowVersion** (Field)
-```
+
 version of the workflow
-```
+
 * the maximum length of the content within this field is 20 characters.
 * after the record has been created, the value of this field must not be changed any more!
 
 #### StudyExecutionScope.**ExtendedMetaData** (Field)
-```
+
 optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema
-```
+
 * this field is optional, so that '*null*' values are supported
 
 
@@ -174,56 +174,56 @@ Target: [Visit](#Visit)
 * ParticipantIdentifier + StudyExecutionIdentifier + VisitExecutionTitle
 
 #### Visit.**VisitGuid** (Field)
-```
+
 a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field represents the identity (PK) of the record
 * after the record has been created, the value of this field must not be changed any more!
 
 #### Visit.**ParticipantIdentifier** (Field)
-```
+
 identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)
-```
+
 * the maximum length of the content within this field is 50 characters.
 * after the record has been created, the value of this field must not be changed any more!
 
 #### Visit.**StudyExecutionIdentifier** (Field)
-```
+
 a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field is used as foreign key to address the related 'StudyExecution'
 
 #### Visit.**VisitProdecureName** (Field)
-```
+
 unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### Visit.**VisitExecutionTitle** (Field)
-```
+
 unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### Visit.**ScheduledDateUtc** (Field)
-```
+
 the estimated date when the visit is scheduled for execution
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### Visit.**ExecutionDateUtc** (Field)
-```
+
 the real date, when the visits was executed
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### Visit.**ExecutionState** (Field)
-```
+
 0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed
-```
+
 
 #### Visit.**ExtendedMetaData** (Field)
-```
+
 optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### Visit.**ExecutingPerson** (Field)
@@ -241,22 +241,22 @@ optional structure (in JSON-format) containing additional metadata regarding thi
 
 ##### **DataRecordings** (childs of this Visit)
 Target: [DataRecording](#DataRecording)
-```
+
 all the data which has been captured for this visit
-```
+
 ##### **DrugApplyments** (childs of this Visit)
 Target: [DrugApplyment](#DrugApplyment)
-```
+
 all the drug applyments which have been executed for this visit
-```
+
 ##### **StudyExecution** (lookup from this Visit)
 Target Type: [StudyExecutionScope](#StudyExecutionScope)
 Addressed by: [StudyExecutionIdentifier](#VisitStudyExecutionIdentifier-Field).
 ##### **Treatments** (childs of this Visit)
 Target: [Treatment](#Treatment)
-```
+
 all the treatments which have been executed for this visit
-```
+
 
 
 
@@ -284,65 +284,65 @@ all the treatments which have been executed for this visit
 * TaskGuid **(primary)**
 
 #### DataRecording.**TaskGuid** (Field)
-```
+
 a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field represents the identity (PK) of the record
 * after the record has been created, the value of this field must not be changed any more!
 
 #### DataRecording.**VisitGuid** (Field)
-```
+
 the guid of the visit in which this task was executed
-```
+
 * this field is used as foreign key to address the related 'Visit'
 
 #### DataRecording.**DataRecordingName** (Field)
-```
+
 unique invariant name of ths task-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### DataRecording.**TaskExecutionTitle** (Field)
-```
+
 title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### DataRecording.**ScheduledDateTimeUtc** (Field)
-```
+
 the estimated date when the visit is scheduled
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### DataRecording.**ExecutionDateTimeUtc** (Field)
-```
+
 the real time, when the data was recorded
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### DataRecording.**ExecutionState** (Field)
-```
+
 0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed
-```
+
 
 #### DataRecording.**DataSchemaUrl** (Field)
-```
+
 schema-url of the data which were stored inside of the 'RecordedData' field
-```
+
 
 #### DataRecording.**RecordedData** (Field)
-```
+
 RAW data, in the schema as defined at the 'DataSchemaUrl'
-```
+
 
 #### DataRecording.**NotesRegardingOutcome** (Field)
-```
+
 additional notes regarding this dedcated execution (supplied by the execution person)
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### DataRecording.**ExtendedMetaData** (Field)
-```
+
 optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema
-```
+
 
 #### DataRecording.**ExecutingPerson** (Field)
 * this field is optional, so that '*null*' values are supported
@@ -385,70 +385,70 @@ Addressed by: [VisitGuid](#DataRecordingVisitGuid-Field).
 * TaskGuid **(primary)**
 
 #### DrugApplyment.**TaskGuid** (Field)
-```
+
 a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field represents the identity (PK) of the record
 * after the record has been created, the value of this field must not be changed any more!
 
 #### DrugApplyment.**VisitGuid** (Field)
-```
+
 the guid of the visit in which this task was executed
-```
+
 * this field is used as foreign key to address the related 'Visit'
 
 #### DrugApplyment.**DrugApplymentName** (Field)
-```
+
 unique invariant name of the study itself as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### DrugApplyment.**TaskExecutionTitle** (Field)
-```
+
 title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### DrugApplyment.**ScheduledDateTimeUtc** (Field)
-```
+
 the estimated time when the drug applyment is scheduled
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### DrugApplyment.**ExecutionDateTimeUtc** (Field)
-```
+
 the real date, when the visits was executed
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### DrugApplyment.**ExecutionState** (Field)
-```
+
 0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed
-```
+
 
 #### DrugApplyment.**DrugName** (Field)
-```
+
 name of the drug
-```
+
 
 #### DrugApplyment.**DrugDoseMgPerUnitMg** (Field)
-```
+
 dose (mg) which is inside of one unit
-```
+
 
 #### DrugApplyment.**AppliedUnits** (Field)
-```
+
 amount of applied units
-```
+
 
 #### DrugApplyment.**NotesRegardingOutcome** (Field)
-```
+
 additional notes regarding this dedcated execution (supplied by the execution person)
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### DrugApplyment.**ExtendedMetaData** (Field)
-```
+
 optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema
-```
+
 
 #### DrugApplyment.**ExecutingPerson** (Field)
 * this field is optional, so that '*null*' values are supported
@@ -488,55 +488,55 @@ Addressed by: [VisitGuid](#DrugApplymentVisitGuid-Field).
 * TaskGuid **(primary)**
 
 #### Treatment.**TaskGuid** (Field)
-```
+
 a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')
-```
+
 * this field represents the identity (PK) of the record
 * after the record has been created, the value of this field must not be changed any more!
 
 #### Treatment.**VisitGuid** (Field)
-```
+
 the guid of the visit in which this task was executed
-```
+
 * this field is used as foreign key to address the related 'Visit'
 
 #### Treatment.**TreatmentName** (Field)
-```
+
 unique invariant name of ths task-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### Treatment.**TaskExecutionTitle** (Field)
-```
+
 title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)
-```
+
 
 #### Treatment.**ScheduledDateTimeUtc** (Field)
-```
+
 the estimated time when the treatment is scheduled
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### Treatment.**ExecutionDateTimeUtc** (Field)
-```
+
 the real time, when the treatment was executed
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### Treatment.**ExecutionState** (Field)
-```
+
 0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed
-```
+
 
 #### Treatment.**NotesRegardingOutcome** (Field)
-```
+
 additional notes regarding this dedcated execution (supplied by the execution person)
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### Treatment.**ExtendedMetaData** (Field)
-```
+
 optional structure of additional metadata regarding this record in JSON-format, which can be used by study execution systems to extend the schema
-```
+
 
 #### Treatment.**ExecutingPerson** (Field)
 * this field is optional, so that '*null*' values are supported

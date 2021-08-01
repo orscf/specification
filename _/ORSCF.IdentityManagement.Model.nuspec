@@ -16,7 +16,7 @@
     <projectUrl>https://www.orscf.org</projectUrl>
     <dependencies>
       <group targetFramework="net5.0">
-        <dependency id="EntityAnnotations" version="[2.0.1,2.9999]" />
+        <dependency id="EntityAnnotations" version="[2.2.0,2.9999]" />
       </group>
     </dependencies>
   </metadata>

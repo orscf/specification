@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.ObjectModel;
 
-namespace MedicalResearch.BillingData.Access {
+namespace MedicalResearch.BillingData.StoreAccess {
 
 /// <summary> Provides CRUD access to stored BillableTasks (based on schema version '1.3.0') </summary>
 public partial interface IBillableTasks {

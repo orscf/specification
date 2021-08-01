@@ -11,7 +11,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                           //
-//     Copyright: Tobias Korn / version: 24.04.2021                                          //
+//     Copyright: Tobias Korn / version: 31.07.2021                                          //
 //                                                                                           //
 //     this template is open source (under Apache-2 license) and originated here:            //
 //     https://github.com/KornSW/EntityFrameworkCore.ModelFirst                              //
@@ -118,7 +118,7 @@ foreach (var kvp in entitiesByPath.OrderBy((kvp)=>kvp.Key)) {
 
 ## <#=entityClassNamePattern.Replace("{E}", entity.Name)#>
 
-<#=entitySummary#>
+<#=EscapeSummary(entitySummary)#>
 <#
 
   if(!String.IsNullOrWhiteSpace(entity.InheritedEntityName)){
@@ -168,13 +168,15 @@ This type is a specialization of [<#=entityClassNamePattern.Replace("{E}", entit
         fieldDetails.AppendLine("#### " + fieldHeading);
         hasDetailSection = true;
       }
-      fieldDetails.AppendLine("```");
-      fieldDetails.AppendLine(field.Summary);
-      fieldDetails.AppendLine("```");
+      //fieldDetails.AppendLine("```");
+      fieldDetails.AppendLine("");
+      fieldDetails.AppendLine(EscapeSummary(field.Summary));
+      //fieldDetails.AppendLine("```");
+      fieldDetails.AppendLine("");
     }
 
     string fieldsuffix = "";
-    string summary = field.Summary;
+    //string summary = field.Summary;
     string typeName = field.Type;
     if(typeName == "Binary"){
       typeName = "Byte[]";
@@ -309,7 +311,7 @@ This type is a specialization of [<#=entityClassNamePattern.Replace("{E}", entit
             String navHeading = "";
 
             List<String> attributes = new List<String>();
-            string summary = rel.ForeignNavigationSummary;
+            //string summary = rel.ForeignNavigationSummary;
 
             bool generate = true;
 
@@ -372,9 +374,11 @@ This type is a specialization of [<#=entityClassNamePattern.Replace("{E}", entit
               }
 
               if(!String.IsNullOrWhiteSpace(rel.PrimaryNavigationSummary)){
-                navDetails.AppendLine("```");
-                navDetails.AppendLine(rel.PrimaryNavigationSummary);
-                navDetails.AppendLine("```");
+                //navDetails.AppendLine("```");
+                navDetails.AppendLine("");
+                navDetails.AppendLine(EscapeSummary(rel.PrimaryNavigationSummary));
+                //navDetails.AppendLine("```");
+                navDetails.AppendLine("");
               }
 
             }
@@ -395,7 +399,7 @@ This type is a specialization of [<#=entityClassNamePattern.Replace("{E}", entit
           if(!String.IsNullOrWhiteSpace(rel.ForeignNavigationName)){
             String navHeading = "";
             List<String> attributes = new List<String>();
-            string summary = rel.ForeignNavigationSummary;
+            //string summary = rel.ForeignNavigationSummary;
 
             bool generate = true;
             if(rel.IsLookupRelation){
@@ -424,7 +428,7 @@ This type is a specialization of [<#=entityClassNamePattern.Replace("{E}", entit
 
               String pattern = "[{F}](#" + entityClassNamePattern.Replace("{E}", entity.Name) + "{F}-Field)";
               var x = idx.MemberFieldNames.Select((f)=> pattern.Replace("{F}", f)).ToArray();
-              navDetails.AppendLine("Addressed by: " + String.Join(", ", x) + ".");
+              navDetails.AppendLine("Addressed by: " + String.Join(" + ", x) + ".");
 
 
               if(rel.PrimaryEntityIsOptional){
@@ -440,9 +444,11 @@ This type is a specialization of [<#=entityClassNamePattern.Replace("{E}", entit
               anyNavProp = true;
 
               if(!String.IsNullOrWhiteSpace(rel.ForeignNavigationSummary)){
-                navDetails.AppendLine("```");
-                navDetails.AppendLine(rel.ForeignNavigationSummary);
-                navDetails.AppendLine("```");
+                //navDetails.AppendLine("```");
+                navDetails.AppendLine("");
+                navDetails.AppendLine(EscapeSummary(rel.ForeignNavigationSummary));
+                //navDetails.AppendLine("```");
+                navDetails.AppendLine("");
               }
 
              // navDetails.AppendLine("* the foreign key is represented by the fields: **" + String.Join("** + **", idx.MemberFieldNames) + "**.");
@@ -479,6 +485,42 @@ This type is a specialization of [<#=entityClassNamePattern.Replace("{E}", entit
 public static string ExcapeHeadingToMdLink(string heading)
 {
   return heading.Replace("(", "").Replace(")", "").Replace("*", "").Replace(".", "").Replace(" ", "-");
+}
+
+public static string EscapeSummary(string sum) {
+  if (!sum.Contains("<see")) {
+    return sum;
+  }
+
+  int beginIdx = sum.IndexOf("<see");
+  while (beginIdx >= 0) {
+
+    int endIdx = sum.IndexOf("</see>", beginIdx);
+    int blockUntil;
+    string left;
+
+    if(endIdx < 0) {
+      blockUntil = sum.Length;
+      left = ""; 
+    }
+    else {
+      blockUntil = endIdx;
+      left = sum.Substring(endIdx + 6);
+    }
+
+    int blockStart = beginIdx + 5;
+
+    string block = sum.Substring(blockStart, blockUntil - blockStart);
+    int urlStart = block.IndexOf("href=\"") + 6;
+    int urlEnd = block.IndexOf("\">");
+    string url = block.Substring(urlStart, urlEnd - urlStart);
+    string title = block.Substring(urlEnd + 2);
+
+    sum = sum.Substring(0, beginIdx) + $"[{title}]({url})" + left;
+    beginIdx = sum.IndexOf("<see");
+  }
+
+  return sum;
 }
 
 String BuildDependencyPath(SchemaRoot schema, EntitySchema entity){

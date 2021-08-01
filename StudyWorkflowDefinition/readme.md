@@ -59,34 +59,34 @@
 * StudyWorkflowName + StudyWorkflowVersion **(primary)**
 
 #### ResearchStudyDefinition.**StudyWorkflowName** (Field)
-```
+
 the official invariant name of the study as given by the sponsor
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 100 characters.
 
 #### ResearchStudyDefinition.**StudyWorkflowVersion** (Field)
-```
+
 This value follows the rules of 'Semantic Versioning' (https://semver.org) and needs to be updated exactly and only on transition to DraftState.Released! If the previously DraftState was 'DraftNewFix', then the 3. number must be increased at this time! If the previously DraftState was 'DraftNewMinor', then the 2. number must be increased, and the 3. number must be set to 0 at this time! If the previously DraftState was 'DraftNewMajor', then the 1. number must be increased, and the 2.+3. number must be set to 0 at this time!
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 20 characters.
 
 #### ResearchStudyDefinition.**LogoImage** (Field)
-```
+
 Logo in base64
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### ResearchStudyDefinition.**VersionIdentity** (Field)
-```
+
 IT MUST NOT be updated on every change during Draft! Format: the Author, which is starting the new Draft (Alphanumeric, in PascalCase without blanks or other Symbols) + the current UTC-Time when setting the value (in ISO8601 format) separated by a Pipe "|" Sample: "MaxMustermann|2020-06-15T13:45:30.0000000Z".
-```
+
 
 #### ResearchStudyDefinition.**DraftState** (Field)
-```
+
 0=Released / 1=DraftNewFix / 2=DraftNewMinor / 3=DraftNewMajor
-```
+
 
 #### ResearchStudyDefinition.**BillingCurrency** (Field)
 * this field is optional, so that '*null*' values are supported
@@ -159,9 +159,9 @@ Target: [SubStudy](#SubStudy)
 * StudyArmName + StudyWorkflowName + StudyWorkflowVersion **(primary)**
 
 #### Arm.**StudyArmName** (Field)
-```
+
 Name of the Arm - INVARIANT! because it is used to generate Identifers for induced executions!
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 50 characters.
 
@@ -176,9 +176,9 @@ Name of the Arm - INVARIANT! because it is used to generate Identifers for induc
 * the maximum length of the content within this field is 20 characters.
 
 #### Arm.**RootProcedureScheduleId** (Field)
-```
+
 the ProcedureSchedule which is representing the primary-/entry-workflow (estimated visits) for participants of this arm
-```
+
 * this field is optional, so that '*null*' values are supported
 * this field is used as foreign key to address the related 'RootProcedureSchedule'
 
@@ -201,10 +201,10 @@ the ProcedureSchedule which is representing the primary-/entry-workflow (estimat
 * this field is optional, so that '*null*' values are supported
 
 #### Arm.**AllowedSubstudies** (Field)
-```
+
 comma sparated list of Sub-Study names which are allowed to be executed for this arm
 
-```
+
 * this field is optional, so that '*null*' values are supported
 
 
@@ -217,13 +217,13 @@ comma sparated list of Sub-Study names which are allowed to be executed for this
 
 ##### **ResearchStudy** (parent of this Arm)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#ArmStudyWorkflowName-Field), [StudyWorkflowVersion](#ArmStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#ArmStudyWorkflowName-Field) + [StudyWorkflowVersion](#ArmStudyWorkflowVersion-Field).
 ##### **RootProcedureSchedule** (lookup from this Arm)
 Target Type: [ProcedureSchedule](#ProcedureSchedule)
 Addressed by: [RootProcedureScheduleId](#ArmRootProcedureScheduleId-Field).
-```
+
 the ProcedureSchedule which is representing the primary-/entry-workflow (estimated visits) for participants of this arm
-```
+
 
 
 
@@ -248,9 +248,9 @@ the ProcedureSchedule which is representing the primary-/entry-workflow (estimat
 * TaskDefinitionName **(primary)**
 
 #### DataRecordingTaskDefinition.**TaskDefinitionName** (Field)
-```
+
 Name of the Definition - INVARIANT! because it is used to generate Identifers for induced executions!
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 50 characters.
 
@@ -272,14 +272,14 @@ Name of the Definition - INVARIANT! because it is used to generate Identifers fo
 * this field is optional, so that '*null*' values are supported
 
 #### DataRecordingTaskDefinition.**DataSchemaUrl** (Field)
-```
+
 schema-url of the data which have to be recorded
-```
+
 
 #### DataRecordingTaskDefinition.**DefaultData** (Field)
-```
+
 RAW data, in the schema as defined at the 'DataSchemaUrl'
-```
+
 * this field is optional, so that '*null*' values are supported
 
 
@@ -294,7 +294,7 @@ RAW data, in the schema as defined at the 'DataSchemaUrl'
 Target: [InducedDataRecordingTask](#InducedDataRecordingTask)
 ##### **ResearchStudy** (parent of this DataRecordingTaskDefinition)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#DataRecordingTaskDefinitionStudyWorkflowName-Field), [StudyWorkflowVersion](#DataRecordingTaskDefinitionStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#DataRecordingTaskDefinitionStudyWorkflowName-Field) + [StudyWorkflowVersion](#DataRecordingTaskDefinitionStudyWorkflowVersion-Field).
 
 
 
@@ -321,9 +321,9 @@ Addressed by: [StudyWorkflowName](#DataRecordingTaskDefinitionStudyWorkflowName-
 * TaskDefinitionName **(primary)**
 
 #### DrugApplymentTaskDefinition.**TaskDefinitionName** (Field)
-```
+
 Name of the Definition - INVARIANT! because it is used to generate Identifers for induced executions!
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 50 characters.
 
@@ -356,7 +356,7 @@ Name of the Definition - INVARIANT! because it is used to generate Identifers fo
 Target: [InducedDrugApplymentTask](#InducedDrugApplymentTask)
 ##### **ResearchStudy** (parent of this DrugApplymentTaskDefinition)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#DrugApplymentTaskDefinitionStudyWorkflowName-Field), [StudyWorkflowVersion](#DrugApplymentTaskDefinitionStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#DrugApplymentTaskDefinitionStudyWorkflowName-Field) + [StudyWorkflowVersion](#DrugApplymentTaskDefinitionStudyWorkflowVersion-Field).
 
 
 
@@ -379,9 +379,9 @@ Addressed by: [StudyWorkflowName](#DrugApplymentTaskDefinitionStudyWorkflowName-
 * ProdecureDefinitionName **(primary)**
 
 #### ProcedureDefinition.**ProdecureDefinitionName** (Field)
-```
+
 Name of the Definition - INVARIANT! because it is used to generate Identifers for induced executions!
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 50 characters.
 
@@ -394,9 +394,9 @@ Name of the Definition - INVARIANT! because it is used to generate Identifers fo
 * the maximum length of the content within this field is 20 characters.
 
 #### ProcedureDefinition.**RootTaskScheduleId** (Field)
-```
+
 the TaskSchedule which is representing the primary-/entry-workflow (estimated tasks) when executing this visit
-```
+
 * this field is optional, so that '*null*' values are supported
 * this field is used as foreign key to address the related 'RootTaskSchedule'
 
@@ -422,13 +422,13 @@ the TaskSchedule which is representing the primary-/entry-workflow (estimated ta
 Target: [InducedProcedure](#InducedProcedure)
 ##### **ResearchStudy** (parent of this ProcedureDefinition)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#ProcedureDefinitionStudyWorkflowName-Field), [StudyWorkflowVersion](#ProcedureDefinitionStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#ProcedureDefinitionStudyWorkflowName-Field) + [StudyWorkflowVersion](#ProcedureDefinitionStudyWorkflowVersion-Field).
 ##### **RootTaskSchedule** (lookup from this ProcedureDefinition)
 Target Type: [TaskSchedule](#TaskSchedule)
 Addressed by: [RootTaskScheduleId](#ProcedureDefinitionRootTaskScheduleId-Field).
-```
+
 the TaskSchedule which is representing the primary-/entry-workflow (estimated tasks) when executing this visit
-```
+
 
 
 
@@ -468,9 +468,9 @@ the TaskSchedule which is representing the primary-/entry-workflow (estimated ta
 * the maximum length of the content within this field is 20 characters.
 
 #### ProcedureSchedule.**ScheduleWorkflowName** (Field)
-```
+
 Name of the Workflow which is represented by this schedule - INVARIANT! because it is used to generate Identifers for induced executions!
-```
+
 
 
 ### Relations
@@ -496,7 +496,7 @@ Target: [InducedSubProcedureSchedule](#InducedSubProcedureSchedule)
 Target: [ProcedureCycleDefinition](#ProcedureCycleDefinition)
 ##### **ResearchStudy** (parent of this ProcedureSchedule)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#ProcedureScheduleStudyWorkflowName-Field), [StudyWorkflowVersion](#ProcedureScheduleStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#ProcedureScheduleStudyWorkflowName-Field) + [StudyWorkflowVersion](#ProcedureScheduleStudyWorkflowVersion-Field).
 
 
 
@@ -535,71 +535,71 @@ Addressed by: [StudyWorkflowName](#ProcedureScheduleStudyWorkflowName-Field), [S
 * this field is used as foreign key to address the related 'ProcedureSchedule'
 
 #### InducedProcedure.**SchedulingOffset** (Field)
-```
+
 estimated scheduling date relative to the scheduling date of the parent ProcedureSchedule
-```
+
 
 #### InducedProcedure.**SchedulingOffsetUnit** (Field)
-```
+
 'M'=Months / 'W'=Weeks / 'D'=Days
-```
+
 
 #### InducedProcedure.**SchedulingVariabilityBefore** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling date (which is calculated from the offset), in this case the EARLIEST possible date.
-```
+
 
 #### InducedProcedure.**SchedulingVariabilityAfter** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling date (which is calculated from the offset), in this case the LATEST possible date.
-```
+
 
 #### InducedProcedure.**SchedulingVariabilityUnit** (Field)
-```
+
 'M'=Months / 'W'=Weeks / 'D'=Days
-```
+
 
 #### InducedProcedure.**ProdecureDefinitionName** (Field)
 * this field is used as foreign key to address the related 'InducedVisitProdecure'
 * the maximum length of the content within this field is 50 characters.
 
 #### InducedProcedure.**UniqueExecutionName** (Field)
-```
+
 the name for the induced execution (=VISIT), like 'V0', which is usually defined by the study protocol. if multiple inducements are possible (for example when using cycles), the title should to contain a placeholder (example: 'C{cy}-V0') to prevent from duplicate execution names.
-```
+
 
 #### InducedProcedure.**Skipable** (Field)
-```
+
 defines, if the study protocol tolerates this execution to be 'skipped' (if not, a missed execution is treated as 'lost' and can cause the exclusion of the participant)
-```
+
 
 #### InducedProcedure.**Position** (Field)
-```
+
 The Position (1..x) of this inducement within the parent schedule. This value is relevant for addressing predecessors as fixpoint for the offest-calculation. Within one schedule there can only be one inducement for each position! The 0 is reserved for addressing the parent schedule itself and must not be used as well as negative values!
-```
+
 
 #### InducedProcedure.**SchedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the parent Schedule (for the current cycle) was induced / -1=InducementOfPredessessor: when the direct predecessor procedure or subschedule (based on the 'Position') within the current schedule was induced / 1..x: when the predecessor at the Position within the current schedule, ADRESSED by the given value, was induced 
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'SchedulingByEstimate'
-```
+
 
 #### InducedProcedure.**SchedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### InducedProcedure.**DedicatedToSubstudy** (Field)
-```
+
 The name of a Sub-Study for which this procedure should be induced or empty when its part of the current Arms regular workflow 
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### InducedProcedure.**VisitNumber** (Field)
-```
+
 Number, which can be used via Placeholder {#} within the UniqueExecutionName and which will automatically increase when using cycles or sub-schedules
-```
+
 
 
 ### Relations
@@ -652,36 +652,36 @@ Addressed by: [ProdecureDefinitionName](#InducedProcedureProdecureDefinitionName
 * this field is used as foreign key to address the related 'InducedProcedureSchedule'
 
 #### InducedSubProcedureSchedule.**SchedulingOffset** (Field)
-```
+
 estimated scheduling date relative to the scheduling date of the parent ProcedureSchedule
-```
+
 
 #### InducedSubProcedureSchedule.**SchedulingOffsetUnit** (Field)
-```
+
 'M'=Months / 'W'=Weeks / 'D'=Days
-```
+
 
 #### InducedSubProcedureSchedule.**Position** (Field)
-```
+
 The Position (1..x) of this inducement within the parent schedule. This value is relevant for addressing predecessors as fixpoint for the offest-calculation. Within one schedule there can only be one inducement for each position! The 0 is reserved for addressing the parent schedule itself and must not be used as well as negative values!
-```
+
 
 #### InducedSubProcedureSchedule.**SchedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the parent Schedule (for the current cycle) was induced / -1=InducementOfPredessessor: when the direct predecessor procedure or subschedule (based on the 'Position') within the current schedule was induced / 1..x: when the predecessor at the Position within the current schedule, ADRESSED by the given value, was induced 
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'SchedulingByEstimate'
-```
+
 
 #### InducedSubProcedureSchedule.**SchedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### InducedSubProcedureSchedule.**DedicatedToSubstudy** (Field)
-```
+
 The name of a Sub-Study for which this schedule should be induced or empty when its part of the current Arms regular workflow 
-```
+
 * this field is optional, so that '*null*' values are supported
 
 
@@ -726,37 +726,37 @@ Addressed by: [InducedProcedureScheduleId](#InducedSubProcedureScheduleInducedPr
 * this field is used as foreign key to address the related 'ProcedureSchedule'
 
 #### ProcedureCycleDefinition.**ReschedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the last cycle was induced / -1=InducementOfPredessessor: when the last procedure or subschedule (based on the 'Position') of the previous cycle was induced.
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'ReschedulingByEstimate'
-```
+
 
 #### ProcedureCycleDefinition.**ReschedulingOffset** (Field)
-```
+
 estimated scheduling date relative to the ReschedulingBase
-```
+
 
 #### ProcedureCycleDefinition.**ReschedulingOffsetUnit** (Field)
-```
+
 'M'=Months / 'W'=Weeks / 'D'=Days
-```
+
 
 #### ProcedureCycleDefinition.**CycleLimit** (Field)
-```
+
 number of cycles (of null for a infinite number of cycles)
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### ProcedureCycleDefinition.**ReschedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### ProcedureCycleDefinition.**IncreaseVisitNumberBasePerCycle** (Field)
-```
+
 -1: automatic, based on the usage of visit numbers within the schedule
-```
+
 
 
 ### Relations
@@ -816,7 +816,7 @@ Addressed by: [ProcedureScheduleId](#ProcedureCycleDefinitionProcedureScheduleId
 
 ##### **ResearchStudy** (parent of this StudyEvent)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#StudyEventStudyWorkflowName-Field), [StudyWorkflowVersion](#StudyEventStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#StudyEventStudyWorkflowName-Field) + [StudyWorkflowVersion](#StudyEventStudyWorkflowVersion-Field).
 
 
 
@@ -855,7 +855,7 @@ Addressed by: [StudyWorkflowName](#StudyEventStudyWorkflowName-Field), [StudyWor
 
 ##### **ResearchStudyDefinition** (parent of this SubStudy)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#SubStudyStudyWorkflowName-Field), [StudyWorkflowVersion](#SubStudyStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#SubStudyStudyWorkflowName-Field) + [StudyWorkflowVersion](#SubStudyStudyWorkflowVersion-Field).
 
 
 
@@ -895,9 +895,9 @@ Addressed by: [StudyWorkflowName](#SubStudyStudyWorkflowName-Field), [StudyWorkf
 * the maximum length of the content within this field is 20 characters.
 
 #### TaskSchedule.**ScheduleWorkflowName** (Field)
-```
+
 Name of the Workflow which is represented by this schedule - INVARIANT! because it is used to generate Identifers for induced executions!
-```
+
 
 
 ### Relations
@@ -927,7 +927,7 @@ Target: [InducedTreatmentTask](#InducedTreatmentTask)
 Target: [ProcedureDefinition](#ProcedureDefinition)
 ##### **ResearchStudy** (parent of this TaskSchedule)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#TaskScheduleStudyWorkflowName-Field), [StudyWorkflowVersion](#TaskScheduleStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#TaskScheduleStudyWorkflowName-Field) + [StudyWorkflowVersion](#TaskScheduleStudyWorkflowVersion-Field).
 ##### **CycleDefinition** (child of this TaskSchedule)
 Target: [TaskCycleDefinition](#TaskCycleDefinition)
 
@@ -972,67 +972,67 @@ Target: [TaskCycleDefinition](#TaskCycleDefinition)
 * the maximum length of the content within this field is 50 characters.
 
 #### InducedDataRecordingTask.**SchedulingOffset** (Field)
-```
+
 estimated scheduling time relative to the scheduling date of the parent TaskSchedule
-```
+
 
 #### InducedDataRecordingTask.**SchedulingOffsetUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### InducedDataRecordingTask.**SchedulingVariabilityBefore** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling time (which is calculated from the offset), in this case the EARLIEST possible time.
-```
+
 
 #### InducedDataRecordingTask.**SchedulingVariabilityAfter** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling time (which is calculated from the offset), in this case the LATEST possible time.
-```
+
 
 #### InducedDataRecordingTask.**SchedulingVariabilityUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### InducedDataRecordingTask.**UniqueExecutionName** (Field)
-```
+
 the name for the induced execution, like 'Measurement X', which is usually defined by the study protocol. if multiple inducements are possible (for example when using cycles), the title should to contain a placeholder (example: '{vt} - Measurement X') to prevent from duplicate execution names.
-```
+
 
 #### InducedDataRecordingTask.**Skipable** (Field)
-```
+
 defines, if the study protocol tolerates this execution to be 'skipped' (if not, a missed execution is treated as 'lost' and can cause the exclusion of the participant)
-```
+
 
 #### InducedDataRecordingTask.**Position** (Field)
-```
+
 The Position (1..x) of this inducement within the parent schedule. This value is relevant for addressing predecessors as fixpoint for the offest-calculation. Within one schedule there can only be one inducement for each position! The 0 is reserved for addressing the parent schedule itself and must not be used as well as negative values!
-```
+
 
 #### InducedDataRecordingTask.**SchedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the parent Schedule (for the current cycle) was induced / -1=InducementOfPredessessor: when the direct predecessor task or subschedule (based on the 'Position') within the current schedule was induced / 1..x: when the predecessor at the Position within the current schedule, ADRESSED by the given value, was induced 
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'SchedulingByEstimate'
-```
+
 
 #### InducedDataRecordingTask.**SchedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### InducedDataRecordingTask.**DedicatedToSubstudy** (Field)
-```
+
 The name of a Sub-Study for which this Task should be induced or empty when its part of the current Arms regular workflow
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### InducedDataRecordingTask.**TaskNumber** (Field)
-```
+
 Number, which can be used via Placeholder {#} within the UniqueExecutionName and which will automatically increase when using cycles or sub-schedules
-```
+
 
 
 ### Relations
@@ -1090,68 +1090,68 @@ Addressed by: [TaskScheduleId](#InducedDataRecordingTaskTaskScheduleId-Field).
 * the maximum length of the content within this field is 50 characters.
 
 #### InducedDrugApplymentTask.**SchedulingOffset** (Field)
-```
+
 estimated scheduling time relative to the scheduling date of the parent TaskSchedule
-```
+
 
 #### InducedDrugApplymentTask.**SchedulingOffsetUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### InducedDrugApplymentTask.**SchedulingVariabilityBefore** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling time (which is calculated from the offset), in this case the EARLIEST possible time.
-```
+
 
 #### InducedDrugApplymentTask.**SchedulingVariabilityAfter** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling time (which is calculated from the offset), in this case the LATEST possible time.
-```
+
 
 #### InducedDrugApplymentTask.**SchedulingVariabilityUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### InducedDrugApplymentTask.**UniqueExecutionName** (Field)
-```
+
 the name for the induced execution, like 'Measurement X', which is usually defined by the study protocol. if multiple inducements are possible (for example when using cycles), the title should to contain a placeholder (example: '{vt} - Measurement X') to prevent from duplicate execution names.
 
-```
+
 
 #### InducedDrugApplymentTask.**Skipable** (Field)
-```
+
 defines, if the study protocol tolerates this execution to be 'skipped' (if not, a missed execution is treated as 'lost' and can cause the exclusion of the participant)
-```
+
 
 #### InducedDrugApplymentTask.**Position** (Field)
-```
+
 The Position (1..x) of this inducement within the parent schedule. This value is relevant for addressing predecessors as fixpoint for the offest-calculation. Within one schedule there can only be one inducement for each position! The 0 is reserved for addressing the parent schedule itself and must not be used as well as negative values!
-```
+
 
 #### InducedDrugApplymentTask.**SchedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the parent Schedule (for the current cycle) was induced / -1=InducementOfPredessessor: when the direct predecessor task or subschedule (based on the 'Position') within the current schedule was induced / 1..x: when the predecessor at the Position within the current schedule, ADRESSED by the given value, was induced 
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'SchedulingByEstimate'
-```
+
 
 #### InducedDrugApplymentTask.**SchedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### InducedDrugApplymentTask.**DedicatedToSubstudy** (Field)
-```
+
 The name of a Sub-Study for which this Task should be induced or empty when its part of the current Arms regular workflow
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### InducedDrugApplymentTask.**TaskNumber** (Field)
-```
+
 Number, which can be used via Placeholder {#} within the UniqueExecutionName and which will automatically increase when using cycles or sub-schedules
-```
+
 
 
 ### Relations
@@ -1204,36 +1204,36 @@ Addressed by: [TaskScheduleId](#InducedDrugApplymentTaskTaskScheduleId-Field).
 * this field is used as foreign key to address the related 'InducedTaskSchedule'
 
 #### InducedSubTaskSchedule.**SchedulingOffset** (Field)
-```
+
 estimated scheduling time relative to the scheduling date of the parent ProcedureSchedule
-```
+
 
 #### InducedSubTaskSchedule.**SchedulingOffsetUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### InducedSubTaskSchedule.**Position** (Field)
-```
+
 The Position (1..x) of this inducement within the parent schedule. This value is relevant for addressing predecessors as fixpoint for the offest-calculation. Within one schedule there can only be one inducement for each position! The 0 is reserved for addressing the parent schedule itself and must not be used as well as negative values!
-```
+
 
 #### InducedSubTaskSchedule.**SchedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the parent Schedule (for the current cycle) was induced / -1=InducementOfPredessessor: when the direct predecessor task or subschedule (based on the 'Position') within the current schedule was induced / 1..x: when the predecessor at the Position within the current schedule, ADRESSED by the given value, was induced 
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'SchedulingByEstimate'
-```
+
 
 #### InducedSubTaskSchedule.**SchedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### InducedSubTaskSchedule.**DedicatedToSubstudy** (Field)
-```
+
 The name of a Sub-Study for which this schedule should be induced or empty when its part of the current Arms regular workflow 
-```
+
 * this field is optional, so that '*null*' values are supported
 
 
@@ -1292,67 +1292,67 @@ Addressed by: [InducedTaskScheduleId](#InducedSubTaskScheduleInducedTaskSchedule
 * the maximum length of the content within this field is 50 characters.
 
 #### InducedTreatmentTask.**SchedulingOffset** (Field)
-```
+
 estimated scheduling time relative to the scheduling date of the parent TaskSchedule
-```
+
 
 #### InducedTreatmentTask.**SchedulingOffsetUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### InducedTreatmentTask.**SchedulingVariabilityBefore** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling time (which is calculated from the offset), in this case the EARLIEST possible time.
-```
+
 
 #### InducedTreatmentTask.**SchedulingVariabilityAfter** (Field)
-```
+
 defines an additional variability RELATIVE to the estimated scheduling time (which is calculated from the offset), in this case the LATEST possible time.
-```
+
 
 #### InducedTreatmentTask.**SchedulingVariabilityUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### InducedTreatmentTask.**UniqueExecutionName** (Field)
-```
+
 the name for the induced execution, like 'Measurement X', which is usually defined by the study protocol. if multiple inducements are possible (for example when using cycles), the title should to contain a placeholder (example: '{vt} - Measurement X') to prevent from duplicate execution names.
-```
+
 
 #### InducedTreatmentTask.**Skipable** (Field)
-```
+
 defines, if the study protocol tolerates this execution to be 'skipped' (if not, a missed execution is treated as 'lost' and can cause the exclusion of the participant)
-```
+
 
 #### InducedTreatmentTask.**Position** (Field)
-```
+
 The Position (1..x) of this inducement within the parent schedule. This value is relevant for addressing predecessors as fixpoint for the offest-calculation. Within one schedule there can only be one inducement for each position! The 0 is reserved for addressing the parent schedule itself and must not be used as well as negative values!
-```
+
 
 #### InducedTreatmentTask.**SchedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the parent Schedule (for the current cycle) was induced / -1=InducementOfPredessessor: when the direct predecessor task or subschedule (based on the 'Position') within the current schedule was induced / 1..x: when the predecessor at the Position within the current schedule, ADRESSED by the given value, was induced 
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'SchedulingByEstimate'
-```
+
 
 #### InducedTreatmentTask.**SchedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### InducedTreatmentTask.**DedicatedToSubstudy** (Field)
-```
+
 The name of a Sub-Study for which this Task should be induced or empty when its part of the current Arms regular workflow
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### InducedTreatmentTask.**TaskNumber** (Field)
-```
+
 Number, which can be used via Placeholder {#} within the UniqueExecutionName and which will automatically increase when using cycles or sub-schedules
-```
+
 
 
 ### Relations
@@ -1396,37 +1396,37 @@ Addressed by: [TaskDefinitionName](#InducedTreatmentTaskTaskDefinitionName-Field
 * this field is used as foreign key to address the related 'TaskSchedule'
 
 #### TaskCycleDefinition.**ReschedulingOffsetFixpoint** (Field)
-```
+
 0=InducementOfScheduleOrCycle: when the start of the last cycle was induced / -1=InducementOfPredessessor: when the last task or subschedule (based on the 'Position') of the previous cycle was induced.
 *items of sub-schedules are not relevant - when addressing a sub-schedule as predecessor, then only its entry will be used
 *this behaviour can be concretized via 'ReschedulingByEstimate'
-```
+
 
 #### TaskCycleDefinition.**ReschedulingOffset** (Field)
-```
+
 estimated scheduling time relative to the ReschedulingBase
-```
+
 
 #### TaskCycleDefinition.**ReschedulingOffsetUnit** (Field)
-```
+
 'h'=Hours / 'm'=Minutes / 's'=Seconds
-```
+
 
 #### TaskCycleDefinition.**CycleLimit** (Field)
-```
+
 number of cycles (of null for a infinite number of cycles)
-```
+
 * this field is optional, so that '*null*' values are supported
 
 #### TaskCycleDefinition.**ReschedulingByEstimate** (Field)
-```
+
 If set to true, the offset calculation will be based on the ESTIMATED completion of the predecessor (see 'Fixpoint'). Otherwise, when set to false, the offset calculation will be based on the REAL completion (if recorded execution data is available during calculation) of the predecessor. *this will not evaluated, when the 'Fixpoint' is set to 0!
-```
+
 
 #### TaskCycleDefinition.**IncreaseTaskNumberBasePerCycle** (Field)
-```
+
 -1: automatic, based on the usage of task numbers within the schedule
-```
+
 
 
 ### Relations
@@ -1461,9 +1461,9 @@ Addressed by: [TaskScheduleId](#TaskCycleDefinitionTaskScheduleId-Field).
 * TaskDefinitionName **(primary)**
 
 #### TreatmentTaskDefinition.**TaskDefinitionName** (Field)
-```
+
 Name of the Definition - INVARIANT! because it is used to generate Identifers for induced executions!
-```
+
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 50 characters.
 
@@ -1496,6 +1496,6 @@ Name of the Definition - INVARIANT! because it is used to generate Identifers fo
 Target: [InducedTreatmentTask](#InducedTreatmentTask)
 ##### **ResearchStudy** (parent of this TreatmentTaskDefinition)
 Target Type: [ResearchStudyDefinition](#ResearchStudyDefinition)
-Addressed by: [StudyWorkflowName](#TreatmentTaskDefinitionStudyWorkflowName-Field), [StudyWorkflowVersion](#TreatmentTaskDefinitionStudyWorkflowVersion-Field).
+Addressed by: [StudyWorkflowName](#TreatmentTaskDefinitionStudyWorkflowName-Field) + [StudyWorkflowVersion](#TreatmentTaskDefinitionStudyWorkflowVersion-Field).
 
 
