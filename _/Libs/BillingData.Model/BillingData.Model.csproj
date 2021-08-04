@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>ORSCF.BillingData.Model</AssemblyName>
     <RootNamespace>MedicalResearch.BillingData</RootNamespace>
-    <Version>1.3.0</Version>
+    <Version>1.5.0</Version>
     <Authors>ORSCF.org</Authors>
     <Copyright>ORSCF.org</Copyright>
     <Product>Open Research Study Communication Format</Product>
@@ -32,6 +32,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="v1\BdrServices.md">
+      <DependentUpon>BdrServices.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="v1\BdrServices.tt">
+      <LastGenOutput>BdrServices.md</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
     <None Update="v1\Models.tt">
       <LastGenOutput>Models.Generated.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>

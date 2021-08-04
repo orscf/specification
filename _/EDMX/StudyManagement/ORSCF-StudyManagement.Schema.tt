@@ -18,7 +18,7 @@
        '//CONFIGURATION:
 
        Const inputFile As String = "ORSCF-StudyManagement.edmx"
-       Const schemaSemanticVersion = "1.0.0"
+       Const schemaSemanticVersion = "1.5.0"
 
 '///////////////////////////////////////////////////////////////////////////////////////////////
 '

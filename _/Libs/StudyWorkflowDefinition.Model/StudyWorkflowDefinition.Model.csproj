@@ -4,11 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>ORSCF.StudyWorkflowDefinition.Model</AssemblyName>
     <RootNamespace>MedicalResearch.Workflow</RootNamespace>
-    <Version>1.4.2</Version>
+    <Version>1.5.0</Version>
     <Authors>ORSCF.org</Authors>
     <Company>ORSCF.org</Company>
     <Copyright>ORSCF.org</Copyright>
     <Product>Open Research Study Communication Format</Product>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -40,6 +41,15 @@
     <None Update="v1\RepoInterfaces.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RepoInterfaces.Generated.cs</LastGenOutput>
+    </None>
+    <None Update="v1\WdrServices.md">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WdrServices.tt</DependentUpon>
+    </None>
+    <None Update="v1\WdrServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WdrServices.md</LastGenOutput>
     </None>
   </ItemGroup>
 

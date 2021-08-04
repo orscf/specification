@@ -1246,13 +1246,13 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e673f0774584ac2be5350aef5de4487" Name="Schema" ZoomLevel="51">
+      <Diagram DiagramId="1e673f0774584ac2be5350aef5de4487" Name="Schema" ZoomLevel="83">
         <EntityTypeShape EntityType="DomainModel.ResearchStudyDefinition" Width="2.625" PointX="10.625" PointY="1.75" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.StudyEvent" Width="2.625" PointX="0.5" PointY="0.625" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.Arm" Width="2.625" PointX="6" PointY="5.625" IsExpanded="true" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.ProcedureSchedule" Width="2.625" PointX="4.75" PointY="10.625" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.ProcedureDefinition" Width="2.625" PointX="13.875" PointY="7.25" FillColor="0, 64, 0" />
-        <EntityTypeShape EntityType="DomainModel.TaskSchedule" Width="2.625" PointX="15.25" PointY="10.625" FillColor="0, 64, 0" />
+        <EntityTypeShape EntityType="DomainModel.TaskSchedule" Width="2.625" PointX="15.125" PointY="10.625" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.DataRecordingTaskDefinition" Width="2.375" PointX="21.125" PointY="3.375" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.DrugApplymentTaskDefinition" Width="2.375" PointX="18.25" PointY="4.5" FillColor="0, 64, 0" />
         <EntityTypeShape EntityType="DomainModel.TreatmentTaskDefinition" Width="2.375" PointX="24" PointY="2.25" FillColor="0, 64, 0" />

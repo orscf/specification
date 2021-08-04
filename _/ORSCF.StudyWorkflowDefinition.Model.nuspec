@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ORSCF.StudyWorkflowDefinition.Model</id>
-    <version>1.4.2-localbuild</version>
+    <version>1.5.2-localbuild</version>
     <title>ORSCF - StudyWorkflowDefinition Model</title>
     <authors>ORSCF.org</authors>
     <owners>ORSCF.org</owners>

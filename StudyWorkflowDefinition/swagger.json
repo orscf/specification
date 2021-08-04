@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "mt2s 'Legacy' API",
+    "title": "Workflow Definition API",
     "description": "stores workflow definitions for research studies (digital representations of study-protocols)",
     "contact": {
       "name": "Open Research Study Communication Format",

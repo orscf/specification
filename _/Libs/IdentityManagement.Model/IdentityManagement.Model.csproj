@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>ORSCF.IdentityManagement.Model</AssemblyName>
     <RootNamespace>MedicalResearch.IdentityManagement</RootNamespace>
-    <Version>1.3.0</Version>
+    <Version>1.5.0</Version>
     <Company>ORSCF.org</Company>
     <Authors>ORSCF.org</Authors>
     <Copyright>ORSCF.org</Copyright>
@@ -33,6 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="v1\ImsServices.md">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ImsServices.tt</DependentUpon>
+    </None>
+    <None Update="v1\ImsServices.tt">
+      <LastGenOutput>ImsServices.md</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
     <None Update="v1\Models.tt">
       <LastGenOutput>Models.Generated.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>

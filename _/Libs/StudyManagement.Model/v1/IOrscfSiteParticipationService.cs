@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using H7 = Hl7.Fhir.Model;
 
-namespace MedicalResearch.Workflow {
+namespace MedicalResearch.StudyManagement {
 
-  /// <summary> Provides an workflow-level API for interating with a  'WorkflowDefinitionRepository' (WDR) </summary>
-  public partial interface IOrscfWdrEndpoint {
+  /// <summary> Provides an workflow-level API for interating with a 'StudyManagementSystem' (SMS) </summary>
+  public partial interface IOrscfSiteParticipationService {
 
     /// <summary>
     /// returns the Version of the API itself, which can be used to 
@@ -15,21 +15,7 @@ namespace MedicalResearch.Workflow {
     /// </summary>
     string GetApiVersion();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    bool HasAccess();
 
   }
 

@@ -1,7 +1,7 @@
 {
   "DescriptionFormat": "v1.0",
-  "TimestampUtc": "2021-07-30T14:59:23.8116786Z",
-  "SemanticVersion": "1.0.0",
+  "TimestampUtc": "2021-08-04T10:40:47.3329088Z",
+  "SemanticVersion": "1.5.0",
   "Entities": [
     {
       "Name": "Institute",

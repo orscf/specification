@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ORSCF.StudyManagement.Model</id>
-    <version>0.2.0-localbuild</version>
+    <version>1.5.0-localbuild</version>
     <title>ORSCF - StudyManagement Model</title>
     <authors>ORSCF.org</authors>
     <owners>ORSCF.org</owners>

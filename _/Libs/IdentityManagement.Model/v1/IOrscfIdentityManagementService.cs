@@ -7,7 +7,7 @@ using H7 = Hl7.Fhir.Model;
 namespace MedicalResearch.IdentityManagement {
 
   /// <summary> Provides an workflow-level API for interating with a 'IdentityManagementSystem' (IMS) </summary>
-  public partial interface IOrscfImsEndpoint {
+  public partial interface IOrscfIdentityManagementService {
 
     /// <summary>
     /// returns the Version of the API itself, which can be used to 
@@ -15,6 +15,17 @@ namespace MedicalResearch.IdentityManagement {
     /// </summary>
     string GetApiVersion();
 
+    bool HasAccess();
+
+
+    /* TODO:
+     *   OVerview and Confirmation of Unblinding-Tokens
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
   }
 
 }

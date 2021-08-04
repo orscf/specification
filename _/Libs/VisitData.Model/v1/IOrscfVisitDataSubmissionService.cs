@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using H7 = Hl7.Fhir.Model;
 
-namespace MedicalResearch.StudyManagement {
+namespace MedicalResearch.VisitData {
 
-  /// <summary> Provides an workflow-level API for interating with a 'StudyManagementSystem' (SMS) </summary>
-  public partial interface IOrscfSmsEndpoint {
+  /// <summary> Provides an workflow-level API for interating with a 'VisitDataRepository' (VDR) </summary>
+  public partial interface IOrscfVisitDataSubmissionService {
 
     /// <summary>
     /// returns the Version of the API itself, which can be used to 
@@ -15,6 +15,8 @@ namespace MedicalResearch.StudyManagement {
     /// </summary>
     string GetApiVersion();
 
+
+    bool HasAccess();
   }
 
 }

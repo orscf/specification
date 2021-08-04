@@ -7,8 +7,8 @@
     <Product>Open Research Study Communication Format</Product>
     <Authors>ORSCF.org</Authors>
     <Copyright>ORSCF.org</Copyright>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
-    <Version>0.2.0</Version>
+    <AssemblyVersion>1.5.0.0</AssemblyVersion>
+    <Version>1.5.0</Version>
     <AssemblyName>ORSCF.StudyManagement.Model</AssemblyName>
     <RootNamespace>MedicalResearch.StudyManagement</RootNamespace>
   </PropertyGroup>
@@ -41,6 +41,15 @@
     </None>
     <None Update="v1\RepoInterfaces.tt">
       <LastGenOutput>RepoInterfaces.Generated.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="v1\SmsServices.md">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SmsServices.tt</DependentUpon>
+    </None>
+    <None Update="v1\SmsServices.tt">
+      <LastGenOutput>SmsServices.md</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
   </ItemGroup>
