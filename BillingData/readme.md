@@ -22,9 +22,10 @@
 
 ### see also:
 
-|Specification|Description|
-|----|-----------|
-|[IMS-API](../IdentityManagement/readme.md)|ORSCF-Specification for the 'IdentityManagementSystem' API|
-|[SMS-API](../StudyManagement/readme.md)|ORSCF-Specification for the 'StudyManagementSystem' API|
-|[WDR-API](../StudyWorkflowDefinition/readme.md)|ORSCF-Specification for the 'WorkflowDefinitionRepository' API|
-|[VDR-API](../VisitData/readme.md)|ORSCF-Specification for the 'VisitDataRepository' API|
+|Specification|Description|Content|
+|----|-----------|----|
+|[SMS-API](../StudyManagement/readme.md)|Spec. for the 'StudyManagementSystem' API|studies & sites|
+|[SDR-API](../SubjectData/readme.md)|Spec. for the 'SubjectDataRepository' API|subjects (operative data)|
+|[VDR-API](../VisitData/readme.md)|Spec. for the 'VisitDataRepository' API|research data|
+|[IMS-API](../IdentityManagement/readme.md)|Spec. for the 'IdentityManagementSystem' API|protected patient identities|
+|[WDR-API](../StudyWorkflowDefinition/readme.md)|Spec. for the 'WorkflowDefinitionRepository' API|digital study protocols|

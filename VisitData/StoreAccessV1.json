@@ -1,0 +1,3136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ORSCF VisitData-StoreAccess API ",
+    "description": "stores data for research study related visits",
+    "contact": {
+      "name": "Open Research Study Communication Format",
+      "url": "https://orscf.org",
+      "email": "info@orscf.org"
+    },
+    "version": "1.6.0"
+  },
+  "paths": {
+    "/dataRecordings/getDataRecordingByTaskGuid": {
+      "post": {
+        "tags": [
+          "DataRecordings"
+        ],
+        "summary": "Loads a specific DataRecording addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetDataRecordingByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetDataRecordingByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dataRecordings/getDataRecordings": {
+      "post": {
+        "tags": [
+          "DataRecordings"
+        ],
+        "summary": "Loads DataRecordings.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetDataRecordingsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetDataRecordingsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dataRecordings/searchDataRecordings": {
+      "post": {
+        "tags": [
+          "DataRecordings"
+        ],
+        "summary": "Loads DataRecordings where values matching to the given filterExpression",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchDataRecordingsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SearchDataRecordingsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dataRecordings/addNewDataRecording": {
+      "post": {
+        "tags": [
+          "DataRecordings"
+        ],
+        "summary": "Adds a new DataRecording and returns its primary identifier (or null on failure).",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddNewDataRecordingRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AddNewDataRecordingResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dataRecordings/updateDataRecording": {
+      "post": {
+        "tags": [
+          "DataRecordings"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the primary identifier fields within the given DataRecording. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDataRecordingRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateDataRecordingResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dataRecordings/updateDataRecordingByTaskGuid": {
+      "post": {
+        "tags": [
+          "DataRecordings"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDataRecordingByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateDataRecordingByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dataRecordings/deleteDataRecordingByTaskGuid": {
+      "post": {
+        "tags": [
+          "DataRecordings"
+        ],
+        "summary": "Deletes a specific DataRecording addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteDataRecordingByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DeleteDataRecordingByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/drugApplyments/getDrugApplymentByTaskGuid": {
+      "post": {
+        "tags": [
+          "DrugApplyments"
+        ],
+        "summary": "Loads a specific DrugApplyment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetDrugApplymentByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetDrugApplymentByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/drugApplyments/getDrugApplyments": {
+      "post": {
+        "tags": [
+          "DrugApplyments"
+        ],
+        "summary": "Loads DrugApplyments.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetDrugApplymentsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetDrugApplymentsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/drugApplyments/searchDrugApplyments": {
+      "post": {
+        "tags": [
+          "DrugApplyments"
+        ],
+        "summary": "Loads DrugApplyments where values matching to the given filterExpression",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchDrugApplymentsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SearchDrugApplymentsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/drugApplyments/addNewDrugApplyment": {
+      "post": {
+        "tags": [
+          "DrugApplyments"
+        ],
+        "summary": "Adds a new DrugApplyment and returns its primary identifier (or null on failure).",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddNewDrugApplymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AddNewDrugApplymentResponse"
+            }
+          }
+        }
+      }
+    },
+    "/drugApplyments/updateDrugApplyment": {
+      "post": {
+        "tags": [
+          "DrugApplyments"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the primary identifier fields within the given DrugApplyment. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDrugApplymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateDrugApplymentResponse"
+            }
+          }
+        }
+      }
+    },
+    "/drugApplyments/updateDrugApplymentByTaskGuid": {
+      "post": {
+        "tags": [
+          "DrugApplyments"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDrugApplymentByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateDrugApplymentByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/drugApplyments/deleteDrugApplymentByTaskGuid": {
+      "post": {
+        "tags": [
+          "DrugApplyments"
+        ],
+        "summary": "Deletes a specific DrugApplyment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteDrugApplymentByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DeleteDrugApplymentByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyEvents/getStudyEventByEventGuid": {
+      "post": {
+        "tags": [
+          "StudyEvents"
+        ],
+        "summary": "Loads a specific StudyEvent addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetStudyEventByEventGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetStudyEventByEventGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyEvents/getStudyEvents": {
+      "post": {
+        "tags": [
+          "StudyEvents"
+        ],
+        "summary": "Loads StudyEvents.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetStudyEventsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetStudyEventsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyEvents/searchStudyEvents": {
+      "post": {
+        "tags": [
+          "StudyEvents"
+        ],
+        "summary": "Loads StudyEvents where values matching to the given filterExpression",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchStudyEventsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SearchStudyEventsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyEvents/addNewStudyEvent": {
+      "post": {
+        "tags": [
+          "StudyEvents"
+        ],
+        "summary": "Adds a new StudyEvent and returns its primary identifier (or null on failure).",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddNewStudyEventRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AddNewStudyEventResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyEvents/updateStudyEvent": {
+      "post": {
+        "tags": [
+          "StudyEvents"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the primary identifier fields within the given StudyEvent. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyEventRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyEventResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyEvents/updateStudyEventByEventGuid": {
+      "post": {
+        "tags": [
+          "StudyEvents"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyEventByEventGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyEventByEventGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyEvents/deleteStudyEventByEventGuid": {
+      "post": {
+        "tags": [
+          "StudyEvents"
+        ],
+        "summary": "Deletes a specific StudyEvent addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteStudyEventByEventGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DeleteStudyEventByEventGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyExecutionScopes/getStudyExecutionScopeByStudyExecutionIdentifier": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetStudyExecutionScopeByStudyExecutionIdentifierRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetStudyExecutionScopeByStudyExecutionIdentifierResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyExecutionScopes/getStudyExecutionScopes": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Loads StudyExecutionScopes.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetStudyExecutionScopesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetStudyExecutionScopesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyExecutionScopes/searchStudyExecutionScopes": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Loads StudyExecutionScopes where values matching to the given filterExpression",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchStudyExecutionScopesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SearchStudyExecutionScopesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyExecutionScopes/addNewStudyExecutionScope": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddNewStudyExecutionScopeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AddNewStudyExecutionScopeResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyExecutionScopes/updateStudyExecutionScope": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyExecutionScopeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyExecutionScopeResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyExecutionScopes/updateStudyExecutionScopeByStudyExecutionIdentifier": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyExecutionScopeByStudyExecutionIdentifierRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateStudyExecutionScopeByStudyExecutionIdentifierResponse"
+            }
+          }
+        }
+      }
+    },
+    "/studyExecutionScopes/deleteStudyExecutionScopeByStudyExecutionIdentifier": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteStudyExecutionScopeByStudyExecutionIdentifierRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DeleteStudyExecutionScopeByStudyExecutionIdentifierResponse"
+            }
+          }
+        }
+      }
+    },
+    "/treatments/getTreatmentByTaskGuid": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "summary": "Loads a specific Treatment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetTreatmentByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetTreatmentByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/treatments/getTreatments": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "summary": "Loads Treatments.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetTreatmentsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetTreatmentsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/treatments/searchTreatments": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "summary": "Loads Treatments where values matching to the given filterExpression",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchTreatmentsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SearchTreatmentsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/treatments/addNewTreatment": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "summary": "Adds a new Treatment and returns its primary identifier (or null on failure).",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddNewTreatmentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AddNewTreatmentResponse"
+            }
+          }
+        }
+      }
+    },
+    "/treatments/updateTreatment": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the primary identifier fields within the given Treatment. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTreatmentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateTreatmentResponse"
+            }
+          }
+        }
+      }
+    },
+    "/treatments/updateTreatmentByTaskGuid": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTreatmentByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateTreatmentByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/treatments/deleteTreatmentByTaskGuid": {
+      "post": {
+        "tags": [
+          "Treatments"
+        ],
+        "summary": "Deletes a specific Treatment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteTreatmentByTaskGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DeleteTreatmentByTaskGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/visits/getVisitByVisitGuid": {
+      "post": {
+        "tags": [
+          "Visits"
+        ],
+        "summary": "Loads a specific Visit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetVisitByVisitGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetVisitByVisitGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/visits/getVisits": {
+      "post": {
+        "tags": [
+          "Visits"
+        ],
+        "summary": "Loads Visits.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetVisitsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetVisitsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/visits/searchVisits": {
+      "post": {
+        "tags": [
+          "Visits"
+        ],
+        "summary": "Loads Visits where values matching to the given filterExpression",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchVisitsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SearchVisitsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/visits/addNewVisit": {
+      "post": {
+        "tags": [
+          "Visits"
+        ],
+        "summary": "Adds a new Visit and returns its primary identifier (or null on failure).",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddNewVisitRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AddNewVisitResponse"
+            }
+          }
+        }
+      }
+    },
+    "/visits/updateVisit": {
+      "post": {
+        "tags": [
+          "Visits"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the primary identifier fields within the given Visit. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateVisitRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateVisitResponse"
+            }
+          }
+        }
+      }
+    },
+    "/visits/updateVisitByVisitGuid": {
+      "post": {
+        "tags": [
+          "Visits"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateVisitByVisitGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UpdateVisitByVisitGuidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/visits/deleteVisitByVisitGuid": {
+      "post": {
+        "tags": [
+          "Visits"
+        ],
+        "summary": "Deletes a specific Visit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request capsule containing the method arguments",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteVisitByVisitGuidRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DeleteVisitByVisitGuidResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetDataRecordingByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'GetDataRecordingByTaskGuid'.\r\nMethod: Loads a specific DataRecording addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "required": [
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'GetDataRecordingByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DataRecording": {
+      "required": [
+        "dataRecordingName",
+        "dataSchemaUrl",
+        "executionState",
+        "extendedMetaData",
+        "recordedData",
+        "taskExecutionTitle",
+        "taskGuid",
+        "visitGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "visitGuid": {
+          "format": "uuid",
+          "description": "the guid of the visit in which this task was executed",
+          "type": "string"
+        },
+        "dataRecordingName": {
+          "description": "unique invariant name of ths task-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "taskExecutionTitle": {
+          "description": "title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "scheduledDateTimeUtc": {
+          "format": "date-time",
+          "description": "the estimated date when the visit is scheduled *this field is optional",
+          "type": "string"
+        },
+        "executionDateTimeUtc": {
+          "format": "date-time",
+          "description": "the real time, when the data was recorded *this field is optional",
+          "type": "string"
+        },
+        "executionState": {
+          "format": "int32",
+          "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+          "type": "integer"
+        },
+        "dataSchemaUrl": {
+          "description": "schema-url of the data which were stored inside of the 'RecordedData' field",
+          "type": "string"
+        },
+        "recordedData": {
+          "description": "RAW data, in the schema as defined at the 'DataSchemaUrl'",
+          "type": "string"
+        },
+        "notesRegardingOutcome": {
+          "description": "additional notes regarding this dedcated execution (supplied by the execution person) *this field is optional (use null as value)",
+          "type": "string"
+        },
+        "extendedMetaData": {
+          "description": "optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema",
+          "type": "string"
+        },
+        "executingPerson": {
+          "description": "*this field is optional (use null as value)",
+          "type": "string"
+        }
+      }
+    },
+    "GetDataRecordingByTaskGuidResponse": {
+      "description": "Contains results from calling 'GetDataRecordingByTaskGuid'.\r\nMethod: Loads a specific DataRecording addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "$ref": "#/definitions/DataRecording"
+        }
+      }
+    },
+    "GetDataRecordingsRequest": {
+      "description": "Contains arguments for calling 'GetDataRecordings'.\r\nMethod: Loads DataRecordings.",
+      "type": "object",
+      "properties": {
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetDataRecordings' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetDataRecordings' (Int32?): Max count of DataRecordings which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "GetDataRecordingsResponse": {
+      "description": "Contains results from calling 'GetDataRecordings'.\r\nMethod: Loads DataRecordings.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'GetDataRecordings' (DataRecording[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataRecording"
+          }
+        }
+      }
+    },
+    "SearchDataRecordingsRequest": {
+      "description": "Contains arguments for calling 'SearchDataRecordings'.\r\nMethod: Loads DataRecordings where values matching to the given filterExpression",
+      "required": [
+        "filterExpression"
+      ],
+      "type": "object",
+      "properties": {
+        "filterExpression": {
+          "description": "Required Argument for 'SearchDataRecordings' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'",
+          "type": "string"
+        },
+        "sortingExpression": {
+          "description": "Optional Argument for 'SearchDataRecordings' (String): one or more property names which are used as sort order (before pagination)",
+          "type": "string"
+        },
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchDataRecordings' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchDataRecordings' (Int32?): Max count of DataRecordings which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "SearchDataRecordingsResponse": {
+      "description": "Contains results from calling 'SearchDataRecordings'.\r\nMethod: Loads DataRecordings where values matching to the given filterExpression",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'SearchDataRecordings' (DataRecording[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataRecording"
+          }
+        }
+      }
+    },
+    "AddNewDataRecordingRequest": {
+      "description": "Contains arguments for calling 'AddNewDataRecording'.\r\nMethod: Adds a new DataRecording and returns its primary identifier (or null on failure).",
+      "required": [
+        "dataRecording"
+      ],
+      "type": "object",
+      "properties": {
+        "dataRecording": {
+          "$ref": "#/definitions/DataRecording"
+        }
+      }
+    },
+    "AddNewDataRecordingResponse": {
+      "description": "Contains results from calling 'AddNewDataRecording'.\r\nMethod: Adds a new DataRecording and returns its primary identifier (or null on failure).",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'AddNewDataRecording' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateDataRecordingRequest": {
+      "description": "Contains arguments for calling 'UpdateDataRecording'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the primary identifier fields within the given DataRecording. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "dataRecording"
+      ],
+      "type": "object",
+      "properties": {
+        "dataRecording": {
+          "$ref": "#/definitions/DataRecording"
+        }
+      }
+    },
+    "UpdateDataRecordingResponse": {
+      "description": "Contains results from calling 'UpdateDataRecording'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the primary identifier fields within the given DataRecording. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateDataRecording' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateDataRecordingByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'UpdateDataRecordingByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "dataRecording",
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'UpdateDataRecordingByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "dataRecording": {
+          "$ref": "#/definitions/DataRecording"
+        }
+      }
+    },
+    "UpdateDataRecordingByTaskGuidResponse": {
+      "description": "Contains results from calling 'UpdateDataRecordingByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateDataRecordingByTaskGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteDataRecordingByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'DeleteDataRecordingByTaskGuid'.\r\nMethod: Deletes a specific DataRecording addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'DeleteDataRecordingByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteDataRecordingByTaskGuidResponse": {
+      "description": "Contains results from calling 'DeleteDataRecordingByTaskGuid'.\r\nMethod: Deletes a specific DataRecording addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'DeleteDataRecordingByTaskGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "GetDrugApplymentByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'GetDrugApplymentByTaskGuid'.\r\nMethod: Loads a specific DrugApplyment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "required": [
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'GetDrugApplymentByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DrugApplyment": {
+      "required": [
+        "appliedUnits",
+        "drugApplymentName",
+        "drugDoseMgPerUnitMg",
+        "drugName",
+        "executionState",
+        "extendedMetaData",
+        "taskExecutionTitle",
+        "taskGuid",
+        "visitGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "visitGuid": {
+          "format": "uuid",
+          "description": "the guid of the visit in which this task was executed",
+          "type": "string"
+        },
+        "drugApplymentName": {
+          "description": "unique invariant name of the study itself as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "taskExecutionTitle": {
+          "description": "title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "scheduledDateTimeUtc": {
+          "format": "date-time",
+          "description": "the estimated time when the drug applyment is scheduled *this field is optional",
+          "type": "string"
+        },
+        "executionDateTimeUtc": {
+          "format": "date-time",
+          "description": "the real date, when the visits was executed *this field is optional",
+          "type": "string"
+        },
+        "executionState": {
+          "format": "int32",
+          "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+          "type": "integer"
+        },
+        "drugName": {
+          "description": "name of the drug",
+          "type": "string"
+        },
+        "drugDoseMgPerUnitMg": {
+          "format": "double",
+          "description": "dose (mg) which is inside of one unit",
+          "type": "number"
+        },
+        "appliedUnits": {
+          "format": "double",
+          "description": "amount of applied units",
+          "type": "number"
+        },
+        "notesRegardingOutcome": {
+          "description": "additional notes regarding this dedcated execution (supplied by the execution person) *this field is optional (use null as value)",
+          "type": "string"
+        },
+        "extendedMetaData": {
+          "description": "optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema",
+          "type": "string"
+        },
+        "executingPerson": {
+          "description": "*this field is optional (use null as value)",
+          "type": "string"
+        }
+      }
+    },
+    "GetDrugApplymentByTaskGuidResponse": {
+      "description": "Contains results from calling 'GetDrugApplymentByTaskGuid'.\r\nMethod: Loads a specific DrugApplyment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "$ref": "#/definitions/DrugApplyment"
+        }
+      }
+    },
+    "GetDrugApplymentsRequest": {
+      "description": "Contains arguments for calling 'GetDrugApplyments'.\r\nMethod: Loads DrugApplyments.",
+      "type": "object",
+      "properties": {
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetDrugApplyments' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetDrugApplyments' (Int32?): Max count of DrugApplyments which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "GetDrugApplymentsResponse": {
+      "description": "Contains results from calling 'GetDrugApplyments'.\r\nMethod: Loads DrugApplyments.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'GetDrugApplyments' (DrugApplyment[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DrugApplyment"
+          }
+        }
+      }
+    },
+    "SearchDrugApplymentsRequest": {
+      "description": "Contains arguments for calling 'SearchDrugApplyments'.\r\nMethod: Loads DrugApplyments where values matching to the given filterExpression",
+      "required": [
+        "filterExpression"
+      ],
+      "type": "object",
+      "properties": {
+        "filterExpression": {
+          "description": "Required Argument for 'SearchDrugApplyments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'",
+          "type": "string"
+        },
+        "sortingExpression": {
+          "description": "Optional Argument for 'SearchDrugApplyments' (String): one or more property names which are used as sort order (before pagination)",
+          "type": "string"
+        },
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchDrugApplyments' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchDrugApplyments' (Int32?): Max count of DrugApplyments which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "SearchDrugApplymentsResponse": {
+      "description": "Contains results from calling 'SearchDrugApplyments'.\r\nMethod: Loads DrugApplyments where values matching to the given filterExpression",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'SearchDrugApplyments' (DrugApplyment[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DrugApplyment"
+          }
+        }
+      }
+    },
+    "AddNewDrugApplymentRequest": {
+      "description": "Contains arguments for calling 'AddNewDrugApplyment'.\r\nMethod: Adds a new DrugApplyment and returns its primary identifier (or null on failure).",
+      "required": [
+        "drugApplyment"
+      ],
+      "type": "object",
+      "properties": {
+        "drugApplyment": {
+          "$ref": "#/definitions/DrugApplyment"
+        }
+      }
+    },
+    "AddNewDrugApplymentResponse": {
+      "description": "Contains results from calling 'AddNewDrugApplyment'.\r\nMethod: Adds a new DrugApplyment and returns its primary identifier (or null on failure).",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'AddNewDrugApplyment' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateDrugApplymentRequest": {
+      "description": "Contains arguments for calling 'UpdateDrugApplyment'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the primary identifier fields within the given DrugApplyment. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "drugApplyment"
+      ],
+      "type": "object",
+      "properties": {
+        "drugApplyment": {
+          "$ref": "#/definitions/DrugApplyment"
+        }
+      }
+    },
+    "UpdateDrugApplymentResponse": {
+      "description": "Contains results from calling 'UpdateDrugApplyment'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the primary identifier fields within the given DrugApplyment. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateDrugApplyment' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateDrugApplymentByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'UpdateDrugApplymentByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "drugApplyment",
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'UpdateDrugApplymentByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "drugApplyment": {
+          "$ref": "#/definitions/DrugApplyment"
+        }
+      }
+    },
+    "UpdateDrugApplymentByTaskGuidResponse": {
+      "description": "Contains results from calling 'UpdateDrugApplymentByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateDrugApplymentByTaskGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteDrugApplymentByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'DeleteDrugApplymentByTaskGuid'.\r\nMethod: Deletes a specific DrugApplyment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'DeleteDrugApplymentByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteDrugApplymentByTaskGuidResponse": {
+      "description": "Contains results from calling 'DeleteDrugApplymentByTaskGuid'.\r\nMethod: Deletes a specific DrugApplyment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'DeleteDrugApplymentByTaskGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "GetStudyEventByEventGuidRequest": {
+      "description": "Contains arguments for calling 'GetStudyEventByEventGuid'.\r\nMethod: Loads a specific StudyEvent addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "required": [
+        "eventGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "eventGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'GetStudyEventByEventGuid' (Guid): a global unique id of a concrete study-event occurrence which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "StudyEvent": {
+      "required": [
+        "causeInfo",
+        "eventGuid",
+        "occourrenceDateTimeUtc",
+        "participantIdentifier",
+        "studyEventName",
+        "studyExecutionIdentifier"
+      ],
+      "type": "object",
+      "properties": {
+        "eventGuid": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study-event occurrence which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "participantIdentifier": {
+          "description": "identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)",
+          "type": "string"
+        },
+        "studyExecutionIdentifier": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "studyEventName": {
+          "description": "unique invariant name of the event as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "extendedMetaData": {
+          "description": "optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema *this field is optional (use null as value)",
+          "type": "string"
+        },
+        "occourrenceDateTimeUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "causeInfo": {
+          "type": "string"
+        },
+        "additionalNotes": {
+          "description": "additional notes (supplied by the execution person) *this field is optional (use null as value)",
+          "type": "string"
+        }
+      }
+    },
+    "GetStudyEventByEventGuidResponse": {
+      "description": "Contains results from calling 'GetStudyEventByEventGuid'.\r\nMethod: Loads a specific StudyEvent addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "$ref": "#/definitions/StudyEvent"
+        }
+      }
+    },
+    "GetStudyEventsRequest": {
+      "description": "Contains arguments for calling 'GetStudyEvents'.\r\nMethod: Loads StudyEvents.",
+      "type": "object",
+      "properties": {
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetStudyEvents' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetStudyEvents' (Int32?): Max count of StudyEvents which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "GetStudyEventsResponse": {
+      "description": "Contains results from calling 'GetStudyEvents'.\r\nMethod: Loads StudyEvents.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'GetStudyEvents' (StudyEvent[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudyEvent"
+          }
+        }
+      }
+    },
+    "SearchStudyEventsRequest": {
+      "description": "Contains arguments for calling 'SearchStudyEvents'.\r\nMethod: Loads StudyEvents where values matching to the given filterExpression",
+      "required": [
+        "filterExpression"
+      ],
+      "type": "object",
+      "properties": {
+        "filterExpression": {
+          "description": "Required Argument for 'SearchStudyEvents' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'",
+          "type": "string"
+        },
+        "sortingExpression": {
+          "description": "Optional Argument for 'SearchStudyEvents' (String): one or more property names which are used as sort order (before pagination)",
+          "type": "string"
+        },
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchStudyEvents' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchStudyEvents' (Int32?): Max count of StudyEvents which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "SearchStudyEventsResponse": {
+      "description": "Contains results from calling 'SearchStudyEvents'.\r\nMethod: Loads StudyEvents where values matching to the given filterExpression",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'SearchStudyEvents' (StudyEvent[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudyEvent"
+          }
+        }
+      }
+    },
+    "AddNewStudyEventRequest": {
+      "description": "Contains arguments for calling 'AddNewStudyEvent'.\r\nMethod: Adds a new StudyEvent and returns its primary identifier (or null on failure).",
+      "required": [
+        "studyEvent"
+      ],
+      "type": "object",
+      "properties": {
+        "studyEvent": {
+          "$ref": "#/definitions/StudyEvent"
+        }
+      }
+    },
+    "AddNewStudyEventResponse": {
+      "description": "Contains results from calling 'AddNewStudyEvent'.\r\nMethod: Adds a new StudyEvent and returns its primary identifier (or null on failure).",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'AddNewStudyEvent' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateStudyEventRequest": {
+      "description": "Contains arguments for calling 'UpdateStudyEvent'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the primary identifier fields within the given StudyEvent. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "studyEvent"
+      ],
+      "type": "object",
+      "properties": {
+        "studyEvent": {
+          "$ref": "#/definitions/StudyEvent"
+        }
+      }
+    },
+    "UpdateStudyEventResponse": {
+      "description": "Contains results from calling 'UpdateStudyEvent'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the primary identifier fields within the given StudyEvent. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateStudyEvent' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateStudyEventByEventGuidRequest": {
+      "description": "Contains arguments for calling 'UpdateStudyEventByEventGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "eventGuid",
+        "studyEvent"
+      ],
+      "type": "object",
+      "properties": {
+        "eventGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'UpdateStudyEventByEventGuid' (Guid): a global unique id of a concrete study-event occurrence which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "studyEvent": {
+          "$ref": "#/definitions/StudyEvent"
+        }
+      }
+    },
+    "UpdateStudyEventByEventGuidResponse": {
+      "description": "Contains results from calling 'UpdateStudyEventByEventGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateStudyEventByEventGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteStudyEventByEventGuidRequest": {
+      "description": "Contains arguments for calling 'DeleteStudyEventByEventGuid'.\r\nMethod: Deletes a specific StudyEvent addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "eventGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "eventGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'DeleteStudyEventByEventGuid' (Guid): a global unique id of a concrete study-event occurrence which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteStudyEventByEventGuidResponse": {
+      "description": "Contains results from calling 'DeleteStudyEventByEventGuid'.\r\nMethod: Deletes a specific StudyEvent addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'DeleteStudyEventByEventGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "GetStudyExecutionScopeByStudyExecutionIdentifierRequest": {
+      "description": "Contains arguments for calling 'GetStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "required": [
+        "studyExecutionIdentifier"
+      ],
+      "type": "object",
+      "properties": {
+        "studyExecutionIdentifier": {
+          "format": "uuid",
+          "description": "Required Argument for 'GetStudyExecutionScopeByStudyExecutionIdentifier' (Guid): a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "StudyExecutionScope": {
+      "required": [
+        "executingInstituteIdentifier",
+        "studyExecutionIdentifier",
+        "studyWorkflowName",
+        "studyWorkflowVersion"
+      ],
+      "type": "object",
+      "properties": {
+        "studyExecutionIdentifier": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "executingInstituteIdentifier": {
+          "description": "the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)",
+          "type": "string"
+        },
+        "studyWorkflowName": {
+          "description": "the official invariant name of the study as given by the sponsor *this field has a max length of 100",
+          "maxLength": 100,
+          "type": "string"
+        },
+        "studyWorkflowVersion": {
+          "description": "version of the workflow *this field has a max length of 20",
+          "maxLength": 20,
+          "type": "string"
+        },
+        "extendedMetaData": {
+          "description": "optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema *this field is optional (use null as value)",
+          "type": "string"
+        }
+      }
+    },
+    "GetStudyExecutionScopeByStudyExecutionIdentifierResponse": {
+      "description": "Contains results from calling 'GetStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "$ref": "#/definitions/StudyExecutionScope"
+        }
+      }
+    },
+    "GetStudyExecutionScopesRequest": {
+      "description": "Contains arguments for calling 'GetStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes.",
+      "type": "object",
+      "properties": {
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetStudyExecutionScopes' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetStudyExecutionScopes' (Int32?): Max count of StudyExecutionScopes which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "GetStudyExecutionScopesResponse": {
+      "description": "Contains results from calling 'GetStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'GetStudyExecutionScopes' (StudyExecutionScope[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudyExecutionScope"
+          }
+        }
+      }
+    },
+    "SearchStudyExecutionScopesRequest": {
+      "description": "Contains arguments for calling 'SearchStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes where values matching to the given filterExpression",
+      "required": [
+        "filterExpression"
+      ],
+      "type": "object",
+      "properties": {
+        "filterExpression": {
+          "description": "Required Argument for 'SearchStudyExecutionScopes' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'",
+          "type": "string"
+        },
+        "sortingExpression": {
+          "description": "Optional Argument for 'SearchStudyExecutionScopes' (String): one or more property names which are used as sort order (before pagination)",
+          "type": "string"
+        },
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchStudyExecutionScopes' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchStudyExecutionScopes' (Int32?): Max count of StudyExecutionScopes which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "SearchStudyExecutionScopesResponse": {
+      "description": "Contains results from calling 'SearchStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes where values matching to the given filterExpression",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'SearchStudyExecutionScopes' (StudyExecutionScope[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudyExecutionScope"
+          }
+        }
+      }
+    },
+    "AddNewStudyExecutionScopeRequest": {
+      "description": "Contains arguments for calling 'AddNewStudyExecutionScope'.\r\nMethod: Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+      "required": [
+        "studyExecutionScope"
+      ],
+      "type": "object",
+      "properties": {
+        "studyExecutionScope": {
+          "$ref": "#/definitions/StudyExecutionScope"
+        }
+      }
+    },
+    "AddNewStudyExecutionScopeResponse": {
+      "description": "Contains results from calling 'AddNewStudyExecutionScope'.\r\nMethod: Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'AddNewStudyExecutionScope' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateStudyExecutionScopeRequest": {
+      "description": "Contains arguments for calling 'UpdateStudyExecutionScope'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "studyExecutionScope"
+      ],
+      "type": "object",
+      "properties": {
+        "studyExecutionScope": {
+          "$ref": "#/definitions/StudyExecutionScope"
+        }
+      }
+    },
+    "UpdateStudyExecutionScopeResponse": {
+      "description": "Contains results from calling 'UpdateStudyExecutionScope'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateStudyExecutionScope' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateStudyExecutionScopeByStudyExecutionIdentifierRequest": {
+      "description": "Contains arguments for calling 'UpdateStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "studyExecutionIdentifier",
+        "studyExecutionScope"
+      ],
+      "type": "object",
+      "properties": {
+        "studyExecutionIdentifier": {
+          "format": "uuid",
+          "description": "Required Argument for 'UpdateStudyExecutionScopeByStudyExecutionIdentifier' (Guid): a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "studyExecutionScope": {
+          "$ref": "#/definitions/StudyExecutionScope"
+        }
+      }
+    },
+    "UpdateStudyExecutionScopeByStudyExecutionIdentifierResponse": {
+      "description": "Contains results from calling 'UpdateStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateStudyExecutionScopeByStudyExecutionIdentifier' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteStudyExecutionScopeByStudyExecutionIdentifierRequest": {
+      "description": "Contains arguments for calling 'DeleteStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "studyExecutionIdentifier"
+      ],
+      "type": "object",
+      "properties": {
+        "studyExecutionIdentifier": {
+          "format": "uuid",
+          "description": "Required Argument for 'DeleteStudyExecutionScopeByStudyExecutionIdentifier' (Guid): a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteStudyExecutionScopeByStudyExecutionIdentifierResponse": {
+      "description": "Contains results from calling 'DeleteStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'DeleteStudyExecutionScopeByStudyExecutionIdentifier' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "GetTreatmentByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'GetTreatmentByTaskGuid'.\r\nMethod: Loads a specific Treatment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "required": [
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'GetTreatmentByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "Treatment": {
+      "required": [
+        "executionState",
+        "extendedMetaData",
+        "taskExecutionTitle",
+        "taskGuid",
+        "treatmentName",
+        "visitGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "visitGuid": {
+          "format": "uuid",
+          "description": "the guid of the visit in which this task was executed",
+          "type": "string"
+        },
+        "treatmentName": {
+          "description": "unique invariant name of ths task-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "taskExecutionTitle": {
+          "description": "title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "scheduledDateTimeUtc": {
+          "format": "date-time",
+          "description": "the estimated time when the treatment is scheduled *this field is optional",
+          "type": "string"
+        },
+        "executionDateTimeUtc": {
+          "format": "date-time",
+          "description": "the real time, when the treatment was executed *this field is optional",
+          "type": "string"
+        },
+        "executionState": {
+          "format": "int32",
+          "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+          "type": "integer"
+        },
+        "notesRegardingOutcome": {
+          "description": "additional notes regarding this dedcated execution (supplied by the execution person) *this field is optional (use null as value)",
+          "type": "string"
+        },
+        "extendedMetaData": {
+          "description": "optional structure of additional metadata regarding this record in JSON-format, which can be used by study execution systems to extend the schema",
+          "type": "string"
+        },
+        "executingPerson": {
+          "description": "*this field is optional (use null as value)",
+          "type": "string"
+        }
+      }
+    },
+    "GetTreatmentByTaskGuidResponse": {
+      "description": "Contains results from calling 'GetTreatmentByTaskGuid'.\r\nMethod: Loads a specific Treatment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "$ref": "#/definitions/Treatment"
+        }
+      }
+    },
+    "GetTreatmentsRequest": {
+      "description": "Contains arguments for calling 'GetTreatments'.\r\nMethod: Loads Treatments.",
+      "type": "object",
+      "properties": {
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetTreatments' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetTreatments' (Int32?): Max count of Treatments which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "GetTreatmentsResponse": {
+      "description": "Contains results from calling 'GetTreatments'.\r\nMethod: Loads Treatments.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'GetTreatments' (Treatment[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Treatment"
+          }
+        }
+      }
+    },
+    "SearchTreatmentsRequest": {
+      "description": "Contains arguments for calling 'SearchTreatments'.\r\nMethod: Loads Treatments where values matching to the given filterExpression",
+      "required": [
+        "filterExpression"
+      ],
+      "type": "object",
+      "properties": {
+        "filterExpression": {
+          "description": "Required Argument for 'SearchTreatments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'",
+          "type": "string"
+        },
+        "sortingExpression": {
+          "description": "Optional Argument for 'SearchTreatments' (String): one or more property names which are used as sort order (before pagination)",
+          "type": "string"
+        },
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchTreatments' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchTreatments' (Int32?): Max count of Treatments which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "SearchTreatmentsResponse": {
+      "description": "Contains results from calling 'SearchTreatments'.\r\nMethod: Loads Treatments where values matching to the given filterExpression",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'SearchTreatments' (Treatment[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Treatment"
+          }
+        }
+      }
+    },
+    "AddNewTreatmentRequest": {
+      "description": "Contains arguments for calling 'AddNewTreatment'.\r\nMethod: Adds a new Treatment and returns its primary identifier (or null on failure).",
+      "required": [
+        "treatment"
+      ],
+      "type": "object",
+      "properties": {
+        "treatment": {
+          "$ref": "#/definitions/Treatment"
+        }
+      }
+    },
+    "AddNewTreatmentResponse": {
+      "description": "Contains results from calling 'AddNewTreatment'.\r\nMethod: Adds a new Treatment and returns its primary identifier (or null on failure).",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'AddNewTreatment' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateTreatmentRequest": {
+      "description": "Contains arguments for calling 'UpdateTreatment'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the primary identifier fields within the given Treatment. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "treatment"
+      ],
+      "type": "object",
+      "properties": {
+        "treatment": {
+          "$ref": "#/definitions/Treatment"
+        }
+      }
+    },
+    "UpdateTreatmentResponse": {
+      "description": "Contains results from calling 'UpdateTreatment'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the primary identifier fields within the given Treatment. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateTreatment' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateTreatmentByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'UpdateTreatmentByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "taskGuid",
+        "treatment"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'UpdateTreatmentByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "treatment": {
+          "$ref": "#/definitions/Treatment"
+        }
+      }
+    },
+    "UpdateTreatmentByTaskGuidResponse": {
+      "description": "Contains results from calling 'UpdateTreatmentByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateTreatmentByTaskGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteTreatmentByTaskGuidRequest": {
+      "description": "Contains arguments for calling 'DeleteTreatmentByTaskGuid'.\r\nMethod: Deletes a specific Treatment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "taskGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "taskGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'DeleteTreatmentByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteTreatmentByTaskGuidResponse": {
+      "description": "Contains results from calling 'DeleteTreatmentByTaskGuid'.\r\nMethod: Deletes a specific Treatment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'DeleteTreatmentByTaskGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "GetVisitByVisitGuidRequest": {
+      "description": "Contains arguments for calling 'GetVisitByVisitGuid'.\r\nMethod: Loads a specific Visit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "required": [
+        "visitGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "visitGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'GetVisitByVisitGuid' (Guid): a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "Visit": {
+      "required": [
+        "executionState",
+        "participantIdentifier",
+        "studyExecutionIdentifier",
+        "visitExecutionTitle",
+        "visitGuid",
+        "visitProdecureName"
+      ],
+      "type": "object",
+      "properties": {
+        "visitGuid": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "participantIdentifier": {
+          "description": "identity of the patient which can be a randomization or screening number (the exact semantic is defined per study) *this field has a max length of 50",
+          "maxLength": 50,
+          "type": "string"
+        },
+        "studyExecutionIdentifier": {
+          "format": "uuid",
+          "description": "a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "visitProdecureName": {
+          "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "visitExecutionTitle": {
+          "description": "unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+          "type": "string"
+        },
+        "scheduledDateUtc": {
+          "format": "date-time",
+          "description": "the estimated date when the visit is scheduled for execution *this field is optional",
+          "type": "string"
+        },
+        "executionDateUtc": {
+          "format": "date-time",
+          "description": "the real date, when the visits was executed *this field is optional",
+          "type": "string"
+        },
+        "executionState": {
+          "format": "int32",
+          "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+          "type": "integer"
+        },
+        "extendedMetaData": {
+          "description": "optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema *this field is optional (use null as value)",
+          "type": "string"
+        },
+        "executingPerson": {
+          "description": "*this field is optional (use null as value)",
+          "type": "string"
+        }
+      }
+    },
+    "GetVisitByVisitGuidResponse": {
+      "description": "Contains results from calling 'GetVisitByVisitGuid'.\r\nMethod: Loads a specific Visit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "$ref": "#/definitions/Visit"
+        }
+      }
+    },
+    "GetVisitsRequest": {
+      "description": "Contains arguments for calling 'GetVisits'.\r\nMethod: Loads Visits.",
+      "type": "object",
+      "properties": {
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetVisits' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'GetVisits' (Int32?): Max count of Visits which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "GetVisitsResponse": {
+      "description": "Contains results from calling 'GetVisits'.\r\nMethod: Loads Visits.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'GetVisits' (Visit[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Visit"
+          }
+        }
+      }
+    },
+    "SearchVisitsRequest": {
+      "description": "Contains arguments for calling 'SearchVisits'.\r\nMethod: Loads Visits where values matching to the given filterExpression",
+      "required": [
+        "filterExpression"
+      ],
+      "type": "object",
+      "properties": {
+        "filterExpression": {
+          "description": "Required Argument for 'SearchVisits' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'",
+          "type": "string"
+        },
+        "sortingExpression": {
+          "description": "Optional Argument for 'SearchVisits' (String): one or more property names which are used as sort order (before pagination)",
+          "type": "string"
+        },
+        "page": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchVisits' (Int32?): Number of the page, which should be returned",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "description": "Optional Argument for 'SearchVisits' (Int32?): Max count of Visits which should be returned",
+          "type": "integer"
+        }
+      }
+    },
+    "SearchVisitsResponse": {
+      "description": "Contains results from calling 'SearchVisits'.\r\nMethod: Loads Visits where values matching to the given filterExpression",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'SearchVisits' (Visit[])",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Visit"
+          }
+        }
+      }
+    },
+    "AddNewVisitRequest": {
+      "description": "Contains arguments for calling 'AddNewVisit'.\r\nMethod: Adds a new Visit and returns its primary identifier (or null on failure).",
+      "required": [
+        "visit"
+      ],
+      "type": "object",
+      "properties": {
+        "visit": {
+          "$ref": "#/definitions/Visit"
+        }
+      }
+    },
+    "AddNewVisitResponse": {
+      "description": "Contains results from calling 'AddNewVisit'.\r\nMethod: Adds a new Visit and returns its primary identifier (or null on failure).",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'AddNewVisit' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateVisitRequest": {
+      "description": "Contains arguments for calling 'UpdateVisit'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the primary identifier fields within the given Visit. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "visit"
+      ],
+      "type": "object",
+      "properties": {
+        "visit": {
+          "$ref": "#/definitions/Visit"
+        }
+      }
+    },
+    "UpdateVisitResponse": {
+      "description": "Contains results from calling 'UpdateVisit'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the primary identifier fields within the given Visit. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateVisit' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateVisitByVisitGuidRequest": {
+      "description": "Contains arguments for calling 'UpdateVisitByVisitGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "visit",
+        "visitGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "visitGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'UpdateVisitByVisitGuid' (Guid): a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        },
+        "visit": {
+          "$ref": "#/definitions/Visit"
+        }
+      }
+    },
+    "UpdateVisitByVisitGuidResponse": {
+      "description": "Contains results from calling 'UpdateVisitByVisitGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'UpdateVisitByVisitGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteVisitByVisitGuidRequest": {
+      "description": "Contains arguments for calling 'DeleteVisitByVisitGuid'.\r\nMethod: Deletes a specific Visit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "required": [
+        "visitGuid"
+      ],
+      "type": "object",
+      "properties": {
+        "visitGuid": {
+          "format": "uuid",
+          "description": "Required Argument for 'DeleteVisitByVisitGuid' (Guid): a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+          "type": "string"
+        }
+      }
+    },
+    "DeleteVisitByVisitGuidResponse": {
+      "description": "Contains results from calling 'DeleteVisitByVisitGuid'.\r\nMethod: Deletes a specific Visit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+      "type": "object",
+      "properties": {
+        "fault": {
+          "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+          "type": "string"
+        },
+        "return": {
+          "description": "Return-Value of 'DeleteVisitByVisitGuid' (Boolean)",
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "JWT Authorization header using the Bearer scheme."
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
