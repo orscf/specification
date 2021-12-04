@@ -5,12 +5,12 @@
 |author:   |[ORSCF](https://www.orscf.org) ("Open Research Study Communication Formats") / T.Korn|
 |license:  |[Apache-2](https://choosealicense.com/licenses/apache-2.0/)|
 |version:  |1.6.0|
-|timestamp:|2021-11-07 00:00|
+|timestamp:|2021-11-28 00:00|
 
 ### Contents
 
   * .  [Institute](#Institute)
-  * ........\  [InstituteRelatedSystemAssignemnt](#InstituteRelatedSystemAssignemnt)
+  * ........\  [InstituteRelatedSystemAssignment](#InstituteRelatedSystemAssignment)
   * ........\  [SystemConnection](#SystemConnection)
   * ........\  [SystemEndpoint](#SystemEndpoint)
   * .  [InvolvedPerson](#InvolvedPerson)
@@ -36,7 +36,6 @@
 | [InstituteUid](#InstituteInstituteUid-Field) **(PK)** | *guid* | YES | no |
 | [DisplayLabel](#InstituteDisplayLabel-Field) | *string* (100) | YES | no |
 | IsArchived | *boolean* | YES | no |
-| [OwnPatientSdrEndpointUid](#InstituteOwnPatientSdrEndpointUid-Field) (FK) | *guid* | YES | no |
 #### Unique Keys
 * InstituteUid **(primary)**
 
@@ -52,9 +51,6 @@ An DisplayLabel which is dedicated for the usage within the frontend of study ma
 
 * the maximum length of the content within this field is 100 characters.
 
-#### Institute.**OwnPatientSdrEndpointUid** (Field)
-* this field is used as foreign key to address the related 'OwnPatientSdr'
-
 
 ### Relations
 
@@ -63,8 +59,7 @@ An DisplayLabel which is dedicated for the usage within the frontend of study ma
 | [InitiatedStudies](#InitiatedStudies-refering-to-this-Institute) | Referers | [ResearchStudy](#ResearchStudy) | * (multiple) |
 | [RepresentedSites](#RepresentedSites-refering-to-this-Institute) | Referers | [Site](#Site) | * (multiple) |
 | [ProvidedSystemEndpoints](#ProvidedSystemEndpoints-childs-of-this-Institute) | Childs | [SystemEndpoint](#SystemEndpoint) | * (multiple) |
-| [SystemAssignment](#SystemAssignment-childs-of-this-Institute) | Childs | [InstituteRelatedSystemAssignemnt](#InstituteRelatedSystemAssignemnt) | * (multiple) |
-| [OwnPatientSdr](#OwnPatientSdr-lookup-from-this-Institute) | Lookup | [SystemEndpoint](#SystemEndpoint) | 0/1 (optional) |
+| [SystemAssignment](#SystemAssignment-childs-of-this-Institute) | Childs | [InstituteRelatedSystemAssignment](#InstituteRelatedSystemAssignment) | * (multiple) |
 | [SystemConnections](#SystemConnections-childs-of-this-Institute) | Childs | [SystemConnection](#SystemConnection) | * (multiple) |
 
 ##### **InitiatedStudies** (refering to this Institute)
@@ -74,56 +69,59 @@ Target: [Site](#Site)
 ##### **ProvidedSystemEndpoints** (childs of this Institute)
 Target: [SystemEndpoint](#SystemEndpoint)
 ##### **SystemAssignment** (childs of this Institute)
-Target: [InstituteRelatedSystemAssignemnt](#InstituteRelatedSystemAssignemnt)
-##### **OwnPatientSdr** (lookup from this Institute)
-Target Type: [SystemEndpoint](#SystemEndpoint)
-Addressed by: [OwnPatientSdrEndpointUid](#InstituteOwnPatientSdrEndpointUid-Field).
+Target: [InstituteRelatedSystemAssignment](#InstituteRelatedSystemAssignment)
 ##### **SystemConnections** (childs of this Institute)
 Target: [SystemConnection](#SystemConnection)
 
 
 
 
-## InstituteRelatedSystemAssignemnt
+## InstituteRelatedSystemAssignment
 
 
 ### Fields
 
 | Name | Type | Required | Fix |
 | ---- | ---- | -------- | --- |
-| [InstituteRelatedSystemAssignemntUid](#InstituteRelatedSystemAssignemntInstituteRelatedSystemAssignemntUid-Field) **(PK)** | *guid* | YES | no |
-| [SystemEndpointUid](#InstituteRelatedSystemAssignemntSystemEndpointUid-Field) (FK) | *guid* | YES | no |
-| [InstituteUid](#InstituteRelatedSystemAssignemntInstituteUid-Field) (FK) | *guid* | YES | no |
+| [InstituteRelatedSystemAssignemntUid](#InstituteRelatedSystemAssignmentInstituteRelatedSystemAssignemntUid-Field) **(PK)** | *guid* | YES | no |
+| [SystemEndpointUid](#InstituteRelatedSystemAssignmentSystemEndpointUid-Field) (FK) | *guid* | YES | no |
+| [InstituteUid](#InstituteRelatedSystemAssignmentInstituteUid-Field) (FK) | *guid* | YES | no |
 | UseAsOwnPatientSdr | *string* | YES | no |
 | UseAsCandidateSdr | *string* | YES | no |
 | UseAsOwnWdr | *string* | YES | no |
 | UseAsConsumingExternalWdr | *string* | YES | no |
+| [CustomRoles](#InstituteRelatedSystemAssignmentCustomRoles-Field) | *string* | YES | no |
 #### Unique Keys
 * InstituteRelatedSystemAssignemntUid **(primary)**
 
-#### InstituteRelatedSystemAssignemnt.**InstituteRelatedSystemAssignemntUid** (Field)
+#### InstituteRelatedSystemAssignment.**InstituteRelatedSystemAssignemntUid** (Field)
 * this field represents the identity (PK) of the record
 
-#### InstituteRelatedSystemAssignemnt.**SystemEndpointUid** (Field)
+#### InstituteRelatedSystemAssignment.**SystemEndpointUid** (Field)
 * this field is used as foreign key to address the related 'SystemEndpoint'
 
-#### InstituteRelatedSystemAssignemnt.**InstituteUid** (Field)
+#### InstituteRelatedSystemAssignment.**InstituteUid** (Field)
 * this field is used as foreign key to address the related 'Institute'
+
+#### InstituteRelatedSystemAssignment.**CustomRoles** (Field)
+
+semicolon separated list of custom role-names
+
 
 
 ### Relations
 
 | Navigation-Name | Role | Target-Type | Target-Multiplicity |
 | --------------- | -----| ----------- | ------------------- |
-| [Institute](#Institute-parent-of-this-InstituteRelatedSystemAssignemnt) | Parent | [Institute](#Institute) | 0/1 (optional) |
-| [SystemEndpoint](#SystemEndpoint-lookup-from-this-InstituteRelatedSystemAssignemnt) | Lookup | [SystemEndpoint](#SystemEndpoint) | 0/1 (optional) |
+| [Institute](#Institute-parent-of-this-InstituteRelatedSystemAssignment) | Parent | [Institute](#Institute) | 0/1 (optional) |
+| [SystemEndpoint](#SystemEndpoint-lookup-from-this-InstituteRelatedSystemAssignment) | Lookup | [SystemEndpoint](#SystemEndpoint) | 0/1 (optional) |
 
-##### **Institute** (parent of this InstituteRelatedSystemAssignemnt)
+##### **Institute** (parent of this InstituteRelatedSystemAssignment)
 Target Type: [Institute](#Institute)
-Addressed by: [InstituteUid](#InstituteRelatedSystemAssignemntInstituteUid-Field).
-##### **SystemEndpoint** (lookup from this InstituteRelatedSystemAssignemnt)
+Addressed by: [InstituteUid](#InstituteRelatedSystemAssignmentInstituteUid-Field).
+##### **SystemEndpoint** (lookup from this InstituteRelatedSystemAssignment)
 Target Type: [SystemEndpoint](#SystemEndpoint)
-Addressed by: [SystemEndpointUid](#InstituteRelatedSystemAssignemntSystemEndpointUid-Field).
+Addressed by: [SystemEndpointUid](#InstituteRelatedSystemAssignmentSystemEndpointUid-Field).
 
 
 
@@ -207,7 +205,7 @@ Addressed by: [TargetSystemEndpointUid](#SystemConnectionTargetSystemEndpointUid
 | Navigation-Name | Role | Target-Type | Target-Multiplicity |
 | --------------- | -----| ----------- | ------------------- |
 | [ProviderInstitute](#ProviderInstitute-parent-of-this-SystemEndpoint) | Parent | [Institute](#Institute) | 0/1 (optional) |
-| [InstituteAssignments](#InstituteAssignments-refering-to-this-SystemEndpoint) | Referers | [InstituteRelatedSystemAssignemnt](#InstituteRelatedSystemAssignemnt) | * (multiple) |
+| [InstituteAssignments](#InstituteAssignments-refering-to-this-SystemEndpoint) | Referers | [InstituteRelatedSystemAssignment](#InstituteRelatedSystemAssignment) | * (multiple) |
 | [SiteAssignments](#SiteAssignments-refering-to-this-SystemEndpoint) | Referers | [SiteRelatedSystemAssignment](#SiteRelatedSystemAssignment) | * (multiple) |
 | [StudyAssignments](#StudyAssignments-refering-to-this-SystemEndpoint) | Referers | [StudyRelatedSystemAssignment](#StudyRelatedSystemAssignment) | * (multiple) |
 
@@ -215,7 +213,7 @@ Addressed by: [TargetSystemEndpointUid](#SystemConnectionTargetSystemEndpointUid
 Target Type: [Institute](#Institute)
 Addressed by: [ProviderInstituteUid](#SystemEndpointProviderInstituteUid-Field).
 ##### **InstituteAssignments** (refering to this SystemEndpoint)
-Target: [InstituteRelatedSystemAssignemnt](#InstituteRelatedSystemAssignemnt)
+Target: [InstituteRelatedSystemAssignment](#InstituteRelatedSystemAssignment)
 ##### **SiteAssignments** (refering to this SystemEndpoint)
 Target: [SiteRelatedSystemAssignment](#SiteRelatedSystemAssignment)
 ##### **StudyAssignments** (refering to this SystemEndpoint)
@@ -283,8 +281,7 @@ entity, which relates to [HL7.ResearchStudy](https://www.hl7.org/fhir/researchst
 | [TerminatedReason](#ResearchStudyTerminatedReason-Field) | *string* | no | no |
 | IsArchived | *boolean* | YES | no |
 | [InitiatorRelatedProjectNumber](#ResearchStudyInitiatorRelatedProjectNumber-Field) | *string* | no | no |
-| [OriginWdrEndpointUid](#ResearchStudyOriginWdrEndpointUid-Field) (FK) | *guid* | YES | no |
-| [PrimaryImsEndpointUid](#ResearchStudyPrimaryImsEndpointUid-Field) (FK) | *guid* | YES | no |
+| [OriginWdrEndpointUid](#ResearchStudyOriginWdrEndpointUid-Field) (FK) | *guid* | no | no |
 #### Unique Keys
 * ResearchStudyUid **(primary)**
 
@@ -340,10 +337,8 @@ active | administratively-completed | approved | closed-to-accrual | closed-to-a
 * this field is optional, so that '*null*' values are supported
 
 #### ResearchStudy.**OriginWdrEndpointUid** (Field)
+* this field is optional, so that '*null*' values are supported
 * this field is used as foreign key to address the related 'OriginWdr'
-
-#### ResearchStudy.**PrimaryImsEndpointUid** (Field)
-* this field is used as foreign key to address the related 'PrimaryIms'
 
 
 ### Relations
@@ -353,8 +348,7 @@ active | administratively-completed | approved | closed-to-accrual | closed-to-a
 | [InitiatorInstitute](#InitiatorInstitute-lookup-from-this-ResearchStudy) | Lookup | [Institute](#Institute) | 0/1 (optional) |
 | [InvolvementRoles](#InvolvementRoles-childs-of-this-ResearchStudy) | Childs | [InvolvementRole](#InvolvementRole) | * (multiple) |
 | [Sites](#Sites-childs-of-this-ResearchStudy) | Childs | [Site](#Site) | * (multiple) |
-| [OriginWdr](#OriginWdr-lookup-from-this-ResearchStudy) | Lookup | [SystemEndpoint](#SystemEndpoint) | 0/1 (optional) |
-| [PrimaryIms](#PrimaryIms-lookup-from-this-ResearchStudy) | Lookup | [SystemEndpoint](#SystemEndpoint) | 0/1 (optional) |
+| [OriginWdr](#OriginWdr-lookup-from-this-ResearchStudy) | Lookup | [SystemEndpoint](#SystemEndpoint) | 1 (required) |
 | [SystemAssignments](#SystemAssignments-childs-of-this-ResearchStudy) | Childs | [StudyRelatedSystemAssignment](#StudyRelatedSystemAssignment) | * (multiple) |
 
 ##### **InitiatorInstitute** (lookup from this ResearchStudy)
@@ -367,9 +361,6 @@ Target: [Site](#Site)
 ##### **OriginWdr** (lookup from this ResearchStudy)
 Target Type: [SystemEndpoint](#SystemEndpoint)
 Addressed by: [OriginWdrEndpointUid](#ResearchStudyOriginWdrEndpointUid-Field).
-##### **PrimaryIms** (lookup from this ResearchStudy)
-Target Type: [SystemEndpoint](#SystemEndpoint)
-Addressed by: [PrimaryImsEndpointUid](#ResearchStudyPrimaryImsEndpointUid-Field).
 ##### **SystemAssignments** (childs of this ResearchStudy)
 Target: [StudyRelatedSystemAssignment](#StudyRelatedSystemAssignment)
 
@@ -548,6 +539,7 @@ Target: [SiteRelatedSystemAssignment](#SiteRelatedSystemAssignment)
 | [SiteRelatedSystemAssignmentUid](#SiteRelatedSystemAssignmentSiteRelatedSystemAssignmentUid-Field) **(PK)** | *guid* | YES | no |
 | [SystemEndpointUid](#SiteRelatedSystemAssignmentSystemEndpointUid-Field) (FK) | *guid* | YES | no |
 | [SiteUid](#SiteRelatedSystemAssignmentSiteUid-Field) (FK) | *guid* | YES | no |
+| [CustomRoles](#SiteRelatedSystemAssignmentCustomRoles-Field) | *string* | YES | no |
 #### Unique Keys
 * SiteRelatedSystemAssignmentUid **(primary)**
 
@@ -559,6 +551,11 @@ Target: [SiteRelatedSystemAssignment](#SiteRelatedSystemAssignment)
 
 #### SiteRelatedSystemAssignment.**SiteUid** (Field)
 * this field is used as foreign key to address the related 'Site'
+
+#### SiteRelatedSystemAssignment.**CustomRoles** (Field)
+
+semicolon separated list of custom role-names
+
 
 
 ### Relations
@@ -591,6 +588,7 @@ Target: [SystemConnection](#SystemConnection)
 | [StudyRelatedSystemAssignmentUid](#StudyRelatedSystemAssignmentStudyRelatedSystemAssignmentUid-Field) **(PK)** | *guid* | YES | no |
 | [ResearchStudyUid](#StudyRelatedSystemAssignmentResearchStudyUid-Field) (FK) | *guid* | YES | no |
 | [SystemEndpointUid](#StudyRelatedSystemAssignmentSystemEndpointUid-Field) (FK) | *guid* | YES | no |
+| [CustomRoles](#StudyRelatedSystemAssignmentCustomRoles-Field) | *string* | YES | no |
 #### Unique Keys
 * StudyRelatedSystemAssignmentUid **(primary)**
 
@@ -602,6 +600,11 @@ Target: [SystemConnection](#SystemConnection)
 
 #### StudyRelatedSystemAssignment.**SystemEndpointUid** (Field)
 * this field is used as foreign key to address the related 'SystemEndpoint'
+
+#### StudyRelatedSystemAssignment.**CustomRoles** (Field)
+
+semicolon separated list of custom role-names
+
 
 
 ### Relations

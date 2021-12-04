@@ -1,6 +1,6 @@
 {
   "DescriptionFormat": "v1.0",
-  "TimestampUtc": "2021-11-07T00:00:00.0000000Z",
+  "TimestampUtc": "2021-11-28T00:00:00.0000000Z",
   "SemanticVersion": "1.6.0",
   "Entities": [
     {
@@ -16,13 +16,6 @@
           "Unique": true,
           "MemberFieldNames": [
             "InstituteUid"
-          ]
-        },
-        {
-          "Name": "FK_Institutes__OwnPatientSdr",
-          "Unique": false,
-          "MemberFieldNames": [
-            "OwnPatientSdrEndpointUid"
           ]
         }
       ],
@@ -52,17 +45,6 @@
         {
           "Name": "IsArchived",
           "Type": "Boolean",
-          "MaxLength": 0,
-          "Summary": "",
-          "SystemInternal": false,
-          "FixedAfterCreation": false,
-          "Required": true,
-          "DefaultValue": null,
-          "DbGeneratedIdentity": false
-        },
-        {
-          "Name": "OwnPatientSdrEndpointUid",
-          "Type": "Guid",
           "MaxLength": 0,
           "Summary": "",
           "SystemInternal": false,
@@ -100,13 +82,6 @@
           "Unique": false,
           "MemberFieldNames": [
             "OriginWdrEndpointUid"
-          ]
-        },
-        {
-          "Name": "FK_ResearchStudies__PrimaryIms",
-          "Unique": false,
-          "MemberFieldNames": [
-            "PrimaryImsEndpointUid"
           ]
         }
       ],
@@ -261,18 +236,7 @@
           "Summary": "",
           "SystemInternal": false,
           "FixedAfterCreation": false,
-          "Required": true,
-          "DefaultValue": null,
-          "DbGeneratedIdentity": false
-        },
-        {
-          "Name": "PrimaryImsEndpointUid",
-          "Type": "Guid",
-          "MaxLength": 0,
-          "Summary": "",
-          "SystemInternal": false,
-          "FixedAfterCreation": false,
-          "Required": true,
+          "Required": false,
           "DefaultValue": null,
           "DbGeneratedIdentity": false
         }
@@ -525,12 +489,12 @@
       ]
     },
     {
-      "Name": "InstituteRelatedSystemAssignemnt",
-      "NamePlural": "InstituteRelatedSystemAssignemnts",
+      "Name": "InstituteRelatedSystemAssignment",
+      "NamePlural": "InstituteRelatedSystemAssignments",
       "InheritedEntityName": null,
       "Summary": "",
       "IsBlEntrypoint": false,
-      "PrimaryKeyIndexName": "PK_InstituteRelatedSystemAssignemnts",
+      "PrimaryKeyIndexName": "PK_InstituteRelatedSystemAssignments",
       "Indices": [
         {
           "Name": "FK__Institutes_Institute",
@@ -540,14 +504,14 @@
           ]
         },
         {
-          "Name": "PK_InstituteRelatedSystemAssignemnts",
+          "Name": "PK_InstituteRelatedSystemAssignments",
           "Unique": true,
           "MemberFieldNames": [
             "InstituteRelatedSystemAssignemntUid"
           ]
         },
         {
-          "Name": "FK_InstituteRelatedSystemAssignemnts__SystemEndpoint",
+          "Name": "FK_InstituteRelatedSystemAssignments__SystemEndpoint",
           "Unique": false,
           "MemberFieldNames": [
             "SystemEndpointUid"
@@ -626,6 +590,17 @@
           "Type": "String",
           "MaxLength": 0,
           "Summary": "",
+          "SystemInternal": false,
+          "FixedAfterCreation": false,
+          "Required": true,
+          "DefaultValue": null,
+          "DbGeneratedIdentity": false
+        },
+        {
+          "Name": "CustomRoles",
+          "Type": "String",
+          "MaxLength": 0,
+          "Summary": "semicolon separated list of custom role-names",
           "SystemInternal": false,
           "FixedAfterCreation": false,
           "Required": true,
@@ -972,6 +947,17 @@
           "Required": true,
           "DefaultValue": null,
           "DbGeneratedIdentity": false
+        },
+        {
+          "Name": "CustomRoles",
+          "Type": "String",
+          "MaxLength": 0,
+          "Summary": "semicolon separated list of custom role-names",
+          "SystemInternal": false,
+          "FixedAfterCreation": false,
+          "Required": true,
+          "DefaultValue": null,
+          "DbGeneratedIdentity": false
         }
       ]
     },
@@ -1038,6 +1024,17 @@
           "Required": true,
           "DefaultValue": null,
           "DbGeneratedIdentity": false
+        },
+        {
+          "Name": "CustomRoles",
+          "Type": "String",
+          "MaxLength": 0,
+          "Summary": "semicolon separated list of custom role-names",
+          "SystemInternal": false,
+          "FixedAfterCreation": false,
+          "Required": true,
+          "DefaultValue": null,
+          "DbGeneratedIdentity": false
         }
       ]
     }
@@ -1088,7 +1085,7 @@
     {
       "Name": "InstituteInstituteApiAssignment",
       "PrimaryEntityName": "Institute",
-      "ForeignEntityName": "InstituteRelatedSystemAssignemnt",
+      "ForeignEntityName": "InstituteRelatedSystemAssignment",
       "ForeignKeyIndexName": "FK__Institutes_Institute",
       "IsLookupRelation": false,
       "PrimaryEntityIsOptional": false,
@@ -1098,20 +1095,6 @@
       "PrimaryNavigationSummary": "",
       "ForeignNavigationSummary": "",
       "CascadeDelete": true
-    },
-    {
-      "Name": "SystemEndpointInstitute",
-      "PrimaryEntityName": "SystemEndpoint",
-      "ForeignEntityName": "Institute",
-      "ForeignKeyIndexName": "FK_Institutes__OwnPatientSdr",
-      "IsLookupRelation": true,
-      "PrimaryEntityIsOptional": false,
-      "ForeignEntityIsMultiple": true,
-      "PrimaryNavigationName": "",
-      "ForeignNavigationName": "OwnPatientSdr",
-      "PrimaryNavigationSummary": "",
-      "ForeignNavigationSummary": "",
-      "CascadeDelete": false
     },
     {
       "Name": "InstituteApiConnection",
@@ -1130,8 +1113,8 @@
     {
       "Name": "SystemEndpointInstituteApiAssignment",
       "PrimaryEntityName": "SystemEndpoint",
-      "ForeignEntityName": "InstituteRelatedSystemAssignemnt",
-      "ForeignKeyIndexName": "FK_InstituteRelatedSystemAssignemnts__SystemEndpoint",
+      "ForeignEntityName": "InstituteRelatedSystemAssignment",
+      "ForeignKeyIndexName": "FK_InstituteRelatedSystemAssignments__SystemEndpoint",
       "IsLookupRelation": true,
       "PrimaryEntityIsOptional": false,
       "ForeignEntityIsMultiple": true,
@@ -1203,24 +1186,10 @@
       "ForeignEntityName": "ResearchStudy",
       "ForeignKeyIndexName": "FK_ResearchStudies__OriginWdr",
       "IsLookupRelation": true,
-      "PrimaryEntityIsOptional": false,
+      "PrimaryEntityIsOptional": true,
       "ForeignEntityIsMultiple": true,
       "PrimaryNavigationName": "",
       "ForeignNavigationName": "OriginWdr",
-      "PrimaryNavigationSummary": "",
-      "ForeignNavigationSummary": "",
-      "CascadeDelete": false
-    },
-    {
-      "Name": "SystemEndpointResearchStudy1",
-      "PrimaryEntityName": "SystemEndpoint",
-      "ForeignEntityName": "ResearchStudy",
-      "ForeignKeyIndexName": "FK_ResearchStudies__PrimaryIms",
-      "IsLookupRelation": true,
-      "PrimaryEntityIsOptional": false,
-      "ForeignEntityIsMultiple": true,
-      "PrimaryNavigationName": "",
-      "ForeignNavigationName": "PrimaryIms",
       "PrimaryNavigationSummary": "",
       "ForeignNavigationSummary": "",
       "CascadeDelete": false
