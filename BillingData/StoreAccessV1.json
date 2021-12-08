@@ -1,0 +1,2918 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ORSCF BillingData-StoreAccess",
+    "description": "stores data for research study related visits",
+    "contact": {
+      "name": "Open Research Study Communication Format",
+      "url": "https://orscf.org",
+      "email": "info@orscf.org"
+    },
+    "version": "1.6.0"
+  },
+  "servers": [
+    {
+      "url": "/showcase/bdr"
+    }
+  ],
+  "paths": {
+    "/store/billableTasks/getBillableTaskByTaskGuid": {
+      "post": {
+        "tags": [
+          "BillableTasks"
+        ],
+        "summary": "Loads a specific BillableTask addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableTaskByTaskGuidRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableTaskByTaskGuidRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableTaskByTaskGuidRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBillableTaskByTaskGuidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableTasks/getBillableTasks": {
+      "post": {
+        "tags": [
+          "BillableTasks"
+        ],
+        "summary": "Loads BillableTasks.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableTasksRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableTasksRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableTasksRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBillableTasksResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableTasks/searchBillableTasks": {
+      "post": {
+        "tags": [
+          "BillableTasks"
+        ],
+        "summary": "Loads BillableTasks where values matching to the given filterExpression",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillableTasksRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillableTasksRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillableTasksRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchBillableTasksResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableTasks/addNewBillableTask": {
+      "post": {
+        "tags": [
+          "BillableTasks"
+        ],
+        "summary": "Adds a new BillableTask and returns its primary identifier (or null on failure).",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillableTaskRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillableTaskRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillableTaskRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewBillableTaskResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableTasks/updateBillableTask": {
+      "post": {
+        "tags": [
+          "BillableTasks"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given BillableTask addressed by the primary identifier fields within the given BillableTask. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableTaskRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableTaskRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableTaskRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBillableTaskResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableTasks/updateBillableTaskByTaskGuid": {
+      "post": {
+        "tags": [
+          "BillableTasks"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given BillableTask addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableTaskByTaskGuidRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableTaskByTaskGuidRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableTaskByTaskGuidRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBillableTaskByTaskGuidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableTasks/deleteBillableTaskByTaskGuid": {
+      "post": {
+        "tags": [
+          "BillableTasks"
+        ],
+        "summary": "Deletes a specific BillableTask addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillableTaskByTaskGuidRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillableTaskByTaskGuidRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillableTaskByTaskGuidRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBillableTaskByTaskGuidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableVisits/getBillableVisitByVisitGuid": {
+      "post": {
+        "tags": [
+          "BillableVisits"
+        ],
+        "summary": "Loads a specific BillableVisit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableVisitByVisitGuidRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableVisitByVisitGuidRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableVisitByVisitGuidRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBillableVisitByVisitGuidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableVisits/getBillableVisits": {
+      "post": {
+        "tags": [
+          "BillableVisits"
+        ],
+        "summary": "Loads BillableVisits.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillableVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBillableVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableVisits/searchBillableVisits": {
+      "post": {
+        "tags": [
+          "BillableVisits"
+        ],
+        "summary": "Loads BillableVisits where values matching to the given filterExpression",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillableVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillableVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillableVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchBillableVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableVisits/addNewBillableVisit": {
+      "post": {
+        "tags": [
+          "BillableVisits"
+        ],
+        "summary": "Adds a new BillableVisit and returns its primary identifier (or null on failure).",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillableVisitRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillableVisitRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillableVisitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewBillableVisitResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableVisits/updateBillableVisit": {
+      "post": {
+        "tags": [
+          "BillableVisits"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given BillableVisit addressed by the primary identifier fields within the given BillableVisit. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableVisitRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableVisitRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableVisitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBillableVisitResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableVisits/updateBillableVisitByVisitGuid": {
+      "post": {
+        "tags": [
+          "BillableVisits"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given BillableVisit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableVisitByVisitGuidRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableVisitByVisitGuidRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillableVisitByVisitGuidRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBillableVisitByVisitGuidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billableVisits/deleteBillableVisitByVisitGuid": {
+      "post": {
+        "tags": [
+          "BillableVisits"
+        ],
+        "summary": "Deletes a specific BillableVisit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillableVisitByVisitGuidRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillableVisitByVisitGuidRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillableVisitByVisitGuidRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBillableVisitByVisitGuidResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billingDemands/getBillingDemandById": {
+      "post": {
+        "tags": [
+          "BillingDemands"
+        ],
+        "summary": "Loads a specific BillingDemand addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillingDemandByIdRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillingDemandByIdRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillingDemandByIdRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBillingDemandByIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billingDemands/getBillingDemands": {
+      "post": {
+        "tags": [
+          "BillingDemands"
+        ],
+        "summary": "Loads BillingDemands.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillingDemandsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillingDemandsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBillingDemandsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBillingDemandsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billingDemands/searchBillingDemands": {
+      "post": {
+        "tags": [
+          "BillingDemands"
+        ],
+        "summary": "Loads BillingDemands where values matching to the given filterExpression",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillingDemandsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillingDemandsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchBillingDemandsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchBillingDemandsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billingDemands/addNewBillingDemand": {
+      "post": {
+        "tags": [
+          "BillingDemands"
+        ],
+        "summary": "Adds a new BillingDemand and returns its primary identifier (or null on failure).",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillingDemandRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillingDemandRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBillingDemandRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewBillingDemandResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billingDemands/updateBillingDemand": {
+      "post": {
+        "tags": [
+          "BillingDemands"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given BillingDemand addressed by the primary identifier fields within the given BillingDemand. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillingDemandRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillingDemandRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillingDemandRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBillingDemandResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billingDemands/updateBillingDemandById": {
+      "post": {
+        "tags": [
+          "BillingDemands"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given BillingDemand addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillingDemandByIdRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillingDemandByIdRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBillingDemandByIdRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBillingDemandByIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/billingDemands/deleteBillingDemandById": {
+      "post": {
+        "tags": [
+          "BillingDemands"
+        ],
+        "summary": "Deletes a specific BillingDemand addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillingDemandByIdRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillingDemandByIdRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBillingDemandByIdRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBillingDemandByIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/invoices/getInvoiceById": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Loads a specific Invoice addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvoiceByIdRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvoiceByIdRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvoiceByIdRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInvoiceByIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/invoices/getInvoices": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Loads Invoices.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvoicesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvoicesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvoicesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInvoicesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/invoices/searchInvoices": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Loads Invoices where values matching to the given filterExpression",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchInvoicesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchInvoicesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchInvoicesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchInvoicesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/invoices/addNewInvoice": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Adds a new Invoice and returns its primary identifier (or null on failure).",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewInvoiceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewInvoiceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewInvoiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewInvoiceResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/invoices/updateInvoice": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Invoice addressed by the primary identifier fields within the given Invoice. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvoiceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvoiceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvoiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateInvoiceResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/invoices/updateInvoiceById": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Invoice addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvoiceByIdRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvoiceByIdRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvoiceByIdRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateInvoiceByIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/invoices/deleteInvoiceById": {
+      "post": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Deletes a specific Invoice addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteInvoiceByIdRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteInvoiceByIdRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteInvoiceByIdRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteInvoiceByIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/studyExecutionScopes/getStudyExecutionScopeByStudyExecutionIdentifier": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStudyExecutionScopeByStudyExecutionIdentifierResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/studyExecutionScopes/getStudyExecutionScopes": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Loads StudyExecutionScopes.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStudyExecutionScopesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStudyExecutionScopesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStudyExecutionScopesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStudyExecutionScopesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/studyExecutionScopes/searchStudyExecutionScopes": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Loads StudyExecutionScopes where values matching to the given filterExpression",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchStudyExecutionScopesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchStudyExecutionScopesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchStudyExecutionScopesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchStudyExecutionScopesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/studyExecutionScopes/addNewStudyExecutionScope": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewStudyExecutionScopeRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewStudyExecutionScopeRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewStudyExecutionScopeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewStudyExecutionScopeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/studyExecutionScopes/updateStudyExecutionScope": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyExecutionScopeRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyExecutionScopeRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyExecutionScopeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateStudyExecutionScopeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/studyExecutionScopes/updateStudyExecutionScopeByStudyExecutionIdentifier": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateStudyExecutionScopeByStudyExecutionIdentifierResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/studyExecutionScopes/deleteStudyExecutionScopeByStudyExecutionIdentifier": {
+      "post": {
+        "tags": [
+          "StudyExecutionScopes"
+        ],
+        "summary": "Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteStudyExecutionScopeByStudyExecutionIdentifierRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteStudyExecutionScopeByStudyExecutionIdentifierResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetBillableTaskByTaskGuidRequest": {
+        "required": [
+          "taskGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "taskGuid": {
+            "type": "string",
+            "description": "Required Argument for 'GetBillableTaskByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetBillableTaskByTaskGuid'.\r\nMethod: Loads a specific BillableTask addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "BillableTask": {
+        "required": [
+          "taskExecutionTitle",
+          "taskGuid",
+          "taskName",
+          "visitGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "taskGuid": {
+            "type": "string",
+            "description": "a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "visitGuid": {
+            "type": "string",
+            "description": "a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "taskName": {
+            "type": "string",
+            "description": "unique invariant name of ths task-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "taskExecutionTitle": {
+            "type": "string",
+            "description": "title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetBillableTaskByTaskGuidResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "$ref": "#/components/schemas/BillableTask"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetBillableTaskByTaskGuid'.\r\nMethod: Loads a specific BillableTask addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "GetBillableTasksRequest": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetBillableTasks' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetBillableTasks' (Int32?): Max count of BillableTasks which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetBillableTasks'.\r\nMethod: Loads BillableTasks."
+      },
+      "GetBillableTasksResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillableTask"
+            },
+            "description": "Return-Value of 'GetBillableTasks' (BillableTask[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetBillableTasks'.\r\nMethod: Loads BillableTasks."
+      },
+      "SearchBillableTasksRequest": {
+        "required": [
+          "filterExpression"
+        ],
+        "type": "object",
+        "properties": {
+          "filterExpression": {
+            "type": "string",
+            "description": "Required Argument for 'SearchBillableTasks' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+          },
+          "sortingExpression": {
+            "type": "string",
+            "description": "Optional Argument for 'SearchBillableTasks' (String): one or more property names which are used as sort order (before pagination)",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchBillableTasks' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchBillableTasks' (Int32?): Max count of BillableTasks which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchBillableTasks'.\r\nMethod: Loads BillableTasks where values matching to the given filterExpression"
+      },
+      "SearchBillableTasksResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillableTask"
+            },
+            "description": "Return-Value of 'SearchBillableTasks' (BillableTask[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchBillableTasks'.\r\nMethod: Loads BillableTasks where values matching to the given filterExpression"
+      },
+      "AddNewBillableTaskRequest": {
+        "required": [
+          "billableTask"
+        ],
+        "type": "object",
+        "properties": {
+          "billableTask": {
+            "$ref": "#/components/schemas/BillableTask"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'AddNewBillableTask'.\r\nMethod: Adds a new BillableTask and returns its primary identifier (or null on failure)."
+      },
+      "AddNewBillableTaskResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'AddNewBillableTask' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'AddNewBillableTask'.\r\nMethod: Adds a new BillableTask and returns its primary identifier (or null on failure)."
+      },
+      "UpdateBillableTaskRequest": {
+        "required": [
+          "billableTask"
+        ],
+        "type": "object",
+        "properties": {
+          "billableTask": {
+            "$ref": "#/components/schemas/BillableTask"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateBillableTask'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableTask addressed by the primary identifier fields within the given BillableTask. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillableTaskResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateBillableTask' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateBillableTask'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableTask addressed by the primary identifier fields within the given BillableTask. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillableTaskByTaskGuidRequest": {
+        "required": [
+          "billableTask",
+          "taskGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "taskGuid": {
+            "type": "string",
+            "description": "Required Argument for 'UpdateBillableTaskByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "billableTask": {
+            "$ref": "#/components/schemas/BillableTask"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateBillableTaskByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableTask addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillableTaskByTaskGuidResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateBillableTaskByTaskGuid' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateBillableTaskByTaskGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableTask addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteBillableTaskByTaskGuidRequest": {
+        "required": [
+          "taskGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "taskGuid": {
+            "type": "string",
+            "description": "Required Argument for 'DeleteBillableTaskByTaskGuid' (Guid): a global unique id of a concrete study-task execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'DeleteBillableTaskByTaskGuid'.\r\nMethod: Deletes a specific BillableTask addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteBillableTaskByTaskGuidResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'DeleteBillableTaskByTaskGuid' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'DeleteBillableTaskByTaskGuid'.\r\nMethod: Deletes a specific BillableTask addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "GetBillableVisitByVisitGuidRequest": {
+        "required": [
+          "visitGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitGuid": {
+            "type": "string",
+            "description": "Required Argument for 'GetBillableVisitByVisitGuid' (Guid): a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetBillableVisitByVisitGuid'.\r\nMethod: Loads a specific BillableVisit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "BillableVisit": {
+        "required": [
+          "participantIdentifier",
+          "studyExecutionIdentifier",
+          "visitExecutionTitle",
+          "visitGuid",
+          "visitProdecureName"
+        ],
+        "type": "object",
+        "properties": {
+          "visitGuid": {
+            "type": "string",
+            "description": "a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "studyExecutionIdentifier": {
+            "type": "string",
+            "description": "a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "participantIdentifier": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "identity of the patient which can be a randomization or screening number (the exact semantic is defined per study) *this field has a max length of 50"
+          },
+          "visitProdecureName": {
+            "type": "string",
+            "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "visitExecutionTitle": {
+            "type": "string",
+            "description": "title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "billingDemandId": {
+            "type": "string",
+            "description": "*this field is optional",
+            "format": "uuid",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "description": "*this field is optional",
+            "format": "uuid",
+            "nullable": true
+          },
+          "executionEndDateUtc": {
+            "type": "string",
+            "description": "*this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sponsorValidationDateUtc": {
+            "type": "string",
+            "description": "indicates, that the visit is ready to get assigned to a 'BillingDemand' (usually this state is managed by the sponsor) This can only be set after there is a valid 'ExecutionEndDateUtc' *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executorValidationDateUtc": {
+            "type": "string",
+            "description": "indicates, that the visit is ready to get assigned to a 'Invoice' (usually this state is managed by the executor) This can only be set after either the 'SponsorValidationDateUtc' is set (and there is a Demand) nor the states are only managed by the executor, so that the demand-part is completely skipped. *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetBillableVisitByVisitGuidResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "$ref": "#/components/schemas/BillableVisit"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetBillableVisitByVisitGuid'.\r\nMethod: Loads a specific BillableVisit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "GetBillableVisitsRequest": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetBillableVisits' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetBillableVisits' (Int32?): Max count of BillableVisits which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetBillableVisits'.\r\nMethod: Loads BillableVisits."
+      },
+      "GetBillableVisitsResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillableVisit"
+            },
+            "description": "Return-Value of 'GetBillableVisits' (BillableVisit[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetBillableVisits'.\r\nMethod: Loads BillableVisits."
+      },
+      "SearchBillableVisitsRequest": {
+        "required": [
+          "filterExpression"
+        ],
+        "type": "object",
+        "properties": {
+          "filterExpression": {
+            "type": "string",
+            "description": "Required Argument for 'SearchBillableVisits' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+          },
+          "sortingExpression": {
+            "type": "string",
+            "description": "Optional Argument for 'SearchBillableVisits' (String): one or more property names which are used as sort order (before pagination)",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchBillableVisits' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchBillableVisits' (Int32?): Max count of BillableVisits which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchBillableVisits'.\r\nMethod: Loads BillableVisits where values matching to the given filterExpression"
+      },
+      "SearchBillableVisitsResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillableVisit"
+            },
+            "description": "Return-Value of 'SearchBillableVisits' (BillableVisit[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchBillableVisits'.\r\nMethod: Loads BillableVisits where values matching to the given filterExpression"
+      },
+      "AddNewBillableVisitRequest": {
+        "required": [
+          "billableVisit"
+        ],
+        "type": "object",
+        "properties": {
+          "billableVisit": {
+            "$ref": "#/components/schemas/BillableVisit"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'AddNewBillableVisit'.\r\nMethod: Adds a new BillableVisit and returns its primary identifier (or null on failure)."
+      },
+      "AddNewBillableVisitResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'AddNewBillableVisit' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'AddNewBillableVisit'.\r\nMethod: Adds a new BillableVisit and returns its primary identifier (or null on failure)."
+      },
+      "UpdateBillableVisitRequest": {
+        "required": [
+          "billableVisit"
+        ],
+        "type": "object",
+        "properties": {
+          "billableVisit": {
+            "$ref": "#/components/schemas/BillableVisit"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateBillableVisit'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableVisit addressed by the primary identifier fields within the given BillableVisit. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillableVisitResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateBillableVisit' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateBillableVisit'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableVisit addressed by the primary identifier fields within the given BillableVisit. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillableVisitByVisitGuidRequest": {
+        "required": [
+          "billableVisit",
+          "visitGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitGuid": {
+            "type": "string",
+            "description": "Required Argument for 'UpdateBillableVisitByVisitGuid' (Guid): a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "billableVisit": {
+            "$ref": "#/components/schemas/BillableVisit"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateBillableVisitByVisitGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableVisit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillableVisitByVisitGuidResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateBillableVisitByVisitGuid' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateBillableVisitByVisitGuid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillableVisit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteBillableVisitByVisitGuidRequest": {
+        "required": [
+          "visitGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitGuid": {
+            "type": "string",
+            "description": "Required Argument for 'DeleteBillableVisitByVisitGuid' (Guid): a global unique id of a concrete study-visit execution which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'DeleteBillableVisitByVisitGuid'.\r\nMethod: Deletes a specific BillableVisit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteBillableVisitByVisitGuidResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'DeleteBillableVisitByVisitGuid' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'DeleteBillableVisitByVisitGuid'.\r\nMethod: Deletes a specific BillableVisit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "GetBillingDemandByIdRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required Argument for 'GetBillingDemandById' (Guid): Represents the primary identity of a BillingDemand",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetBillingDemandById'.\r\nMethod: Loads a specific BillingDemand addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "BillingDemand": {
+        "required": [
+          "createdByPerson",
+          "creationDateUtc",
+          "id",
+          "officialNumber",
+          "studyExecutionIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "officialNumber": {
+            "type": "string"
+          },
+          "studyExecutionIdentifier": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "transmissionDateUtc": {
+            "type": "string",
+            "description": "*this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationDateUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByPerson": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "created by the sponsor"
+      },
+      "GetBillingDemandByIdResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "$ref": "#/components/schemas/BillingDemand"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetBillingDemandById'.\r\nMethod: Loads a specific BillingDemand addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "GetBillingDemandsRequest": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetBillingDemands' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetBillingDemands' (Int32?): Max count of BillingDemands which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetBillingDemands'.\r\nMethod: Loads BillingDemands."
+      },
+      "GetBillingDemandsResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingDemand"
+            },
+            "description": "Return-Value of 'GetBillingDemands' (BillingDemand[]): created by the sponsor",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetBillingDemands'.\r\nMethod: Loads BillingDemands."
+      },
+      "SearchBillingDemandsRequest": {
+        "required": [
+          "filterExpression"
+        ],
+        "type": "object",
+        "properties": {
+          "filterExpression": {
+            "type": "string",
+            "description": "Required Argument for 'SearchBillingDemands' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+          },
+          "sortingExpression": {
+            "type": "string",
+            "description": "Optional Argument for 'SearchBillingDemands' (String): one or more property names which are used as sort order (before pagination)",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchBillingDemands' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchBillingDemands' (Int32?): Max count of BillingDemands which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchBillingDemands'.\r\nMethod: Loads BillingDemands where values matching to the given filterExpression"
+      },
+      "SearchBillingDemandsResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingDemand"
+            },
+            "description": "Return-Value of 'SearchBillingDemands' (BillingDemand[]): created by the sponsor",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchBillingDemands'.\r\nMethod: Loads BillingDemands where values matching to the given filterExpression"
+      },
+      "AddNewBillingDemandRequest": {
+        "required": [
+          "billingDemand"
+        ],
+        "type": "object",
+        "properties": {
+          "billingDemand": {
+            "$ref": "#/components/schemas/BillingDemand"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'AddNewBillingDemand'.\r\nMethod: Adds a new BillingDemand and returns its primary identifier (or null on failure)."
+      },
+      "AddNewBillingDemandResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'AddNewBillingDemand' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'AddNewBillingDemand'.\r\nMethod: Adds a new BillingDemand and returns its primary identifier (or null on failure)."
+      },
+      "UpdateBillingDemandRequest": {
+        "required": [
+          "billingDemand"
+        ],
+        "type": "object",
+        "properties": {
+          "billingDemand": {
+            "$ref": "#/components/schemas/BillingDemand"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateBillingDemand'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillingDemand addressed by the primary identifier fields within the given BillingDemand. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillingDemandResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateBillingDemand' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateBillingDemand'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillingDemand addressed by the primary identifier fields within the given BillingDemand. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillingDemandByIdRequest": {
+        "required": [
+          "billingDemand",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required Argument for 'UpdateBillingDemandById' (Guid): Represents the primary identity of a BillingDemand",
+            "format": "uuid"
+          },
+          "billingDemand": {
+            "$ref": "#/components/schemas/BillingDemand"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateBillingDemandById'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillingDemand addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateBillingDemandByIdResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateBillingDemandById' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateBillingDemandById'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given BillingDemand addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteBillingDemandByIdRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required Argument for 'DeleteBillingDemandById' (Guid): Represents the primary identity of a BillingDemand",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'DeleteBillingDemandById'.\r\nMethod: Deletes a specific BillingDemand addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteBillingDemandByIdResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'DeleteBillingDemandById' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'DeleteBillingDemandById'.\r\nMethod: Deletes a specific BillingDemand addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "GetInvoiceByIdRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required Argument for 'GetInvoiceById' (Guid): Represents the primary identity of a Invoice",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetInvoiceById'.\r\nMethod: Loads a specific Invoice addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "Invoice": {
+        "required": [
+          "createdByPerson",
+          "creationDateUtc",
+          "id",
+          "offcialInvoiceDate",
+          "officialNumber",
+          "studyExecutionIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "officialNumber": {
+            "type": "string",
+            "description": "the invoice number"
+          },
+          "studyExecutionIdentifier": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "offcialInvoiceDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "transmissionDateUtc": {
+            "type": "string",
+            "description": "*this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationDateUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByPerson": {
+            "type": "string"
+          },
+          "paymentSubmittedDateUtc": {
+            "type": "string",
+            "description": "*this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentReceivedDateUtc": {
+            "type": "string",
+            "description": "*this field is optional",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "created by the executor-company"
+      },
+      "GetInvoiceByIdResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "$ref": "#/components/schemas/Invoice"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetInvoiceById'.\r\nMethod: Loads a specific Invoice addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "GetInvoicesRequest": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetInvoices' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetInvoices' (Int32?): Max count of Invoices which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetInvoices'.\r\nMethod: Loads Invoices."
+      },
+      "GetInvoicesResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Invoice"
+            },
+            "description": "Return-Value of 'GetInvoices' (Invoice[]): created by the executor-company",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetInvoices'.\r\nMethod: Loads Invoices."
+      },
+      "SearchInvoicesRequest": {
+        "required": [
+          "filterExpression"
+        ],
+        "type": "object",
+        "properties": {
+          "filterExpression": {
+            "type": "string",
+            "description": "Required Argument for 'SearchInvoices' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+          },
+          "sortingExpression": {
+            "type": "string",
+            "description": "Optional Argument for 'SearchInvoices' (String): one or more property names which are used as sort order (before pagination)",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchInvoices' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchInvoices' (Int32?): Max count of Invoices which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchInvoices'.\r\nMethod: Loads Invoices where values matching to the given filterExpression"
+      },
+      "SearchInvoicesResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Invoice"
+            },
+            "description": "Return-Value of 'SearchInvoices' (Invoice[]): created by the executor-company",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchInvoices'.\r\nMethod: Loads Invoices where values matching to the given filterExpression"
+      },
+      "AddNewInvoiceRequest": {
+        "required": [
+          "invoice"
+        ],
+        "type": "object",
+        "properties": {
+          "invoice": {
+            "$ref": "#/components/schemas/Invoice"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'AddNewInvoice'.\r\nMethod: Adds a new Invoice and returns its primary identifier (or null on failure)."
+      },
+      "AddNewInvoiceResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'AddNewInvoice' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'AddNewInvoice'.\r\nMethod: Adds a new Invoice and returns its primary identifier (or null on failure)."
+      },
+      "UpdateInvoiceRequest": {
+        "required": [
+          "invoice"
+        ],
+        "type": "object",
+        "properties": {
+          "invoice": {
+            "$ref": "#/components/schemas/Invoice"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateInvoice'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Invoice addressed by the primary identifier fields within the given Invoice. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateInvoiceResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateInvoice' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateInvoice'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Invoice addressed by the primary identifier fields within the given Invoice. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateInvoiceByIdRequest": {
+        "required": [
+          "id",
+          "invoice"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required Argument for 'UpdateInvoiceById' (Guid): Represents the primary identity of a Invoice",
+            "format": "uuid"
+          },
+          "invoice": {
+            "$ref": "#/components/schemas/Invoice"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateInvoiceById'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Invoice addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateInvoiceByIdResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateInvoiceById' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateInvoiceById'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given Invoice addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteInvoiceByIdRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required Argument for 'DeleteInvoiceById' (Guid): Represents the primary identity of a Invoice",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'DeleteInvoiceById'.\r\nMethod: Deletes a specific Invoice addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteInvoiceByIdResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'DeleteInvoiceById' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'DeleteInvoiceById'.\r\nMethod: Deletes a specific Invoice addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "GetStudyExecutionScopeByStudyExecutionIdentifierRequest": {
+        "required": [
+          "studyExecutionIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "studyExecutionIdentifier": {
+            "type": "string",
+            "description": "Required Argument for 'GetStudyExecutionScopeByStudyExecutionIdentifier' (Guid): a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "StudyExecutionScope": {
+        "required": [
+          "executingInstituteIdentifier",
+          "studyExecutionIdentifier",
+          "studyWorkflowName",
+          "studyWorkflowVersion"
+        ],
+        "type": "object",
+        "properties": {
+          "studyExecutionIdentifier": {
+            "type": "string",
+            "description": "a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "executingInstituteIdentifier": {
+            "type": "string",
+            "description": "the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)"
+          },
+          "studyWorkflowName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "the official invariant name of the study as given by the sponsor *this field has a max length of 100"
+          },
+          "studyWorkflowVersion": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "version of the workflow *this field has a max length of 20"
+          },
+          "extendedMetaData": {
+            "type": "string",
+            "description": "optional structure (in JSON-format) containing additional metadata regarding this record, which can be used by 'StudyExecutionSystems' to extend the schema *this field is optional (use null as value)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetStudyExecutionScopeByStudyExecutionIdentifierResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "$ref": "#/components/schemas/StudyExecutionScope"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+      },
+      "GetStudyExecutionScopesRequest": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetStudyExecutionScopes' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'GetStudyExecutionScopes' (Int32?): Max count of StudyExecutionScopes which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes."
+      },
+      "GetStudyExecutionScopesResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyExecutionScope"
+            },
+            "description": "Return-Value of 'GetStudyExecutionScopes' (StudyExecutionScope[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes."
+      },
+      "SearchStudyExecutionScopesRequest": {
+        "required": [
+          "filterExpression"
+        ],
+        "type": "object",
+        "properties": {
+          "filterExpression": {
+            "type": "string",
+            "description": "Required Argument for 'SearchStudyExecutionScopes' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+          },
+          "sortingExpression": {
+            "type": "string",
+            "description": "Optional Argument for 'SearchStudyExecutionScopes' (String): one or more property names which are used as sort order (before pagination)",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchStudyExecutionScopes' (Int32?): Number of the page, which should be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchStudyExecutionScopes' (Int32?): Max count of StudyExecutionScopes which should be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes where values matching to the given filterExpression"
+      },
+      "SearchStudyExecutionScopesResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudyExecutionScope"
+            },
+            "description": "Return-Value of 'SearchStudyExecutionScopes' (StudyExecutionScope[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchStudyExecutionScopes'.\r\nMethod: Loads StudyExecutionScopes where values matching to the given filterExpression"
+      },
+      "AddNewStudyExecutionScopeRequest": {
+        "required": [
+          "studyExecutionScope"
+        ],
+        "type": "object",
+        "properties": {
+          "studyExecutionScope": {
+            "$ref": "#/components/schemas/StudyExecutionScope"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'AddNewStudyExecutionScope'.\r\nMethod: Adds a new StudyExecutionScope and returns its primary identifier (or null on failure)."
+      },
+      "AddNewStudyExecutionScopeResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'AddNewStudyExecutionScope' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'AddNewStudyExecutionScope'.\r\nMethod: Adds a new StudyExecutionScope and returns its primary identifier (or null on failure)."
+      },
+      "UpdateStudyExecutionScopeRequest": {
+        "required": [
+          "studyExecutionScope"
+        ],
+        "type": "object",
+        "properties": {
+          "studyExecutionScope": {
+            "$ref": "#/components/schemas/StudyExecutionScope"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateStudyExecutionScope'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateStudyExecutionScopeResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateStudyExecutionScope' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateStudyExecutionScope'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateStudyExecutionScopeByStudyExecutionIdentifierRequest": {
+        "required": [
+          "studyExecutionIdentifier",
+          "studyExecutionScope"
+        ],
+        "type": "object",
+        "properties": {
+          "studyExecutionIdentifier": {
+            "type": "string",
+            "description": "Required Argument for 'UpdateStudyExecutionScopeByStudyExecutionIdentifier' (Guid): a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          },
+          "studyExecutionScope": {
+            "$ref": "#/components/schemas/StudyExecutionScope"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UpdateStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "UpdateStudyExecutionScopeByStudyExecutionIdentifierResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'UpdateStudyExecutionScopeByStudyExecutionIdentifier' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UpdateStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteStudyExecutionScopeByStudyExecutionIdentifierRequest": {
+        "required": [
+          "studyExecutionIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "studyExecutionIdentifier": {
+            "type": "string",
+            "description": "Required Argument for 'DeleteStudyExecutionScopeByStudyExecutionIdentifier' (Guid): a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'DeleteStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      },
+      "DeleteStudyExecutionScopeByStudyExecutionIdentifierResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'DeleteStudyExecutionScopeByStudyExecutionIdentifier' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'DeleteStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
