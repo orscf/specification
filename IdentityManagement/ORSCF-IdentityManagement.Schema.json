@@ -1,6 +1,6 @@
 {
   "DescriptionFormat": "v1.0",
-  "TimestampUtc": "2021-09-11T10:40:33.2941070Z",
+  "TimestampUtc": "2022-01-09T00:00:00.0000000Z",
   "SemanticVersion": "1.5.0",
   "Entities": [
     {
@@ -16,14 +16,16 @@
           "Unique": true,
           "MemberFieldNames": [
             "ParticipantIdentifier",
-            "IdentifierName"
+            "IdentifierName",
+            "ResearchStudyUid"
           ]
         },
         {
           "Name": "FK_AdditionalSubjectParticipationIdentifiers__Participation",
           "Unique": false,
           "MemberFieldNames": [
-            "ParticipantIdentifier"
+            "ParticipantIdentifier",
+            "ResearchStudyUid"
           ]
         }
       ],
@@ -60,6 +62,17 @@
           "Required": true,
           "DefaultValue": null,
           "DbGeneratedIdentity": false
+        },
+        {
+          "Name": "ResearchStudyUid",
+          "Type": "Guid",
+          "MaxLength": 0,
+          "Summary": "",
+          "SystemInternal": false,
+          "FixedAfterCreation": false,
+          "Required": true,
+          "DefaultValue": null,
+          "DbGeneratedIdentity": false
         }
       ]
     },
@@ -82,8 +95,7 @@
           "Name": "FK__StudyScopes_StudyScope",
           "Unique": false,
           "MemberFieldNames": [
-            "StudyWorkflowName",
-            "StudyWorkflowVersion"
+            "ResearchStudyUid"
           ]
         },
         {
@@ -97,7 +109,8 @@
           "Name": "PK_SubjectParticipations",
           "Unique": true,
           "MemberFieldNames": [
-            "ParticipantIdentifier"
+            "ParticipantIdentifier",
+            "ResearchStudyUid"
           ]
         }
       ],
@@ -106,7 +119,7 @@
           "Name": "ParticipantIdentifier",
           "Type": "String",
           "MaxLength": 50,
-          "Summary": "identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)",
+          "Summary": "pseudonym of the patient which can be a randomization or screening number (the exact semantic is defined per study)",
           "SystemInternal": false,
           "FixedAfterCreation": false,
           "Required": true,
@@ -114,20 +127,9 @@
           "DbGeneratedIdentity": false
         },
         {
-          "Name": "StudyWorkflowName",
-          "Type": "String",
-          "MaxLength": 100,
-          "Summary": "",
-          "SystemInternal": false,
-          "FixedAfterCreation": false,
-          "Required": true,
-          "DefaultValue": null,
-          "DbGeneratedIdentity": false
-        },
-        {
-          "Name": "StudyWorkflowVersion",
-          "Type": "String",
-          "MaxLength": 20,
+          "Name": "ResearchStudyUid",
+          "Type": "Guid",
+          "MaxLength": 0,
           "Summary": "",
           "SystemInternal": false,
           "FixedAfterCreation": false,
@@ -189,8 +191,7 @@
           "Name": "FK_StudyExecutionScopes__StudyScope",
           "Unique": false,
           "MemberFieldNames": [
-            "StudyWorkflowName",
-            "StudyWorkflowVersion"
+            "ResearchStudyUid"
           ]
         }
       ],
@@ -207,8 +208,8 @@
           "DbGeneratedIdentity": false
         },
         {
-          "Name": "ExecutingInstituteIdentifier",
-          "Type": "String",
+          "Name": "SiteUid",
+          "Type": "Guid",
           "MaxLength": 0,
           "Summary": "the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)",
           "SystemInternal": false,
@@ -218,20 +219,9 @@
           "DbGeneratedIdentity": false
         },
         {
-          "Name": "StudyWorkflowName",
-          "Type": "String",
-          "MaxLength": 100,
-          "Summary": "",
-          "SystemInternal": false,
-          "FixedAfterCreation": false,
-          "Required": true,
-          "DefaultValue": null,
-          "DbGeneratedIdentity": false
-        },
-        {
-          "Name": "StudyWorkflowVersion",
-          "Type": "String",
-          "MaxLength": 20,
+          "Name": "ResearchStudyUid",
+          "Type": "Guid",
+          "MaxLength": 0,
           "Summary": "",
           "SystemInternal": false,
           "FixedAfterCreation": false,
@@ -253,28 +243,16 @@
           "Name": "PK_StudyScopes",
           "Unique": true,
           "MemberFieldNames": [
-            "StudyWorkflowName",
-            "StudyWorkflowVersion"
+            "ResearchStudyUid"
           ]
         }
       ],
       "Fields": [
         {
-          "Name": "StudyWorkflowName",
-          "Type": "String",
-          "MaxLength": 100,
+          "Name": "ResearchStudyUid",
+          "Type": "Guid",
+          "MaxLength": 0,
           "Summary": "the official invariant name of the study as given by the sponsor",
-          "SystemInternal": false,
-          "FixedAfterCreation": true,
-          "Required": true,
-          "DefaultValue": null,
-          "DbGeneratedIdentity": false
-        },
-        {
-          "Name": "StudyWorkflowVersion",
-          "Type": "String",
-          "MaxLength": 20,
-          "Summary": "version of the workflow",
           "SystemInternal": false,
           "FixedAfterCreation": true,
           "Required": true,
@@ -286,6 +264,28 @@
           "Type": "String",
           "MaxLength": 0,
           "Summary": " for example \"Screening-Number\" or \"Randomization-Number\"",
+          "SystemInternal": false,
+          "FixedAfterCreation": false,
+          "Required": true,
+          "DefaultValue": null,
+          "DbGeneratedIdentity": false
+        },
+        {
+          "Name": "StudyWorkflowName",
+          "Type": "String",
+          "MaxLength": 100,
+          "Summary": "",
+          "SystemInternal": false,
+          "FixedAfterCreation": false,
+          "Required": true,
+          "DefaultValue": null,
+          "DbGeneratedIdentity": false
+        },
+        {
+          "Name": "StudyWorkflowVersion",
+          "Type": "String",
+          "MaxLength": 20,
+          "Summary": "",
           "SystemInternal": false,
           "FixedAfterCreation": false,
           "Required": true,

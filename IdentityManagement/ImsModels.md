@@ -5,7 +5,7 @@
 |author:   |[ORSCF](https://www.orscf.org) ("Open Research Study Communication Formats") / T.Korn|
 |license:  |[Apache-2](https://choosealicense.com/licenses/apache-2.0/)|
 |version:  |1.5.0|
-|timestamp:|2021-09-11 12:40|
+|timestamp:|2022-01-09 00:00|
 
 ### Contents
 
@@ -29,32 +29,30 @@
 
 | Name | Type | Required | Fix |
 | ---- | ---- | -------- | --- |
-| [StudyWorkflowName](#StudyScopeStudyWorkflowName-Field) **(PK)** | *string* (100) | YES | YES |
-| [StudyWorkflowVersion](#StudyScopeStudyWorkflowVersion-Field) **(PK)** | *string* (20) | YES | YES |
+| [ResearchStudyUid](#StudyScopeResearchStudyUid-Field) **(PK)** | *guid* | YES | YES |
 | [ParticipantIdentifierSemantic](#StudyScopeParticipantIdentifierSemantic-Field) | *string* | YES | no |
+| [StudyWorkflowName](#StudyScopeStudyWorkflowName-Field) | *string* (100) | YES | no |
+| [StudyWorkflowVersion](#StudyScopeStudyWorkflowVersion-Field) | *string* (20) | YES | no |
 #### Unique Keys
-* StudyWorkflowName + StudyWorkflowVersion **(primary)**
+* ResearchStudyUid **(primary)**
 
-#### StudyScope.**StudyWorkflowName** (Field)
+#### StudyScope.**ResearchStudyUid** (Field)
 
 the official invariant name of the study as given by the sponsor
 
 * this field represents the identity (PK) of the record
-* the maximum length of the content within this field is 100 characters.
-* after the record has been created, the value of this field must not be changed any more!
-
-#### StudyScope.**StudyWorkflowVersion** (Field)
-
-version of the workflow
-
-* this field represents the identity (PK) of the record
-* the maximum length of the content within this field is 20 characters.
 * after the record has been created, the value of this field must not be changed any more!
 
 #### StudyScope.**ParticipantIdentifierSemantic** (Field)
 
  for example "Screening-Number" or "Randomization-Number"
 
+
+#### StudyScope.**StudyWorkflowName** (Field)
+* the maximum length of the content within this field is 100 characters.
+
+#### StudyScope.**StudyWorkflowVersion** (Field)
+* the maximum length of the content within this field is 20 characters.
 
 
 ### Relations
@@ -80,9 +78,8 @@ Target: [SubjectParticipation](#SubjectParticipation)
 | Name | Type | Required | Fix |
 | ---- | ---- | -------- | --- |
 | [StudyExecutionIdentifier](#StudyExecutionScopeStudyExecutionIdentifier-Field) **(PK)** | *guid* | YES | no |
-| [ExecutingInstituteIdentifier](#StudyExecutionScopeExecutingInstituteIdentifier-Field) | *string* | YES | no |
-| [StudyWorkflowName](#StudyExecutionScopeStudyWorkflowName-Field) (FK) | *string* (100) | YES | no |
-| [StudyWorkflowVersion](#StudyExecutionScopeStudyWorkflowVersion-Field) (FK) | *string* (20) | YES | no |
+| [SiteUid](#StudyExecutionScopeSiteUid-Field) | *guid* | YES | no |
+| [ResearchStudyUid](#StudyExecutionScopeResearchStudyUid-Field) (FK) | *guid* | YES | no |
 #### Unique Keys
 * StudyExecutionIdentifier **(primary)**
 
@@ -92,18 +89,13 @@ a global unique id of a concrete study execution (dedicated to a concrete instit
 
 * this field represents the identity (PK) of the record
 
-#### StudyExecutionScope.**ExecutingInstituteIdentifier** (Field)
+#### StudyExecutionScope.**SiteUid** (Field)
 
 the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)
 
 
-#### StudyExecutionScope.**StudyWorkflowName** (Field)
+#### StudyExecutionScope.**ResearchStudyUid** (Field)
 * this field is used as foreign key to address the related 'StudyScope'
-* the maximum length of the content within this field is 100 characters.
-
-#### StudyExecutionScope.**StudyWorkflowVersion** (Field)
-* this field is used as foreign key to address the related 'StudyScope'
-* the maximum length of the content within this field is 20 characters.
 
 
 ### Relations
@@ -115,7 +107,7 @@ the institute which is executing the study (this should be an invariant technica
 
 ##### **StudyScope** (parent of this StudyExecutionScope)
 Target Type: [StudyScope](#StudyScope)
-Addressed by: [StudyWorkflowName](#StudyExecutionScopeStudyWorkflowName-Field) + [StudyWorkflowVersion](#StudyExecutionScopeStudyWorkflowVersion-Field).
+Addressed by: [ResearchStudyUid](#StudyExecutionScopeResearchStudyUid-Field).
 ##### **CreatedParticipations** (refering to this StudyExecutionScope)
 Target: [SubjectParticipation](#SubjectParticipation)
 
@@ -130,28 +122,23 @@ Target: [SubjectParticipation](#SubjectParticipation)
 | Name | Type | Required | Fix |
 | ---- | ---- | -------- | --- |
 | [ParticipantIdentifier](#SubjectParticipationParticipantIdentifier-Field) **(PK)** | *string* (50) | YES | no |
-| [StudyWorkflowName](#SubjectParticipationStudyWorkflowName-Field) (FK) | *string* (100) | YES | no |
-| [StudyWorkflowVersion](#SubjectParticipationStudyWorkflowVersion-Field) (FK) | *string* (20) | YES | no |
+| [ResearchStudyUid](#SubjectParticipationResearchStudyUid-Field) **(PK)** (FK) | *guid* | YES | no |
 | CreationDateUtc | *datetime* | YES | no |
 | [CreatedForStudyExecutionIdentifier](#SubjectParticipationCreatedForStudyExecutionIdentifier-Field) (FK) | *guid* | YES | no |
 | [SubjectIdentityRecordId](#SubjectParticipationSubjectIdentityRecordId-Field) (FK) | *guid* | no | no |
 #### Unique Keys
-* ParticipantIdentifier **(primary)**
+* ParticipantIdentifier + ResearchStudyUid **(primary)**
 
 #### SubjectParticipation.**ParticipantIdentifier** (Field)
 
-identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)
+pseudonym of the patient which can be a randomization or screening number (the exact semantic is defined per study)
 
 * this field represents the identity (PK) of the record
 * the maximum length of the content within this field is 50 characters.
 
-#### SubjectParticipation.**StudyWorkflowName** (Field)
+#### SubjectParticipation.**ResearchStudyUid** (Field)
+* this field represents the identity (PK) of the record
 * this field is used as foreign key to address the related 'StudyScope'
-* the maximum length of the content within this field is 100 characters.
-
-#### SubjectParticipation.**StudyWorkflowVersion** (Field)
-* this field is used as foreign key to address the related 'StudyScope'
-* the maximum length of the content within this field is 20 characters.
 
 #### SubjectParticipation.**CreatedForStudyExecutionIdentifier** (Field)
 * this field is used as foreign key to address the related 'StudyExecutionScope'
@@ -177,7 +164,7 @@ Target Type: [StudyExecutionScope](#StudyExecutionScope)
 Addressed by: [CreatedForStudyExecutionIdentifier](#SubjectParticipationCreatedForStudyExecutionIdentifier-Field).
 ##### **StudyScope** (parent of this SubjectParticipation)
 Target Type: [StudyScope](#StudyScope)
-Addressed by: [StudyWorkflowName](#SubjectParticipationStudyWorkflowName-Field) + [StudyWorkflowVersion](#SubjectParticipationStudyWorkflowVersion-Field).
+Addressed by: [ResearchStudyUid](#SubjectParticipationResearchStudyUid-Field).
 ##### **Identity** (lookup from this SubjectParticipation)
 Target Type: [SubjectIdentity](#SubjectIdentity)
 Addressed by: [SubjectIdentityRecordId](#SubjectParticipationSubjectIdentityRecordId-Field).
@@ -195,8 +182,9 @@ Addressed by: [SubjectIdentityRecordId](#SubjectParticipationSubjectIdentityReco
 | [ParticipantIdentifier](#AdditionalSubjectParticipationIdentifierParticipantIdentifier-Field) **(PK)** (FK) | *string* (50) | YES | YES |
 | [IdentifierName](#AdditionalSubjectParticipationIdentifierIdentifierName-Field) **(PK)** | *string* (30) | YES | YES |
 | IdentifierValue | *string* | YES | no |
+| [ResearchStudyUid](#AdditionalSubjectParticipationIdentifierResearchStudyUid-Field) **(PK)** (FK) | *guid* | YES | no |
 #### Unique Keys
-* ParticipantIdentifier + IdentifierName **(primary)**
+* ParticipantIdentifier + IdentifierName + ResearchStudyUid **(primary)**
 
 #### AdditionalSubjectParticipationIdentifier.**ParticipantIdentifier** (Field)
 * this field represents the identity (PK) of the record
@@ -209,6 +197,10 @@ Addressed by: [SubjectIdentityRecordId](#SubjectParticipationSubjectIdentityReco
 * the maximum length of the content within this field is 30 characters.
 * after the record has been created, the value of this field must not be changed any more!
 
+#### AdditionalSubjectParticipationIdentifier.**ResearchStudyUid** (Field)
+* this field represents the identity (PK) of the record
+* this field is used as foreign key to address the related 'Participation'
+
 
 ### Relations
 
@@ -218,7 +210,7 @@ Addressed by: [SubjectIdentityRecordId](#SubjectParticipationSubjectIdentityReco
 
 ##### **Participation** (parent of this AdditionalSubjectParticipationIdentifier)
 Target Type: [SubjectParticipation](#SubjectParticipation)
-Addressed by: [ParticipantIdentifier](#AdditionalSubjectParticipationIdentifierParticipantIdentifier-Field).
+Addressed by: [ParticipantIdentifier](#AdditionalSubjectParticipationIdentifierParticipantIdentifier-Field) + [ResearchStudyUid](#AdditionalSubjectParticipationIdentifierResearchStudyUid-Field).
 
 
 
