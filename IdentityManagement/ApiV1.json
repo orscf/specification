@@ -1,0 +1,930 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ORSCF IdentityManagement-API",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
+    "contact": {
+      "name": "Open Research Study Communication Format",
+      "url": "https://orscf.org",
+      "email": "info@orscf.org"
+    },
+    "version": "1.7.0"
+  },
+  "paths": {
+    "/identityUnblinding/requestUnblindingToken": {
+      "post": {
+        "tags": [
+          "IdentityUnblinding"
+        ],
+        "summary": "returns an unblindingToken which is not activated",
+        "description": "returns an unblindingToken which is not activated",
+        "operationId": "RequestUnblindingToken",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestUnblindingTokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/identityUnblinding/getUnblindingTokenState": {
+      "post": {
+        "tags": [
+          "IdentityUnblinding"
+        ],
+        "summary": "0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used",
+        "description": "0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used",
+        "operationId": "GetUnblindingTokenState",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUnblindingTokenStateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUnblindingTokenStateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUnblindingTokenStateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUnblindingTokenStateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/identityUnblinding/unblindSubject": {
+      "post": {
+        "tags": [
+          "IdentityUnblinding"
+        ],
+        "summary": "(only works with an activated unblindingOtp )",
+        "description": "(only works with an activated unblindingOtp )",
+        "operationId": "UnblindSubject",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnblindSubjectRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnblindSubjectRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnblindSubjectRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnblindSubjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imsApiInfo/getApiVersion": {
+      "post": {
+        "tags": [
+          "ImsApiInfo"
+        ],
+        "summary": "returns the version of the ORSCF specification which is implemented by this API, (this can be used for backward compatibility within inhomogeneous infrastructures)",
+        "description": "returns the version of the ORSCF specification which is implemented by this API, (this can be used for backward compatibility within inhomogeneous infrastructures)",
+        "operationId": "GetApiVersion",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApiVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imsApiInfo/getCapabilities": {
+      "post": {
+        "tags": [
+          "ImsApiInfo"
+        ],
+        "summary": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'Pseudonymization', 'IdentityUnblinding',",
+        "description": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'Pseudonymization', 'IdentityUnblinding',",
+        "operationId": "GetCapabilities",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCapabilitiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imsApiInfo/getPermittedAuthScopes": {
+      "post": {
+        "tags": [
+          "ImsApiInfo"
+        ],
+        "summary": "returns a list of available capabilities (\"API:Pseudonymization\") and/or data-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\") which are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be: 0=auth needed / 1=authenticated / -1=auth expired / -2=auth invalid/disabled",
+        "description": "returns a list of available capabilities (\"API:Pseudonymization\") and/or data-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\") which are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be: 0=auth needed / 1=authenticated / -1=auth expired / -2=auth invalid/disabled",
+        "operationId": "GetPermittedAuthScopes",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPermittedAuthScopesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imsApiInfo/getOAuthTokenRequestUrl": {
+      "post": {
+        "tags": [
+          "ImsApiInfo"
+        ],
+        "summary": "OPTIONAL: If the authentication on the current service is mapped using tokens and should provide information about the source at this point, the login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here.",
+        "description": "OPTIONAL: If the authentication on the current service is mapped using tokens and should provide information about the source at this point, the login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here.",
+        "operationId": "GetOAuthTokenRequestUrl",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOAuthTokenRequestUrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pseudonymization/getExtendedFieldDescriptors": {
+      "post": {
+        "tags": [
+          "Pseudonymization"
+        ],
+        "summary": "GetExtendedFieldDescriptors",
+        "description": "GetExtendedFieldDescriptors",
+        "operationId": "GetExtendedFieldDescriptors",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetExtendedFieldDescriptorsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetExtendedFieldDescriptorsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetExtendedFieldDescriptorsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExtendedFieldDescriptorsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pseudonymization/getOrCreatePseudonym": {
+      "post": {
+        "tags": [
+          "Pseudonymization"
+        ],
+        "summary": "GetOrCreatePseudonym",
+        "description": "GetOrCreatePseudonym",
+        "operationId": "GetOrCreatePseudonym",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOrCreatePseudonymRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOrCreatePseudonymRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOrCreatePseudonymRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrCreatePseudonymResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pseudonymization/getExisitingPseudonym": {
+      "post": {
+        "tags": [
+          "Pseudonymization"
+        ],
+        "summary": "GetExisitingPseudonym",
+        "description": "GetExisitingPseudonym",
+        "operationId": "GetExisitingPseudonym",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetExisitingPseudonymRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetExisitingPseudonymRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetExisitingPseudonymRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExisitingPseudonymResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RequestUnblindingTokenRequest": {
+        "required": [
+          "reason",
+          "requestingPerson",
+          "researchStudyName",
+          "subjectId"
+        ],
+        "type": "object",
+        "properties": {
+          "researchStudyName": {
+            "type": "string",
+            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+          },
+          "subjectId": {
+            "type": "string",
+            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+          },
+          "requestingPerson": {
+            "type": "string",
+            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'RequestUnblindingToken'.\r\nMethod: returns an unblindingToken which is not activated"
+      },
+      "RequestUnblindingTokenResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'RequestUnblindingToken' (String)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'RequestUnblindingToken'.\r\nMethod: returns an unblindingToken which is not activated"
+      },
+      "GetUnblindingTokenStateRequest": {
+        "required": [
+          "unblindingToken"
+        ],
+        "type": "object",
+        "properties": {
+          "unblindingToken": {
+            "type": "string",
+            "description": "Required Argument for 'GetUnblindingTokenState' (string)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetUnblindingTokenState'.\r\nMethod: 0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used"
+      },
+      "GetUnblindingTokenStateResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "integer",
+            "description": "Return-Value of 'GetUnblindingTokenState' (Int32)",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetUnblindingTokenState'.\r\nMethod: 0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used"
+      },
+      "UnblindSubjectRequest": {
+        "required": [
+          "researchStudyName",
+          "subjectId",
+          "unblindingToken"
+        ],
+        "type": "object",
+        "properties": {
+          "researchStudyName": {
+            "type": "string",
+            "description": "Required Argument for 'UnblindSubject' (string)"
+          },
+          "subjectId": {
+            "type": "string",
+            "description": "Required Argument for 'UnblindSubject' (string)"
+          },
+          "unblindingToken": {
+            "type": "string",
+            "description": "Required Argument for 'UnblindSubject' (string)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UnblindSubject'.\r\nMethod: (only works with an activated unblindingOtp )"
+      },
+      "IdentityDetails": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "houseNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "postCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "two letter ISO code",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dateOfDeath": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnblindSubjectResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "$ref": "#/components/schemas/IdentityDetails"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UnblindSubject'.\r\nMethod: (only works with an activated unblindingOtp )"
+      },
+      "GetApiVersionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetApiVersion'.\r\nMethod: returns the version of the ORSCF specification which is implemented by this API,\r\n(this can be used for backward compatibility within inhomogeneous infrastructures)"
+      },
+      "GetApiVersionResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'GetApiVersion' (String)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetApiVersion'.\r\nMethod: returns the version of the ORSCF specification which is implemented by this API,\r\n(this can be used for backward compatibility within inhomogeneous infrastructures)"
+      },
+      "GetCapabilitiesRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'Pseudonymization', 'IdentityUnblinding',"
+      },
+      "GetCapabilitiesResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Return-Value of 'GetCapabilities' (String[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'Pseudonymization', 'IdentityUnblinding',"
+      },
+      "GetPermittedAuthScopesRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetPermittedAuthScopes'.\r\nMethod: returns a list of available capabilities (\"API:Pseudonymization\") and/or\r\ndata-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\")\r\nwhich are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be:\r\n0=auth needed /\r\n1=authenticated /\r\n-1=auth expired /\r\n-2=auth invalid/disabled"
+      },
+      "GetPermittedAuthScopesResponse": {
+        "required": [
+          "authState"
+        ],
+        "type": "object",
+        "properties": {
+          "authState": {
+            "type": "integer",
+            "description": "Out-Argument of 'GetPermittedAuthScopes' (Int32)",
+            "format": "int32"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Return-Value of 'GetPermittedAuthScopes' (String[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetPermittedAuthScopes'.\r\nMethod: returns a list of available capabilities (\"API:Pseudonymization\") and/or\r\ndata-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\")\r\nwhich are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be:\r\n0=auth needed /\r\n1=authenticated /\r\n-1=auth expired /\r\n-2=auth invalid/disabled"
+      },
+      "GetOAuthTokenRequestUrlRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
+      },
+      "GetOAuthTokenRequestUrlResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'GetOAuthTokenRequestUrl' (String)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
+      },
+      "GetExtendedFieldDescriptorsRequest": {
+        "type": "object",
+        "properties": {
+          "languagePref": {
+            "type": "string",
+            "description": "Optional Argument for 'GetExtendedFieldDescriptors' (string): Preferred language for the 'DisplayLabel' and 'InputDescription' fields of the returned descriptors.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetExtendedFieldDescriptors'."
+      },
+      "ExtendedFieldDescriptor": {
+        "required": [
+          "displayLabel",
+          "isRequired",
+          "technicalName"
+        ],
+        "type": "object",
+        "properties": {
+          "technicalName": {
+            "type": "string"
+          },
+          "isRequired": {
+            "type": "boolean"
+          },
+          "displayLabel": {
+            "type": "string"
+          },
+          "inputDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "regularExpression": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetExtendedFieldDescriptorsResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtendedFieldDescriptor"
+            },
+            "description": "Return-Value of 'GetExtendedFieldDescriptors' (ExtendedFieldDescriptor[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetExtendedFieldDescriptors'."
+      },
+      "GetOrCreatePseudonymRequest": {
+        "required": [
+          "birthDate",
+          "extendedFields",
+          "familyName",
+          "givenName",
+          "researchStudyUid",
+          "siteUid"
+        ],
+        "type": "object",
+        "properties": {
+          "researchStudyUid": {
+            "type": "string",
+            "description": "Required Argument for 'GetOrCreatePseudonym' (Guid): A UUID",
+            "format": "uuid"
+          },
+          "givenName": {
+            "type": "string",
+            "description": "Required Argument for 'GetOrCreatePseudonym' (string): the Firstname a the paticipant (named as in the HL7 standard)"
+          },
+          "familyName": {
+            "type": "string",
+            "description": "Required Argument for 'GetOrCreatePseudonym' (string)"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Required Argument for 'GetOrCreatePseudonym' (string): date in format 'yyyy-MM-dd' (must NOT be a partial date for this usecase!)"
+          },
+          "extendedFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'GetOrCreatePseudonym' (Dictionary(string, string))"
+          },
+          "siteUid": {
+            "type": "string",
+            "description": "Required Argument for 'GetOrCreatePseudonym' (Guid): A UUID",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetOrCreatePseudonym'."
+      },
+      "GetOrCreatePseudonymResponse": {
+        "required": [
+          "pseudonym",
+          "wasCreatedNewly"
+        ],
+        "type": "object",
+        "properties": {
+          "pseudonym": {
+            "type": "string",
+            "description": "Out-Argument of 'GetOrCreatePseudonym' (string)"
+          },
+          "wasCreatedNewly": {
+            "type": "boolean",
+            "description": "Out-Argument of 'GetOrCreatePseudonym' (bool)"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'GetOrCreatePseudonym' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetOrCreatePseudonym'."
+      },
+      "GetExisitingPseudonymRequest": {
+        "required": [
+          "birthDate",
+          "extendedFields",
+          "familyName",
+          "givenName",
+          "researchStudyUid"
+        ],
+        "type": "object",
+        "properties": {
+          "researchStudyUid": {
+            "type": "string",
+            "description": "Required Argument for 'GetExisitingPseudonym' (Guid): A UUID",
+            "format": "uuid"
+          },
+          "givenName": {
+            "type": "string",
+            "description": "Required Argument for 'GetExisitingPseudonym' (string)"
+          },
+          "familyName": {
+            "type": "string",
+            "description": "Required Argument for 'GetExisitingPseudonym' (string)"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Required Argument for 'GetExisitingPseudonym' (string): date in format 'yyyy-MM-dd' (must NOT be a partial date for this usecase!)"
+          },
+          "extendedFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'GetExisitingPseudonym' (Dictionary(string, string))"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetExisitingPseudonym'."
+      },
+      "GetExisitingPseudonymResponse": {
+        "required": [
+          "pseudonym"
+        ],
+        "type": "object",
+        "properties": {
+          "pseudonym": {
+            "type": "string",
+            "description": "Out-Argument of 'GetExisitingPseudonym' (string)"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'GetExisitingPseudonym' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetExisitingPseudonym'."
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
