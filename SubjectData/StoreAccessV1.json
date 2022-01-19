@@ -2,13 +2,13 @@
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF SubjectData-StoreAccess",
-    "description": "stores data for research study subjects",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
     "contact": {
       "name": "Open Research Study Communication Format",
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "0.1.0"
+    "version": "1.7.0"
   },
   "servers": [
     {
@@ -22,6 +22,8 @@
           "Subjects"
         ],
         "summary": "Loads a specific Subject addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific Subject addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetSubjectBySubjectUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -63,6 +65,8 @@
           "Subjects"
         ],
         "summary": "Loads Subjects.",
+        "description": "Loads Subjects.",
+        "operationId": "GetSubjects",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -104,6 +108,8 @@
           "Subjects"
         ],
         "summary": "Loads Subjects where values matching to the given filterExpression",
+        "description": "Loads Subjects where values matching to the given filterExpression",
+        "operationId": "SearchSubjects",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -145,6 +151,8 @@
           "Subjects"
         ],
         "summary": "Adds a new Subject and returns its primary identifier (or null on failure).",
+        "description": "Adds a new Subject and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewSubject",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -186,6 +194,8 @@
           "Subjects"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Subject addressed by the primary identifier fields within the given Subject. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given Subject addressed by the primary identifier fields within the given Subject. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubject",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -227,6 +237,8 @@
           "Subjects"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Subject addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given Subject addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectBySubjectUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -268,6 +280,8 @@
           "Subjects"
         ],
         "summary": "Deletes a specific Subject addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific Subject addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteSubjectBySubjectUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -309,6 +323,8 @@
           "SubjectSiteAssignments"
         ],
         "summary": "Loads a specific SubjectSiteAssignment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific SubjectSiteAssignment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetSubjectSiteAssignmentBySubjectSiteAssignmentUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -350,6 +366,8 @@
           "SubjectSiteAssignments"
         ],
         "summary": "Loads SubjectSiteAssignments.",
+        "description": "Loads SubjectSiteAssignments.",
+        "operationId": "GetSubjectSiteAssignments",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -391,6 +409,8 @@
           "SubjectSiteAssignments"
         ],
         "summary": "Loads SubjectSiteAssignments where values matching to the given filterExpression",
+        "description": "Loads SubjectSiteAssignments where values matching to the given filterExpression",
+        "operationId": "SearchSubjectSiteAssignments",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -432,6 +452,8 @@
           "SubjectSiteAssignments"
         ],
         "summary": "Adds a new SubjectSiteAssignment and returns its primary identifier (or null on failure).",
+        "description": "Adds a new SubjectSiteAssignment and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewSubjectSiteAssignment",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -473,6 +495,8 @@
           "SubjectSiteAssignments"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectSiteAssignment addressed by the primary identifier fields within the given SubjectSiteAssignment. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectSiteAssignment addressed by the primary identifier fields within the given SubjectSiteAssignment. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectSiteAssignment",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -514,6 +538,8 @@
           "SubjectSiteAssignments"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectSiteAssignment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectSiteAssignment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectSiteAssignmentBySubjectSiteAssignmentUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -555,6 +581,8 @@
           "SubjectSiteAssignments"
         ],
         "summary": "Deletes a specific SubjectSiteAssignment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific SubjectSiteAssignment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteSubjectSiteAssignmentBySubjectSiteAssignmentUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -727,11 +755,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSubjects' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSubjects' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSubjects' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSubjects' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -1013,11 +1041,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSubjectSiteAssignments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSubjectSiteAssignments' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSubjectSiteAssignments' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSubjectSiteAssignments' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {

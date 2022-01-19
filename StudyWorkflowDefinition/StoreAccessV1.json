@@ -2,13 +2,13 @@
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF StudyWorkflowDefinition-StoreAccess",
-    "description": "stores workflow definitions for research studies (digital representations of study-protocols)",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
     "contact": {
       "name": "Open Research Study Communication Format",
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.6.0"
+    "version": "1.7.0"
   },
   "servers": [
     {

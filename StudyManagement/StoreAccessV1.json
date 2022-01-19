@@ -2,13 +2,13 @@
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF StudyManagement-StoreAccess",
-    "description": "stores data for research study related visits",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
     "contact": {
       "name": "Open Research Study Communication Format",
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.6.1"
+    "version": "1.7.0"
   },
   "servers": [
     {
@@ -3150,11 +3150,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchInstituteRelatedSystemAssignments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchInstituteRelatedSystemAssignments' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchInstituteRelatedSystemAssignments' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchInstituteRelatedSystemAssignments' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -3418,11 +3418,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchInstitutes' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchInstitutes' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchInstitutes' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchInstitutes' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -3691,11 +3691,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchInvolvedPersons' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchInvolvedPersons' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchInvolvedPersons' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchInvolvedPersons' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -3982,11 +3982,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchInvolvementRoles' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchInvolvementRoles' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchInvolvementRoles' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchInvolvementRoles' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -4307,11 +4307,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchResearchStudies' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchResearchStudies' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchResearchStudies' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchResearchStudies' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -4579,11 +4579,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSiteRelatedSystemAssignments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSiteRelatedSystemAssignments' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSiteRelatedSystemAssignments' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSiteRelatedSystemAssignments' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -4886,11 +4886,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSites' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSites' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSites' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSites' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -5158,11 +5158,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchStudyRelatedSystemAssignments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchStudyRelatedSystemAssignments' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchStudyRelatedSystemAssignments' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchStudyRelatedSystemAssignments' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -5435,11 +5435,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSystemConnections' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSystemConnections' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSystemConnections' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSystemConnections' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -5717,11 +5717,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSystemEndpoints' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSystemEndpoints' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSystemEndpoints' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSystemEndpoints' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {

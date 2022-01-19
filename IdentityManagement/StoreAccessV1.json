@@ -2,13 +2,13 @@
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF IdentityManagement-StoreAccess",
-    "description": "stores data for research study related visits",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
     "contact": {
       "name": "Open Research Study Communication Format",
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.6.0"
+    "version": "1.7.0"
   },
   "servers": [
     {
@@ -22,6 +22,8 @@
           "AdditionalSubjectParticipationIdentifiers"
         ],
         "summary": "Loads a specific AdditionalSubjectParticipationIdentifier addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific AdditionalSubjectParticipationIdentifier addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetAdditionalSubjectParticipationIdentifierByAdditionalSubjectParticipationIdentifierIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -63,6 +65,8 @@
           "AdditionalSubjectParticipationIdentifiers"
         ],
         "summary": "Loads AdditionalSubjectParticipationIdentifiers.",
+        "description": "Loads AdditionalSubjectParticipationIdentifiers.",
+        "operationId": "GetAdditionalSubjectParticipationIdentifiers",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -104,6 +108,8 @@
           "AdditionalSubjectParticipationIdentifiers"
         ],
         "summary": "Loads AdditionalSubjectParticipationIdentifiers where values matching to the given filterExpression",
+        "description": "Loads AdditionalSubjectParticipationIdentifiers where values matching to the given filterExpression",
+        "operationId": "SearchAdditionalSubjectParticipationIdentifiers",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -145,6 +151,8 @@
           "AdditionalSubjectParticipationIdentifiers"
         ],
         "summary": "Adds a new AdditionalSubjectParticipationIdentifier and returns its primary identifier (or null on failure).",
+        "description": "Adds a new AdditionalSubjectParticipationIdentifier and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewAdditionalSubjectParticipationIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -186,6 +194,8 @@
           "AdditionalSubjectParticipationIdentifiers"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given AdditionalSubjectParticipationIdentifier addressed by the primary identifier fields within the given AdditionalSubjectParticipationIdentifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given AdditionalSubjectParticipationIdentifier addressed by the primary identifier fields within the given AdditionalSubjectParticipationIdentifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateAdditionalSubjectParticipationIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -227,6 +237,8 @@
           "AdditionalSubjectParticipationIdentifiers"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given AdditionalSubjectParticipationIdentifier addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given AdditionalSubjectParticipationIdentifier addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateAdditionalSubjectParticipationIdentifierByAdditionalSubjectParticipationIdentifierIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -268,6 +280,8 @@
           "AdditionalSubjectParticipationIdentifiers"
         ],
         "summary": "Deletes a specific AdditionalSubjectParticipationIdentifier addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific AdditionalSubjectParticipationIdentifier addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteAdditionalSubjectParticipationIdentifierByAdditionalSubjectParticipationIdentifierIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -309,6 +323,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetStudyExecutionScopeByStudyExecutionIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -350,6 +366,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Loads StudyExecutionScopes.",
+        "description": "Loads StudyExecutionScopes.",
+        "operationId": "GetStudyExecutionScopes",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -391,6 +409,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Loads StudyExecutionScopes where values matching to the given filterExpression",
+        "description": "Loads StudyExecutionScopes where values matching to the given filterExpression",
+        "operationId": "SearchStudyExecutionScopes",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -432,6 +452,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+        "description": "Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewStudyExecutionScope",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -473,6 +495,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyExecutionScope",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -514,6 +538,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyExecutionScopeByStudyExecutionIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -555,6 +581,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteStudyExecutionScopeByStudyExecutionIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -590,28 +618,30 @@
         }
       }
     },
-    "/store/studyScopes/getStudyScopeByStudyScopeIdentity": {
+    "/store/studyScopes/getStudyScopeByResearchStudyUid": {
       "post": {
         "tags": [
           "StudyScopes"
         ],
         "summary": "Loads a specific StudyScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific StudyScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetStudyScopeByResearchStudyUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/GetStudyScopeByResearchStudyUidRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/GetStudyScopeByResearchStudyUidRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GetStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/GetStudyScopeByResearchStudyUidRequest"
               }
             }
           },
@@ -623,7 +653,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetStudyScopeByStudyScopeIdentityResponse"
+                  "$ref": "#/components/schemas/GetStudyScopeByResearchStudyUidResponse"
                 }
               }
             }
@@ -637,6 +667,8 @@
           "StudyScopes"
         ],
         "summary": "Loads StudyScopes.",
+        "description": "Loads StudyScopes.",
+        "operationId": "GetStudyScopes",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -678,6 +710,8 @@
           "StudyScopes"
         ],
         "summary": "Loads StudyScopes where values matching to the given filterExpression",
+        "description": "Loads StudyScopes where values matching to the given filterExpression",
+        "operationId": "SearchStudyScopes",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -719,6 +753,8 @@
           "StudyScopes"
         ],
         "summary": "Adds a new StudyScope and returns its primary identifier (or null on failure).",
+        "description": "Adds a new StudyScope and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewStudyScope",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -760,6 +796,8 @@
           "StudyScopes"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the primary identifier fields within the given StudyScope. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the primary identifier fields within the given StudyScope. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyScope",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -795,28 +833,30 @@
         }
       }
     },
-    "/store/studyScopes/updateStudyScopeByStudyScopeIdentity": {
+    "/store/studyScopes/updateStudyScopeByResearchStudyUid": {
       "post": {
         "tags": [
           "StudyScopes"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyScopeByResearchStudyUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/UpdateStudyScopeByResearchStudyUidRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/UpdateStudyScopeByResearchStudyUidRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/UpdateStudyScopeByResearchStudyUidRequest"
               }
             }
           },
@@ -828,7 +868,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateStudyScopeByStudyScopeIdentityResponse"
+                  "$ref": "#/components/schemas/UpdateStudyScopeByResearchStudyUidResponse"
                 }
               }
             }
@@ -836,28 +876,30 @@
         }
       }
     },
-    "/store/studyScopes/deleteStudyScopeByStudyScopeIdentity": {
+    "/store/studyScopes/deleteStudyScopeByResearchStudyUid": {
       "post": {
         "tags": [
           "StudyScopes"
         ],
         "summary": "Deletes a specific StudyScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific StudyScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteStudyScopeByResearchStudyUid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/DeleteStudyScopeByResearchStudyUidRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/DeleteStudyScopeByResearchStudyUidRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteStudyScopeByStudyScopeIdentityRequest"
+                "$ref": "#/components/schemas/DeleteStudyScopeByResearchStudyUidRequest"
               }
             }
           },
@@ -869,7 +911,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteStudyScopeByStudyScopeIdentityResponse"
+                  "$ref": "#/components/schemas/DeleteStudyScopeByResearchStudyUidResponse"
                 }
               }
             }
@@ -883,6 +925,8 @@
           "SubjectAddresses"
         ],
         "summary": "Loads a specific SubjectAddress addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific SubjectAddress addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetSubjectAddressByInternalRecordId",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -924,6 +968,8 @@
           "SubjectAddresses"
         ],
         "summary": "Loads SubjectAddresses.",
+        "description": "Loads SubjectAddresses.",
+        "operationId": "GetSubjectAddresses",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -965,6 +1011,8 @@
           "SubjectAddresses"
         ],
         "summary": "Loads SubjectAddresses where values matching to the given filterExpression",
+        "description": "Loads SubjectAddresses where values matching to the given filterExpression",
+        "operationId": "SearchSubjectAddresses",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1006,6 +1054,8 @@
           "SubjectAddresses"
         ],
         "summary": "Adds a new SubjectAddress and returns its primary identifier (or null on failure).",
+        "description": "Adds a new SubjectAddress and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewSubjectAddress",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1047,6 +1097,8 @@
           "SubjectAddresses"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectAddress addressed by the primary identifier fields within the given SubjectAddress. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectAddress addressed by the primary identifier fields within the given SubjectAddress. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectAddress",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1088,6 +1140,8 @@
           "SubjectAddresses"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectAddress addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectAddress addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectAddressByInternalRecordId",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1129,6 +1183,8 @@
           "SubjectAddresses"
         ],
         "summary": "Deletes a specific SubjectAddress addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific SubjectAddress addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteSubjectAddressByInternalRecordId",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1170,6 +1226,8 @@
           "SubjectIdentities"
         ],
         "summary": "Loads a specific SubjectIdentity addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific SubjectIdentity addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetSubjectIdentityByRecordId",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1211,6 +1269,8 @@
           "SubjectIdentities"
         ],
         "summary": "Loads SubjectIdentities.",
+        "description": "Loads SubjectIdentities.",
+        "operationId": "GetSubjectIdentities",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1252,6 +1312,8 @@
           "SubjectIdentities"
         ],
         "summary": "Loads SubjectIdentities where values matching to the given filterExpression",
+        "description": "Loads SubjectIdentities where values matching to the given filterExpression",
+        "operationId": "SearchSubjectIdentities",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1293,6 +1355,8 @@
           "SubjectIdentities"
         ],
         "summary": "Adds a new SubjectIdentity and returns its primary identifier (or null on failure).",
+        "description": "Adds a new SubjectIdentity and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewSubjectIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1334,6 +1398,8 @@
           "SubjectIdentities"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectIdentity addressed by the primary identifier fields within the given SubjectIdentity. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectIdentity addressed by the primary identifier fields within the given SubjectIdentity. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1375,6 +1441,8 @@
           "SubjectIdentities"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectIdentity addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectIdentity addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectIdentityByRecordId",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1416,6 +1484,8 @@
           "SubjectIdentities"
         ],
         "summary": "Deletes a specific SubjectIdentity addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific SubjectIdentity addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteSubjectIdentityByRecordId",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1451,28 +1521,30 @@
         }
       }
     },
-    "/store/subjectParticipations/getSubjectParticipationByParticipantIdentifier": {
+    "/store/subjectParticipations/getSubjectParticipationBySubjectParticipationIdentity": {
       "post": {
         "tags": [
           "SubjectParticipations"
         ],
         "summary": "Loads a specific SubjectParticipation addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific SubjectParticipation addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetSubjectParticipationBySubjectParticipationIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/GetSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/GetSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GetSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/GetSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             }
           },
@@ -1484,7 +1556,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSubjectParticipationByParticipantIdentifierResponse"
+                  "$ref": "#/components/schemas/GetSubjectParticipationBySubjectParticipationIdentityResponse"
                 }
               }
             }
@@ -1498,6 +1570,8 @@
           "SubjectParticipations"
         ],
         "summary": "Loads SubjectParticipations.",
+        "description": "Loads SubjectParticipations.",
+        "operationId": "GetSubjectParticipations",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1539,6 +1613,8 @@
           "SubjectParticipations"
         ],
         "summary": "Loads SubjectParticipations where values matching to the given filterExpression",
+        "description": "Loads SubjectParticipations where values matching to the given filterExpression",
+        "operationId": "SearchSubjectParticipations",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1580,6 +1656,8 @@
           "SubjectParticipations"
         ],
         "summary": "Adds a new SubjectParticipation and returns its primary identifier (or null on failure).",
+        "description": "Adds a new SubjectParticipation and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewSubjectParticipation",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1621,6 +1699,8 @@
           "SubjectParticipations"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the primary identifier fields within the given SubjectParticipation. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the primary identifier fields within the given SubjectParticipation. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectParticipation",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1656,28 +1736,30 @@
         }
       }
     },
-    "/store/subjectParticipations/updateSubjectParticipationByParticipantIdentifier": {
+    "/store/subjectParticipations/updateSubjectParticipationBySubjectParticipationIdentity": {
       "post": {
         "tags": [
           "SubjectParticipations"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateSubjectParticipationBySubjectParticipationIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/UpdateSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/UpdateSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/UpdateSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             }
           },
@@ -1689,7 +1771,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateSubjectParticipationByParticipantIdentifierResponse"
+                  "$ref": "#/components/schemas/UpdateSubjectParticipationBySubjectParticipationIdentityResponse"
                 }
               }
             }
@@ -1697,28 +1779,30 @@
         }
       }
     },
-    "/store/subjectParticipations/deleteSubjectParticipationByParticipantIdentifier": {
+    "/store/subjectParticipations/deleteSubjectParticipationBySubjectParticipationIdentity": {
       "post": {
         "tags": [
           "SubjectParticipations"
         ],
         "summary": "Deletes a specific SubjectParticipation addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific SubjectParticipation addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteSubjectParticipationBySubjectParticipationIdentity",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/DeleteSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/DeleteSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteSubjectParticipationByParticipantIdentifierRequest"
+                "$ref": "#/components/schemas/DeleteSubjectParticipationBySubjectParticipationIdentityRequest"
               }
             }
           },
@@ -1730,7 +1814,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteSubjectParticipationByParticipantIdentifierResponse"
+                  "$ref": "#/components/schemas/DeleteSubjectParticipationBySubjectParticipationIdentityResponse"
                 }
               }
             }
@@ -1763,7 +1847,8 @@
         "required": [
           "identifierName",
           "identifierValue",
-          "participantIdentifier"
+          "participantIdentifier",
+          "researchStudyUid"
         ],
         "type": "object",
         "properties": {
@@ -1779,6 +1864,10 @@
           },
           "identifierValue": {
             "type": "string"
+          },
+          "researchStudyUid": {
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -1845,11 +1934,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchAdditionalSubjectParticipationIdentifiers' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchAdditionalSubjectParticipationIdentifiers' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchAdditionalSubjectParticipationIdentifiers' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchAdditionalSubjectParticipationIdentifiers' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -2025,10 +2114,9 @@
       },
       "StudyExecutionScope": {
         "required": [
-          "executingInstituteIdentifier",
-          "studyExecutionIdentifier",
-          "studyWorkflowName",
-          "studyWorkflowVersion"
+          "researchStudyUid",
+          "siteUid",
+          "studyExecutionIdentifier"
         ],
         "type": "object",
         "properties": {
@@ -2037,19 +2125,14 @@
             "description": "a global unique id of a concrete study execution (dedicated to a concrete institute) which is usually originated at the primary CRF or study management system ('SMS')",
             "format": "uuid"
           },
-          "executingInstituteIdentifier": {
+          "siteUid": {
             "type": "string",
-            "description": "the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)"
+            "description": "the institute which is executing the study (this should be an invariant technical representation of the company name or a guid)",
+            "format": "uuid"
           },
-          "studyWorkflowName": {
-            "maxLength": 100,
+          "researchStudyUid": {
             "type": "string",
-            "description": "*this field has a max length of 100"
-          },
-          "studyWorkflowVersion": {
-            "maxLength": 20,
-            "type": "string",
-            "description": "*this field has a max length of 20"
+            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -2116,11 +2199,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchStudyExecutionScopes' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchStudyExecutionScopes' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchStudyExecutionScopes' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchStudyExecutionScopes' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -2283,50 +2366,53 @@
         "additionalProperties": false,
         "description": "Contains results from calling 'DeleteStudyExecutionScopeByStudyExecutionIdentifier'.\r\nMethod: Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "StudyScopeIdentity": {
-        "type": "object",
-        "additionalProperties": false,
-        "description": "Composite Key, which represents the primary identity of a StudyScope"
-      },
-      "GetStudyScopeByStudyScopeIdentityRequest": {
+      "GetStudyScopeByResearchStudyUidRequest": {
         "required": [
-          "studyScopeIdentity"
+          "researchStudyUid"
         ],
         "type": "object",
         "properties": {
-          "studyScopeIdentity": {
-            "$ref": "#/components/schemas/StudyScopeIdentity"
+          "researchStudyUid": {
+            "type": "string",
+            "description": "Required Argument for 'GetStudyScopeByResearchStudyUid' (Guid): the official invariant name of the study as given by the sponsor",
+            "format": "uuid"
           }
         },
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'GetStudyScopeByStudyScopeIdentity'.\r\nMethod: Loads a specific StudyScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+        "description": "Contains arguments for calling 'GetStudyScopeByResearchStudyUid'.\r\nMethod: Loads a specific StudyScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
       },
       "StudyScope": {
         "required": [
           "participantIdentifierSemantic",
+          "researchStudyUid",
           "studyWorkflowName",
           "studyWorkflowVersion"
         ],
         "type": "object",
         "properties": {
-          "studyWorkflowName": {
-            "maxLength": 100,
+          "researchStudyUid": {
             "type": "string",
-            "description": "the official invariant name of the study as given by the sponsor *this field has a max length of 100"
-          },
-          "studyWorkflowVersion": {
-            "maxLength": 20,
-            "type": "string",
-            "description": "version of the workflow *this field has a max length of 20"
+            "description": "the official invariant name of the study as given by the sponsor",
+            "format": "uuid"
           },
           "participantIdentifierSemantic": {
             "type": "string",
             "description": "for example \"Screening-Number\" or \"Randomization-Number\""
+          },
+          "studyWorkflowName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "*this field has a max length of 100"
+          },
+          "studyWorkflowVersion": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "*this field has a max length of 20"
           }
         },
         "additionalProperties": false
       },
-      "GetStudyScopeByStudyScopeIdentityResponse": {
+      "GetStudyScopeByResearchStudyUidResponse": {
         "type": "object",
         "properties": {
           "fault": {
@@ -2339,7 +2425,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'GetStudyScopeByStudyScopeIdentity'.\r\nMethod: Loads a specific StudyScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+        "description": "Contains results from calling 'GetStudyScopeByResearchStudyUid'.\r\nMethod: Loads a specific StudyScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
       },
       "GetStudyScopesRequest": {
         "type": "object",
@@ -2388,11 +2474,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchStudyScopes' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchStudyScopes' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchStudyScopes' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchStudyScopes' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -2489,24 +2575,26 @@
         "additionalProperties": false,
         "description": "Contains results from calling 'UpdateStudyScope'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the primary identifier fields within the given StudyScope. Returns false on failure or if no target record was found, otherwise true."
       },
-      "UpdateStudyScopeByStudyScopeIdentityRequest": {
+      "UpdateStudyScopeByResearchStudyUidRequest": {
         "required": [
-          "studyScope",
-          "studyScopeIdentity"
+          "researchStudyUid",
+          "studyScope"
         ],
         "type": "object",
         "properties": {
-          "studyScopeIdentity": {
-            "$ref": "#/components/schemas/StudyScopeIdentity"
+          "researchStudyUid": {
+            "type": "string",
+            "description": "Required Argument for 'UpdateStudyScopeByResearchStudyUid' (Guid): the official invariant name of the study as given by the sponsor",
+            "format": "uuid"
           },
           "studyScope": {
             "$ref": "#/components/schemas/StudyScope"
           }
         },
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'UpdateStudyScopeByStudyScopeIdentity'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains arguments for calling 'UpdateStudyScopeByResearchStudyUid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "UpdateStudyScopeByStudyScopeIdentityResponse": {
+      "UpdateStudyScopeByResearchStudyUidResponse": {
         "type": "object",
         "properties": {
           "fault": {
@@ -2516,26 +2604,28 @@
           },
           "return": {
             "type": "boolean",
-            "description": "Return-Value of 'UpdateStudyScopeByStudyScopeIdentity' (Boolean)"
+            "description": "Return-Value of 'UpdateStudyScopeByResearchStudyUid' (Boolean)"
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'UpdateStudyScopeByStudyScopeIdentity'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains results from calling 'UpdateStudyScopeByResearchStudyUid'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given StudyScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "DeleteStudyScopeByStudyScopeIdentityRequest": {
+      "DeleteStudyScopeByResearchStudyUidRequest": {
         "required": [
-          "studyScopeIdentity"
+          "researchStudyUid"
         ],
         "type": "object",
         "properties": {
-          "studyScopeIdentity": {
-            "$ref": "#/components/schemas/StudyScopeIdentity"
+          "researchStudyUid": {
+            "type": "string",
+            "description": "Required Argument for 'DeleteStudyScopeByResearchStudyUid' (Guid): the official invariant name of the study as given by the sponsor",
+            "format": "uuid"
           }
         },
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'DeleteStudyScopeByStudyScopeIdentity'.\r\nMethod: Deletes a specific StudyScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains arguments for calling 'DeleteStudyScopeByResearchStudyUid'.\r\nMethod: Deletes a specific StudyScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "DeleteStudyScopeByStudyScopeIdentityResponse": {
+      "DeleteStudyScopeByResearchStudyUidResponse": {
         "type": "object",
         "properties": {
           "fault": {
@@ -2545,11 +2635,11 @@
           },
           "return": {
             "type": "boolean",
-            "description": "Return-Value of 'DeleteStudyScopeByStudyScopeIdentity' (Boolean)"
+            "description": "Return-Value of 'DeleteStudyScopeByResearchStudyUid' (Boolean)"
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'DeleteStudyScopeByStudyScopeIdentity'.\r\nMethod: Deletes a specific StudyScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains results from calling 'DeleteStudyScopeByResearchStudyUid'.\r\nMethod: Deletes a specific StudyScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
       "GetSubjectAddressByInternalRecordIdRequest": {
         "required": [
@@ -2670,11 +2760,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSubjectAddresses' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSubjectAddresses' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSubjectAddresses' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSubjectAddresses' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -2986,11 +3076,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSubjectIdentities' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSubjectIdentities' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSubjectIdentities' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSubjectIdentities' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -3153,44 +3243,41 @@
         "additionalProperties": false,
         "description": "Contains results from calling 'DeleteSubjectIdentityByRecordId'.\r\nMethod: Deletes a specific SubjectIdentity addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "GetSubjectParticipationByParticipantIdentifierRequest": {
+      "SubjectParticipationIdentity": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Composite Key, which represents the primary identity of a SubjectParticipation"
+      },
+      "GetSubjectParticipationBySubjectParticipationIdentityRequest": {
         "required": [
-          "participantIdentifier"
+          "subjectParticipationIdentity"
         ],
         "type": "object",
         "properties": {
-          "participantIdentifier": {
-            "type": "string",
-            "description": "Required Argument for 'GetSubjectParticipationByParticipantIdentifier' (String): identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)"
+          "subjectParticipationIdentity": {
+            "$ref": "#/components/schemas/SubjectParticipationIdentity"
           }
         },
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'GetSubjectParticipationByParticipantIdentifier'.\r\nMethod: Loads a specific SubjectParticipation addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+        "description": "Contains arguments for calling 'GetSubjectParticipationBySubjectParticipationIdentity'.\r\nMethod: Loads a specific SubjectParticipation addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
       },
       "SubjectParticipation": {
         "required": [
           "createdForStudyExecutionIdentifier",
           "creationDateUtc",
           "participantIdentifier",
-          "studyWorkflowName",
-          "studyWorkflowVersion"
+          "researchStudyUid"
         ],
         "type": "object",
         "properties": {
           "participantIdentifier": {
             "maxLength": 50,
             "type": "string",
-            "description": "identity of the patient which can be a randomization or screening number (the exact semantic is defined per study) *this field has a max length of 50"
+            "description": "pseudonym of the patient which can be a randomization or screening number (the exact semantic is defined per study) *this field has a max length of 50"
           },
-          "studyWorkflowName": {
-            "maxLength": 100,
+          "researchStudyUid": {
             "type": "string",
-            "description": "*this field has a max length of 100"
-          },
-          "studyWorkflowVersion": {
-            "maxLength": 20,
-            "type": "string",
-            "description": "*this field has a max length of 20"
+            "format": "uuid"
           },
           "creationDateUtc": {
             "type": "string",
@@ -3209,7 +3296,7 @@
         },
         "additionalProperties": false
       },
-      "GetSubjectParticipationByParticipantIdentifierResponse": {
+      "GetSubjectParticipationBySubjectParticipationIdentityResponse": {
         "type": "object",
         "properties": {
           "fault": {
@@ -3222,7 +3309,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'GetSubjectParticipationByParticipantIdentifier'.\r\nMethod: Loads a specific SubjectParticipation addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
+        "description": "Contains results from calling 'GetSubjectParticipationBySubjectParticipationIdentity'.\r\nMethod: Loads a specific SubjectParticipation addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity."
       },
       "GetSubjectParticipationsRequest": {
         "type": "object",
@@ -3271,11 +3358,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchSubjectParticipations' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchSubjectParticipations' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchSubjectParticipations' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchSubjectParticipations' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -3372,25 +3459,24 @@
         "additionalProperties": false,
         "description": "Contains results from calling 'UpdateSubjectParticipation'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the primary identifier fields within the given SubjectParticipation. Returns false on failure or if no target record was found, otherwise true."
       },
-      "UpdateSubjectParticipationByParticipantIdentifierRequest": {
+      "UpdateSubjectParticipationBySubjectParticipationIdentityRequest": {
         "required": [
-          "participantIdentifier",
-          "subjectParticipation"
+          "subjectParticipation",
+          "subjectParticipationIdentity"
         ],
         "type": "object",
         "properties": {
-          "participantIdentifier": {
-            "type": "string",
-            "description": "Required Argument for 'UpdateSubjectParticipationByParticipantIdentifier' (String): identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)"
+          "subjectParticipationIdentity": {
+            "$ref": "#/components/schemas/SubjectParticipationIdentity"
           },
           "subjectParticipation": {
             "$ref": "#/components/schemas/SubjectParticipation"
           }
         },
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'UpdateSubjectParticipationByParticipantIdentifier'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains arguments for calling 'UpdateSubjectParticipationBySubjectParticipationIdentity'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "UpdateSubjectParticipationByParticipantIdentifierResponse": {
+      "UpdateSubjectParticipationBySubjectParticipationIdentityResponse": {
         "type": "object",
         "properties": {
           "fault": {
@@ -3400,27 +3486,26 @@
           },
           "return": {
             "type": "boolean",
-            "description": "Return-Value of 'UpdateSubjectParticipationByParticipantIdentifier' (Boolean)"
+            "description": "Return-Value of 'UpdateSubjectParticipationBySubjectParticipationIdentity' (Boolean)"
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'UpdateSubjectParticipationByParticipantIdentifier'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains results from calling 'UpdateSubjectParticipationBySubjectParticipationIdentity'.\r\nMethod: Updates all values (which are not \"FixedAfterCreation\") of the given SubjectParticipation addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "DeleteSubjectParticipationByParticipantIdentifierRequest": {
+      "DeleteSubjectParticipationBySubjectParticipationIdentityRequest": {
         "required": [
-          "participantIdentifier"
+          "subjectParticipationIdentity"
         ],
         "type": "object",
         "properties": {
-          "participantIdentifier": {
-            "type": "string",
-            "description": "Required Argument for 'DeleteSubjectParticipationByParticipantIdentifier' (String): identity of the patient which can be a randomization or screening number (the exact semantic is defined per study)"
+          "subjectParticipationIdentity": {
+            "$ref": "#/components/schemas/SubjectParticipationIdentity"
           }
         },
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'DeleteSubjectParticipationByParticipantIdentifier'.\r\nMethod: Deletes a specific SubjectParticipation addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains arguments for calling 'DeleteSubjectParticipationBySubjectParticipationIdentity'.\r\nMethod: Deletes a specific SubjectParticipation addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       },
-      "DeleteSubjectParticipationByParticipantIdentifierResponse": {
+      "DeleteSubjectParticipationBySubjectParticipationIdentityResponse": {
         "type": "object",
         "properties": {
           "fault": {
@@ -3430,11 +3515,11 @@
           },
           "return": {
             "type": "boolean",
-            "description": "Return-Value of 'DeleteSubjectParticipationByParticipantIdentifier' (Boolean)"
+            "description": "Return-Value of 'DeleteSubjectParticipationBySubjectParticipationIdentity' (Boolean)"
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'DeleteSubjectParticipationByParticipantIdentifier'.\r\nMethod: Deletes a specific SubjectParticipation addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
+        "description": "Contains results from calling 'DeleteSubjectParticipationBySubjectParticipationIdentity'.\r\nMethod: Deletes a specific SubjectParticipation addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true."
       }
     },
     "securitySchemes": {
