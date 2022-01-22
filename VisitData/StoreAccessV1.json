@@ -2,13 +2,13 @@
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF VisitData-StoreAccess",
-    "description": "stores data for research study related visits",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
     "contact": {
       "name": "Open Research Study Communication Format",
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.6.0"
+    "version": "1.7.0"
   },
   "servers": [
     {
@@ -22,6 +22,8 @@
           "DataRecordings"
         ],
         "summary": "Loads a specific DataRecording addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific DataRecording addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetDataRecordingByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -63,6 +65,8 @@
           "DataRecordings"
         ],
         "summary": "Loads DataRecordings.",
+        "description": "Loads DataRecordings.",
+        "operationId": "GetDataRecordings",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -104,6 +108,8 @@
           "DataRecordings"
         ],
         "summary": "Loads DataRecordings where values matching to the given filterExpression",
+        "description": "Loads DataRecordings where values matching to the given filterExpression",
+        "operationId": "SearchDataRecordings",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -145,6 +151,8 @@
           "DataRecordings"
         ],
         "summary": "Adds a new DataRecording and returns its primary identifier (or null on failure).",
+        "description": "Adds a new DataRecording and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewDataRecording",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -186,6 +194,8 @@
           "DataRecordings"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the primary identifier fields within the given DataRecording. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the primary identifier fields within the given DataRecording. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateDataRecording",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -227,6 +237,8 @@
           "DataRecordings"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given DataRecording addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateDataRecordingByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -268,6 +280,8 @@
           "DataRecordings"
         ],
         "summary": "Deletes a specific DataRecording addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific DataRecording addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteDataRecordingByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -309,6 +323,8 @@
           "DrugApplyments"
         ],
         "summary": "Loads a specific DrugApplyment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific DrugApplyment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetDrugApplymentByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -350,6 +366,8 @@
           "DrugApplyments"
         ],
         "summary": "Loads DrugApplyments.",
+        "description": "Loads DrugApplyments.",
+        "operationId": "GetDrugApplyments",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -391,6 +409,8 @@
           "DrugApplyments"
         ],
         "summary": "Loads DrugApplyments where values matching to the given filterExpression",
+        "description": "Loads DrugApplyments where values matching to the given filterExpression",
+        "operationId": "SearchDrugApplyments",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -432,6 +452,8 @@
           "DrugApplyments"
         ],
         "summary": "Adds a new DrugApplyment and returns its primary identifier (or null on failure).",
+        "description": "Adds a new DrugApplyment and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewDrugApplyment",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -473,6 +495,8 @@
           "DrugApplyments"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the primary identifier fields within the given DrugApplyment. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the primary identifier fields within the given DrugApplyment. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateDrugApplyment",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -514,6 +538,8 @@
           "DrugApplyments"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given DrugApplyment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateDrugApplymentByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -555,6 +581,8 @@
           "DrugApplyments"
         ],
         "summary": "Deletes a specific DrugApplyment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific DrugApplyment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteDrugApplymentByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -596,6 +624,8 @@
           "StudyEvents"
         ],
         "summary": "Loads a specific StudyEvent addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific StudyEvent addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetStudyEventByEventGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -637,6 +667,8 @@
           "StudyEvents"
         ],
         "summary": "Loads StudyEvents.",
+        "description": "Loads StudyEvents.",
+        "operationId": "GetStudyEvents",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -678,6 +710,8 @@
           "StudyEvents"
         ],
         "summary": "Loads StudyEvents where values matching to the given filterExpression",
+        "description": "Loads StudyEvents where values matching to the given filterExpression",
+        "operationId": "SearchStudyEvents",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -719,6 +753,8 @@
           "StudyEvents"
         ],
         "summary": "Adds a new StudyEvent and returns its primary identifier (or null on failure).",
+        "description": "Adds a new StudyEvent and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewStudyEvent",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -760,6 +796,8 @@
           "StudyEvents"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the primary identifier fields within the given StudyEvent. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the primary identifier fields within the given StudyEvent. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyEvent",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -801,6 +839,8 @@
           "StudyEvents"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyEvent addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyEventByEventGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -842,6 +882,8 @@
           "StudyEvents"
         ],
         "summary": "Deletes a specific StudyEvent addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific StudyEvent addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteStudyEventByEventGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -883,6 +925,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific StudyExecutionScope addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetStudyExecutionScopeByStudyExecutionIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -924,6 +968,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Loads StudyExecutionScopes.",
+        "description": "Loads StudyExecutionScopes.",
+        "operationId": "GetStudyExecutionScopes",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -965,6 +1011,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Loads StudyExecutionScopes where values matching to the given filterExpression",
+        "description": "Loads StudyExecutionScopes where values matching to the given filterExpression",
+        "operationId": "SearchStudyExecutionScopes",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1006,6 +1054,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+        "description": "Adds a new StudyExecutionScope and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewStudyExecutionScope",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1047,6 +1097,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the primary identifier fields within the given StudyExecutionScope. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyExecutionScope",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1088,6 +1140,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given StudyExecutionScope addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateStudyExecutionScopeByStudyExecutionIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1129,6 +1183,8 @@
           "StudyExecutionScopes"
         ],
         "summary": "Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific StudyExecutionScope addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteStudyExecutionScopeByStudyExecutionIdentifier",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1170,6 +1226,8 @@
           "Treatments"
         ],
         "summary": "Loads a specific Treatment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific Treatment addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetTreatmentByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1211,6 +1269,8 @@
           "Treatments"
         ],
         "summary": "Loads Treatments.",
+        "description": "Loads Treatments.",
+        "operationId": "GetTreatments",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1252,6 +1312,8 @@
           "Treatments"
         ],
         "summary": "Loads Treatments where values matching to the given filterExpression",
+        "description": "Loads Treatments where values matching to the given filterExpression",
+        "operationId": "SearchTreatments",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1293,6 +1355,8 @@
           "Treatments"
         ],
         "summary": "Adds a new Treatment and returns its primary identifier (or null on failure).",
+        "description": "Adds a new Treatment and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewTreatment",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1334,6 +1398,8 @@
           "Treatments"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the primary identifier fields within the given Treatment. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the primary identifier fields within the given Treatment. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateTreatment",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1375,6 +1441,8 @@
           "Treatments"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given Treatment addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateTreatmentByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1416,6 +1484,8 @@
           "Treatments"
         ],
         "summary": "Deletes a specific Treatment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific Treatment addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteTreatmentByTaskGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1457,6 +1527,8 @@
           "Visits"
         ],
         "summary": "Loads a specific Visit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "description": "Loads a specific Visit addressed by the given primary identifier. Returns null on failure, or if no record exists with the given identity.",
+        "operationId": "GetVisitByVisitGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1498,6 +1570,8 @@
           "Visits"
         ],
         "summary": "Loads Visits.",
+        "description": "Loads Visits.",
+        "operationId": "GetVisits",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1539,6 +1613,8 @@
           "Visits"
         ],
         "summary": "Loads Visits where values matching to the given filterExpression",
+        "description": "Loads Visits where values matching to the given filterExpression",
+        "operationId": "SearchVisits",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1580,6 +1656,8 @@
           "Visits"
         ],
         "summary": "Adds a new Visit and returns its primary identifier (or null on failure).",
+        "description": "Adds a new Visit and returns its primary identifier (or null on failure).",
+        "operationId": "AddNewVisit",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1621,6 +1699,8 @@
           "Visits"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the primary identifier fields within the given Visit. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the primary identifier fields within the given Visit. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateVisit",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1662,6 +1742,8 @@
           "Visits"
         ],
         "summary": "Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Updates all values (which are not \"FixedAfterCreation\") of the given Visit addressed by the supplementary given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "UpdateVisitByVisitGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1703,6 +1785,8 @@
           "Visits"
         ],
         "summary": "Deletes a specific Visit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "description": "Deletes a specific Visit addressed by the given primary identifier. Returns false on failure or if no target record was found, otherwise true.",
+        "operationId": "DeleteVisitByVisitGuid",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
@@ -1891,11 +1975,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchDataRecordings' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchDataRecordings' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchDataRecordings' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchDataRecordings' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -2215,11 +2299,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchDrugApplyments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchDrugApplyments' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchDrugApplyments' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchDrugApplyments' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -2508,11 +2592,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchStudyEvents' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchStudyEvents' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchStudyEvents' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchStudyEvents' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -2788,11 +2872,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchStudyExecutionScopes' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchStudyExecutionScopes' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchStudyExecutionScopes' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchStudyExecutionScopes' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -3095,11 +3179,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchTreatments' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchTreatments' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchTreatments' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchTreatments' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
@@ -3403,11 +3487,11 @@
         "properties": {
           "filterExpression": {
             "type": "string",
-            "description": "Required Argument for 'SearchVisits' (String): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
+            "description": "Required Argument for 'SearchVisits' (string): a filter expression like '((FieldName1 == \"ABC\" && FieldName2 > 12) || FieldName2 != \"\")'"
           },
           "sortingExpression": {
             "type": "string",
-            "description": "Optional Argument for 'SearchVisits' (String): one or more property names which are used as sort order (before pagination)",
+            "description": "Optional Argument for 'SearchVisits' (string): one or more property names which are used as sort order (before pagination)",
             "nullable": true
           },
           "page": {
