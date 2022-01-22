@@ -1,0 +1,2528 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ORSCF VisitData-API",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
+    "contact": {
+      "name": "Open Research Study Communication Format",
+      "url": "https://orscf.org",
+      "email": "info@orscf.org"
+    },
+    "version": "1.7.0"
+  },
+  "paths": {
+    "/dataRecordingSubmission/importDataRecordings": {
+      "post": {
+        "tags": [
+          "DataRecordingSubmission"
+        ],
+        "summary": "ImportDataRecordings",
+        "description": "ImportDataRecordings",
+        "operationId": "ImportDataRecordings",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportDataRecordingsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportDataRecordingsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportDataRecordingsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportDataRecordingsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrApiInfo/getApiVersion": {
+      "post": {
+        "tags": [
+          "VdrApiInfo"
+        ],
+        "summary": "returns the version of the ORSCF specification which is implemented by this API, (this can be used for backward compatibility within inhomogeneous infrastructures)",
+        "description": "returns the version of the ORSCF specification which is implemented by this API, (this can be used for backward compatibility within inhomogeneous infrastructures)",
+        "operationId": "GetApiVersion",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApiVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrApiInfo/getCapabilities": {
+      "post": {
+        "tags": [
+          "VdrApiInfo"
+        ],
+        "summary": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'VdrEventSubscription', 'VisitConsume', 'VisitSubmission', 'VisitHL7Export', 'VisitHL7Import', 'DataRecordingSubmission'",
+        "description": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'VdrEventSubscription', 'VisitConsume', 'VisitSubmission', 'VisitHL7Export', 'VisitHL7Import', 'DataRecordingSubmission'",
+        "operationId": "GetCapabilities",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCapabilitiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrApiInfo/getPermittedAuthScopes": {
+      "post": {
+        "tags": [
+          "VdrApiInfo"
+        ],
+        "summary": "returns a list of available capabilities (\"API:VisitDataConsume\") and/or data-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\") which are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be: 0=auth needed / 1=authenticated / -1=auth expired / -2=auth invalid/disabled",
+        "description": "returns a list of available capabilities (\"API:VisitDataConsume\") and/or data-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\") which are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be: 0=auth needed / 1=authenticated / -1=auth expired / -2=auth invalid/disabled",
+        "operationId": "GetPermittedAuthScopes",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPermittedAuthScopesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrApiInfo/getOAuthTokenRequestUrl": {
+      "post": {
+        "tags": [
+          "VdrApiInfo"
+        ],
+        "summary": "OPTIONAL: If the authentication on the current service is mapped using tokens and should provide information about the source at this point, the login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here.",
+        "description": "OPTIONAL: If the authentication on the current service is mapped using tokens and should provide information about the source at this point, the login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here.",
+        "operationId": "GetOAuthTokenRequestUrl",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOAuthTokenRequestUrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrEventSubscription/subscribeForChangedVisits": {
+      "post": {
+        "tags": [
+          "VdrEventSubscription"
+        ],
+        "summary": "Creates a subscription for changes which are affecting Visits. On success, a 'SubscriptionUid' will be returned and a call will be made to the given subscriberUrl + '/ConfirmAsSubscriber'. After the subscription has been confirmed, the requested events will be pushed to subscriberUrl + '/NoticeChangedVisits' (NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)",
+        "description": "Creates a subscription for changes which are affecting Visits. On success, a 'SubscriptionUid' will be returned and a call will be made to the given subscriberUrl + '/ConfirmAsSubscriber'. After the subscription has been confirmed, the requested events will be pushed to subscriberUrl + '/NoticeChangedVisits' (NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)",
+        "operationId": "SubscribeForChangedVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeForChangedVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeForChangedVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeForChangedVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribeForChangedVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrEventSubscription/noticeChangedVisits": {
+      "post": {
+        "tags": [
+          "VdrEventSubscription"
+        ],
+        "summary": "Receives notifications about changes which are affecting Visits. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "description": "Receives notifications about changes which are affecting Visits. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "operationId": "NoticeChangedVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoticeChangedVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoticeChangedVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoticeChangedVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticeChangedVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrEventSubscription/confirmAsSubscriber": {
+      "post": {
+        "tags": [
+          "VdrEventSubscription"
+        ],
+        "summary": "Confirms a Subscription. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "description": "Confirms a Subscription. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "operationId": "ConfirmAsSubscriber",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmAsSubscriberRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmAsSubscriberRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmAsSubscriberRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmAsSubscriberResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrEventSubscription/terminateSubscription": {
+      "post": {
+        "tags": [
+          "VdrEventSubscription"
+        ],
+        "summary": "Terminates a subscription (on publisher side) and returns a boolean, which indicates success.",
+        "description": "Terminates a subscription (on publisher side) and returns a boolean, which indicates success.",
+        "operationId": "TerminateSubscription",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TerminateSubscriptionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TerminateSubscriptionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TerminateSubscriptionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TerminateSubscriptionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vdrEventSubscription/getSubsriptionsBySubscriberUrl": {
+      "post": {
+        "tags": [
+          "VdrEventSubscription"
+        ],
+        "summary": "Returns an array of subscriptionUid's. This method helps subscribers to evaluate whether current subscriptions are still active.",
+        "description": "Returns an array of subscriptionUid's. This method helps subscribers to evaluate whether current subscriptions are still active.",
+        "operationId": "GetSubsriptionsBySubscriberUrl",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitConsume/searchVisits": {
+      "post": {
+        "tags": [
+          "VisitConsume"
+        ],
+        "summary": "Searches Visits by a given 'filter' (if provided), sorts the results by the given 'sortingField' (if provided) and returns an array of VisitUids for the matching records.",
+        "description": "Searches Visits by a given 'filter' (if provided), sorts the results by the given 'sortingField' (if provided) and returns an array of VisitUids for the matching records.",
+        "operationId": "SearchVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitConsume/searchChangedVisits": {
+      "post": {
+        "tags": [
+          "VisitConsume"
+        ],
+        "summary": "Searches Visits which have been modified after(or at) the given 'minTimestampUtc', matching to the given 'filter' (if provided). The result is sorted descenting by the timestamp of the modification (latest first) and will include archived records.",
+        "description": "Searches Visits which have been modified after(or at) the given 'minTimestampUtc', matching to the given 'filter' (if provided). The result is sorted descenting by the timestamp of the modification (latest first) and will include archived records.",
+        "operationId": "SearchChangedVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchChangedVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchChangedVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchChangedVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchChangedVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitConsume/getCustomFieldDescriptorsForVisit": {
+      "post": {
+        "tags": [
+          "VisitConsume"
+        ],
+        "summary": "GetCustomFieldDescriptorsForVisit",
+        "description": "GetCustomFieldDescriptorsForVisit",
+        "operationId": "GetCustomFieldDescriptorsForVisit",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomFieldDescriptorsForVisitRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomFieldDescriptorsForVisitRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomFieldDescriptorsForVisitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomFieldDescriptorsForVisitResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitConsume/checkVisitExisitence": {
+      "post": {
+        "tags": [
+          "VisitConsume"
+        ],
+        "summary": "Checks the existence of 'Visits' for a given list of visitUids",
+        "description": "Checks the existence of 'Visits' for a given list of visitUids",
+        "operationId": "CheckVisitExisitence",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckVisitExisitenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckVisitExisitenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckVisitExisitenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckVisitExisitenceResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitConsume/getVisitFields": {
+      "post": {
+        "tags": [
+          "VisitConsume"
+        ],
+        "summary": "loads the requested visits and returns lightweight json objects (without childs), which are optimized to be displayed as table (the most common UI use case). This models containig a combination of: essential fieds from the record, calculated fields (numbers of child records), custom fields (choosen by the service)",
+        "description": "loads the requested visits and returns lightweight json objects (without childs), which are optimized to be displayed as table (the most common UI use case). This models containig a combination of: essential fieds from the record, calculated fields (numbers of child records), custom fields (choosen by the service)",
+        "operationId": "GetVisitFields",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetVisitFieldsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetVisitFieldsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetVisitFieldsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVisitFieldsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitConsume/exportVisits": {
+      "post": {
+        "tags": [
+          "VisitConsume"
+        ],
+        "summary": "exports full 'VisitStructures'",
+        "description": "exports full 'VisitStructures'",
+        "operationId": "ExportVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitHL7Export/exportVisitFhirRessources": {
+      "post": {
+        "tags": [
+          "VisitHL7Export"
+        ],
+        "summary": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "description": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "operationId": "ExportVisitFhirRessources",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportVisitFhirRessourcesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportVisitFhirRessourcesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportVisitFhirRessourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportVisitFhirRessourcesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitHL7Import/importVisitFhirRessources": {
+      "post": {
+        "tags": [
+          "VisitHL7Import"
+        ],
+        "summary": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "description": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "operationId": "ImportVisitFhirRessources",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportVisitFhirRessourcesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportVisitFhirRessourcesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportVisitFhirRessourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportVisitFhirRessourcesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitSubmission/archiveVisits": {
+      "post": {
+        "tags": [
+          "VisitSubmission"
+        ],
+        "summary": "ArchiveVisits",
+        "description": "ArchiveVisits",
+        "operationId": "ArchiveVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchiveVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitSubmission/unarchiveVisits": {
+      "post": {
+        "tags": [
+          "VisitSubmission"
+        ],
+        "summary": "UnarchiveVisits",
+        "description": "UnarchiveVisits",
+        "operationId": "UnarchiveVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnarchiveVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnarchiveVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnarchiveVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnarchiveVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitSubmission/applyVisitMutations": {
+      "post": {
+        "tags": [
+          "VisitSubmission"
+        ],
+        "summary": "ApplyVisitMutations",
+        "description": "ApplyVisitMutations",
+        "operationId": "ApplyVisitMutations",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyVisitMutationsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyVisitMutationsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyVisitMutationsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplyVisitMutationsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitSubmission/applyVisitBatchMutation": {
+      "post": {
+        "tags": [
+          "VisitSubmission"
+        ],
+        "summary": "ApplyVisitBatchMutation",
+        "description": "ApplyVisitBatchMutation",
+        "operationId": "ApplyVisitBatchMutation",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyVisitBatchMutationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyVisitBatchMutationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyVisitBatchMutationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplyVisitBatchMutationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/visitSubmission/importVisits": {
+      "post": {
+        "tags": [
+          "VisitSubmission"
+        ],
+        "summary": "ImportVisits",
+        "description": "ImportVisits",
+        "operationId": "ImportVisits",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportVisitsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportVisitsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportVisitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportVisitsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DataRecordingStructure": {
+        "required": [
+          "dataRecordingName",
+          "dataRecordingUid",
+          "dataSchemaUrl",
+          "executionState",
+          "isArchived",
+          "modificationTimestampUtc",
+          "recordedData",
+          "taskExecutionTitle",
+          "visitUid"
+        ],
+        "type": "object",
+        "properties": {
+          "dataRecordingUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "visitUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          },
+          "dataRecordingName": {
+            "type": "string",
+            "description": "unique invariant name of ths task-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "taskExecutionTitle": {
+            "type": "string",
+            "description": "title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "scheduledDateTimeUtc": {
+            "type": "string",
+            "description": "the estimated date when the visit is scheduled *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executionDateTimeUtc": {
+            "type": "string",
+            "description": "the real time, when the data was recorded *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executionState": {
+            "type": "integer",
+            "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+            "format": "int32"
+          },
+          "dataSchemaUrl": {
+            "type": "string",
+            "description": "schema-url of the data which were stored inside of the 'RecordedData' field"
+          },
+          "notesRegardingOutcome": {
+            "type": "string",
+            "description": "additional notes regarding this dedcated execution (supplied by the execution person) *this field is optional (use null as value)",
+            "nullable": true
+          },
+          "executingPerson": {
+            "type": "string",
+            "description": "*this field is optional (use null as value)",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          },
+          "recordedData": {
+            "type": "string",
+            "description": "RAW data, in the schema as defined at the 'DataSchemaUrl'"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImportDataRecordingsRequest": {
+        "required": [
+          "dataRecordings"
+        ],
+        "type": "object",
+        "properties": {
+          "dataRecordings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataRecordingStructure"
+            },
+            "description": "Required Argument for 'ImportDataRecordings' (DataRecordingStructure[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ImportDataRecordings'."
+      },
+      "ImportDataRecordingsResponse": {
+        "required": [
+          "createdDataRecordingUids",
+          "updatedDataRecordingUids"
+        ],
+        "type": "object",
+        "properties": {
+          "createdDataRecordingUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportDataRecordings' (Guid[])"
+          },
+          "updatedDataRecordingUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportDataRecordings' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ImportDataRecordings'."
+      },
+      "GetApiVersionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetApiVersion'.\r\nMethod: returns the version of the ORSCF specification which is implemented by this API,\r\n(this can be used for backward compatibility within inhomogeneous infrastructures)"
+      },
+      "GetApiVersionResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'GetApiVersion' (String)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetApiVersion'.\r\nMethod: returns the version of the ORSCF specification which is implemented by this API,\r\n(this can be used for backward compatibility within inhomogeneous infrastructures)"
+      },
+      "GetCapabilitiesRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'VdrEventSubscription',\r\n'VisitConsume',\r\n'VisitSubmission',\r\n'VisitHL7Export',\r\n'VisitHL7Import',\r\n'DataRecordingSubmission'"
+      },
+      "GetCapabilitiesResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Return-Value of 'GetCapabilities' (String[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'VdrEventSubscription',\r\n'VisitConsume',\r\n'VisitSubmission',\r\n'VisitHL7Export',\r\n'VisitHL7Import',\r\n'DataRecordingSubmission'"
+      },
+      "GetPermittedAuthScopesRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetPermittedAuthScopes'.\r\nMethod: returns a list of available capabilities (\"API:VisitDataConsume\") and/or\r\ndata-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\")\r\nwhich are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be:\r\n0=auth needed /\r\n1=authenticated /\r\n-1=auth expired /\r\n-2=auth invalid/disabled"
+      },
+      "GetPermittedAuthScopesResponse": {
+        "required": [
+          "authState"
+        ],
+        "type": "object",
+        "properties": {
+          "authState": {
+            "type": "integer",
+            "description": "Out-Argument of 'GetPermittedAuthScopes' (Int32)",
+            "format": "int32"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Return-Value of 'GetPermittedAuthScopes' (String[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetPermittedAuthScopes'.\r\nMethod: returns a list of available capabilities (\"API:VisitDataConsume\") and/or\r\ndata-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\")\r\nwhich are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be:\r\n0=auth needed /\r\n1=authenticated /\r\n-1=auth expired /\r\n-2=auth invalid/disabled"
+      },
+      "GetOAuthTokenRequestUrlRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
+      },
+      "GetOAuthTokenRequestUrlResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'GetOAuthTokenRequestUrl' (String)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
+      },
+      "VisitFilter": {
+        "required": [
+          "visitExecutionTitle"
+        ],
+        "type": "object",
+        "properties": {
+          "studyUid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "siteUid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100",
+            "nullable": true
+          },
+          "visitProdecureName": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitExecutionTitle": {
+            "type": "string",
+            "description": "unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "executionState": {
+            "type": "integer",
+            "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+            "format": "int32",
+            "nullable": true
+          },
+          "minScheduledDateUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "maxScheduledDateUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "minExecutionDateUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "maxExecutionDateUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscribeForChangedVisitsRequest": {
+        "required": [
+          "subscriberUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriberUrl": {
+            "type": "string",
+            "description": "Required Argument for 'SubscribeForChangedVisits' (string): the root-url of the subscriber which needs to provide at least the methods '/ConfirmAsSubscriber' and '/NoticeChangedVisits'"
+          },
+          "scopeToStudyUid": {
+            "$ref": "#/components/schemas/VisitFilter"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SubscribeForChangedVisits'.\r\nMethod: Creates a subscription for changes which are affecting Visits.\r\nOn success, a 'SubscriptionUid' will be returned and a call will be made to the given\r\nsubscriberUrl + '/ConfirmAsSubscriber'. After the subscription\r\nhas been confirmed, the requested events will be pushed to\r\nsubscriberUrl + '/NoticeChangedVisits'\r\n(NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)"
+      },
+      "SubscribeForChangedVisitsResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'SubscribeForChangedVisits' (Guid)",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SubscribeForChangedVisits'.\r\nMethod: Creates a subscription for changes which are affecting Visits.\r\nOn success, a 'SubscriptionUid' will be returned and a call will be made to the given\r\nsubscriberUrl + '/ConfirmAsSubscriber'. After the subscription\r\nhas been confirmed, the requested events will be pushed to\r\nsubscriberUrl + '/NoticeChangedVisits'\r\n(NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)"
+      },
+      "VisitMetaRecord": {
+        "required": [
+          "isArchived",
+          "modificationTimestampUtc",
+          "siteUid",
+          "studyUid",
+          "subjectIdentifier",
+          "visitUid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "siteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NoticeChangedVisitsRequest": {
+        "required": [
+          "archivedRecords",
+          "createdRecords",
+          "eventSignature",
+          "eventUid",
+          "modifiedRecords",
+          "publisherUrl",
+          "subscriptionUid"
+        ],
+        "type": "object",
+        "properties": {
+          "eventUid": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedVisits' (Guid): a UUID which identifies the current event message",
+            "format": "uuid"
+          },
+          "eventSignature": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedVisits' (string): a SHA256 Hash of SubscriptionSecret + EventUid (in lower string representation, without '-' characters!) Sample: SHA256('ThEs3Cr3T'+'c997dfb1c445fea84afe995307713b59') = 'a320ef5b0f563e8dcb16d759961739977afc98b90628d9dc3be519fb20701490'"
+          },
+          "subscriptionUid": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedVisits' (Guid): a UUID which identifies the subscription for which this event is published",
+            "format": "uuid"
+          },
+          "publisherUrl": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedVisits' (string): root-URL of the VDR-Service which is publishing this event"
+          },
+          "createdRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitMetaRecord"
+            },
+            "description": "Required Argument for 'NoticeChangedVisits' (VisitMetaRecord[])"
+          },
+          "modifiedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitMetaRecord"
+            },
+            "description": "Required Argument for 'NoticeChangedVisits' (VisitMetaRecord[])"
+          },
+          "archivedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitMetaRecord"
+            },
+            "description": "Required Argument for 'NoticeChangedVisits' (VisitMetaRecord[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'NoticeChangedVisits'.\r\nMethod: Receives notifications about changes which are affecting Visits.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "NoticeChangedVisitsResponse": {
+        "required": [
+          "terminateSubscription"
+        ],
+        "type": "object",
+        "properties": {
+          "terminateSubscription": {
+            "type": "boolean",
+            "description": "Out-Argument of 'NoticeChangedVisits' (bool): an array, which contains one element per changed visit"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'NoticeChangedVisits'.\r\nMethod: Receives notifications about changes which are affecting Visits.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "ConfirmAsSubscriberRequest": {
+        "required": [
+          "publisherUrl",
+          "subscriptionUid"
+        ],
+        "type": "object",
+        "properties": {
+          "publisherUrl": {
+            "type": "string",
+            "description": "Required Argument for 'ConfirmAsSubscriber' (string): root-URL of the VDR-Service on which the subscription was requested"
+          },
+          "subscriptionUid": {
+            "type": "string",
+            "description": "Required Argument for 'ConfirmAsSubscriber' (Guid): the Uid of the subscription which should be confirmed",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ConfirmAsSubscriber'.\r\nMethod: Confirms a Subscription.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "ConfirmAsSubscriberResponse": {
+        "required": [
+          "secret"
+        ],
+        "type": "object",
+        "properties": {
+          "secret": {
+            "type": "string",
+            "description": "Out-Argument of 'ConfirmAsSubscriber' (string): A secret which is generated by the subscriber and used to provide additional security. It will be required for the 'TerminateSubscription' method and it is used to generate SHA256 hashes for signing the delivered event messages. The secret should: have a minimum length of 32 characters. A null or empty string has the semantics that the subscriber refuses to confirm and cancels the subscription setup."
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ConfirmAsSubscriber'.\r\nMethod: Confirms a Subscription.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "TerminateSubscriptionRequest": {
+        "required": [
+          "secret",
+          "subscriptionUid"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriptionUid": {
+            "type": "string",
+            "description": "Required Argument for 'TerminateSubscription' (Guid): the Uid of the subscription which should be terminated",
+            "format": "uuid"
+          },
+          "secret": {
+            "type": "string",
+            "description": "Required Argument for 'TerminateSubscription' (string): the (same) secret, which was given by the subscriber during the subscription setup"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'TerminateSubscription'.\r\nMethod: Terminates a subscription (on publisher side) and returns a boolean,\r\nwhich indicates success."
+      },
+      "TerminateSubscriptionResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'TerminateSubscription' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'TerminateSubscription'.\r\nMethod: Terminates a subscription (on publisher side) and returns a boolean,\r\nwhich indicates success."
+      },
+      "GetSubsriptionsBySubscriberUrlRequest": {
+        "required": [
+          "secret",
+          "subscriberUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriberUrl": {
+            "type": "string",
+            "description": "Required Argument for 'GetSubsriptionsBySubscriberUrl' (string)"
+          },
+          "secret": {
+            "type": "string",
+            "description": "Required Argument for 'GetSubsriptionsBySubscriberUrl' (string): the (same) secret, which was given by the subscriber during the subscription setup"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetSubsriptionsBySubscriberUrl'.\r\nMethod: Returns an array of subscriptionUid's.\r\nThis method helps subscribers to evaluate whether current subscriptions are still active."
+      },
+      "GetSubsriptionsBySubscriberUrlResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Return-Value of 'GetSubsriptionsBySubscriberUrl' (Guid[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetSubsriptionsBySubscriberUrl'.\r\nMethod: Returns an array of subscriptionUid's.\r\nThis method helps subscribers to evaluate whether current subscriptions are still active."
+      },
+      "SearchVisitsRequest": {
+        "type": "object",
+        "properties": {
+          "sortingField": {
+            "type": "string",
+            "description": "Optional Argument for 'SearchVisits' (string): A fieldname, which should be used to sort the result (can also be a 'CustomField'). If not provided, the result will be sorted by the creation date of the records",
+            "nullable": true
+          },
+          "sortDescending": {
+            "type": "boolean",
+            "description": "Optional Argument for 'SearchVisits' (bool?): toggles the sorting direction",
+            "nullable": true
+          },
+          "filter": {
+            "$ref": "#/components/schemas/VisitFilter"
+          },
+          "includeArchivedRecords": {
+            "type": "boolean",
+            "description": "Optional Argument for 'SearchVisits' (bool?): includes archived records in the result",
+            "nullable": true
+          },
+          "limitResults": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchVisits' (Int32?): a value greather than zero will represent a maximum count of results, that sould be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchVisits'.\r\nMethod: Searches Visits by a given 'filter' (if provided),\r\nsorts the results by the given 'sortingField' (if provided) and\r\nreturns an array of VisitUids for the matching records."
+      },
+      "SearchVisitsResponse": {
+        "required": [
+          "result"
+        ],
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchVisits' (VisitMetaRecord[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchVisits'.\r\nMethod: Searches Visits by a given 'filter' (if provided),\r\nsorts the results by the given 'sortingField' (if provided) and\r\nreturns an array of VisitUids for the matching records."
+      },
+      "SearchChangedVisitsRequest": {
+        "required": [
+          "minTimestampUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "minTimestampUtc": {
+            "type": "integer",
+            "description": "Required Argument for 'SearchChangedVisits' (Int64): start of the timespan to search (as UNIX-Timestamp)",
+            "format": "int64"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/VisitFilter"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchChangedVisits'.\r\nMethod: Searches Visits which have been modified after(or at) the given 'minTimestampUtc',\r\nmatching to the given 'filter' (if provided).\r\nThe result is sorted descenting by the timestamp of the modification (latest first) and will\r\ninclude archived records."
+      },
+      "SearchChangedVisitsResponse": {
+        "required": [
+          "archivedRecords",
+          "createdRecords",
+          "latestTimestampUtc",
+          "modifiedRecords"
+        ],
+        "type": "object",
+        "properties": {
+          "latestTimestampUtc": {
+            "type": "integer",
+            "description": "Out-Argument of 'SearchChangedVisits' (Int64): the exact timestamp of the search (as UNIX-Timestamp)",
+            "format": "int64"
+          },
+          "createdRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchChangedVisits' (VisitMetaRecord[])"
+          },
+          "modifiedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchChangedVisits' (VisitMetaRecord[])"
+          },
+          "archivedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchChangedVisits' (VisitMetaRecord[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchChangedVisits'.\r\nMethod: Searches Visits which have been modified after(or at) the given 'minTimestampUtc',\r\nmatching to the given 'filter' (if provided).\r\nThe result is sorted descenting by the timestamp of the modification (latest first) and will\r\ninclude archived records."
+      },
+      "GetCustomFieldDescriptorsForVisitRequest": {
+        "type": "object",
+        "properties": {
+          "languagePref": {
+            "type": "string",
+            "description": "Optional Argument for 'GetCustomFieldDescriptorsForVisit' (string): Preferred language for the 'DisplayLabel' and 'InputDescription' fields of the returned descriptors. The default is 'EN'.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetCustomFieldDescriptorsForVisit'."
+      },
+      "CustomFieldDescriptor": {
+        "required": [
+          "displayLabel",
+          "isRequired",
+          "technicalName"
+        ],
+        "type": "object",
+        "properties": {
+          "technicalName": {
+            "type": "string"
+          },
+          "isRequired": {
+            "type": "boolean"
+          },
+          "displayLabel": {
+            "type": "string"
+          },
+          "inputDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "presets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "presetsOnly": {
+            "type": "boolean"
+          },
+          "regularExpression": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCustomFieldDescriptorsForVisitResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldDescriptor"
+            },
+            "description": "Return-Value of 'GetCustomFieldDescriptorsForVisit' (CustomFieldDescriptor[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetCustomFieldDescriptorsForVisit'."
+      },
+      "CheckVisitExisitenceRequest": {
+        "required": [
+          "visitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'CheckVisitExisitence' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'CheckVisitExisitence'.\r\nMethod: Checks the existence of 'Visits' for a given list of visitUids"
+      },
+      "CheckVisitExisitenceResponse": {
+        "required": [
+          "availableUids",
+          "unavailableVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unavailableVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'CheckVisitExisitence' (Guid[])"
+          },
+          "availableUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'CheckVisitExisitence' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'CheckVisitExisitence'.\r\nMethod: Checks the existence of 'Visits' for a given list of visitUids"
+      },
+      "GetVisitFieldsRequest": {
+        "required": [
+          "visitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'GetVisitFields' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetVisitFields'.\r\nMethod: loads the requested visits and returns lightweight json objects (without childs),\r\nwhich are optimized to be displayed as table (the most common UI use case).\r\nThis models containig a combination of:\r\nessential fieds from the record,\r\ncalculated fields (numbers of child records),\r\ncustom fields (choosen by the service)"
+      },
+      "VisitFields": {
+        "required": [
+          "executionState",
+          "isArchived",
+          "modificationTimestampUtc",
+          "siteUid",
+          "studyUid",
+          "subjectIdentifier",
+          "visitExecutionTitle",
+          "visitProdecureName",
+          "visitUid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "siteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          },
+          "visitProdecureName": {
+            "type": "string",
+            "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "visitExecutionTitle": {
+            "type": "string",
+            "description": "unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "scheduledDateUtc": {
+            "type": "string",
+            "description": "the estimated date when the visit is scheduled for execution *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executionDateUtc": {
+            "type": "string",
+            "description": "the real date, when the visits was executed *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executionState": {
+            "type": "integer",
+            "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+            "format": "int32"
+          },
+          "executingPerson": {
+            "type": "string",
+            "description": "*this field is optional (use null as value)",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetVisitFieldsResponse": {
+        "required": [
+          "result",
+          "unavailableVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unavailableVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'GetVisitFields' (Guid[])"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitFields"
+            },
+            "description": "Out-Argument of 'GetVisitFields' (VisitFields[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetVisitFields'.\r\nMethod: loads the requested visits and returns lightweight json objects (without childs),\r\nwhich are optimized to be displayed as table (the most common UI use case).\r\nThis models containig a combination of:\r\nessential fieds from the record,\r\ncalculated fields (numbers of child records),\r\ncustom fields (choosen by the service)"
+      },
+      "ExportVisitsRequest": {
+        "required": [
+          "visitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'ExportVisits' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ExportVisits'.\r\nMethod: exports full 'VisitStructures'"
+      },
+      "VisitStructure": {
+        "required": [
+          "executionState",
+          "isArchived",
+          "modificationTimestampUtc",
+          "siteUid",
+          "studyUid",
+          "subjectIdentifier",
+          "visitExecutionTitle",
+          "visitProdecureName",
+          "visitUid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "siteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          },
+          "visitProdecureName": {
+            "type": "string",
+            "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "visitExecutionTitle": {
+            "type": "string",
+            "description": "unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "scheduledDateUtc": {
+            "type": "string",
+            "description": "the estimated date when the visit is scheduled for execution *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executionDateUtc": {
+            "type": "string",
+            "description": "the real date, when the visits was executed *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executionState": {
+            "type": "integer",
+            "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+            "format": "int32"
+          },
+          "executingPerson": {
+            "type": "string",
+            "description": "*this field is optional (use null as value)",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          },
+          "dataRecordings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataRecordingStructure"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExportVisitsResponse": {
+        "required": [
+          "result",
+          "unavailableVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unavailableVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ExportVisits' (Guid[])"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitStructure"
+            },
+            "description": "Out-Argument of 'ExportVisits' (VisitStructure[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ExportVisits'.\r\nMethod: exports full 'VisitStructures'"
+      },
+      "ExportVisitFhirRessourcesRequest": {
+        "required": [
+          "visitUid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUid": {
+            "type": "string",
+            "description": "Required Argument for 'ExportVisitFhirRessources' (Guid)",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ExportVisitFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "VisitFhirRessourceContainer": {
+        "required": [
+          "isArchived",
+          "modificationTimestampUtc",
+          "siteUid",
+          "studyUid",
+          "subjectIdentifier",
+          "visitUid"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "siteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          },
+          "appointmentRessource": {
+            "type": "object",
+            "additionalProperties": { },
+            "description": "a HL7 <see href=\"http://www.hl7.org/fhir/appointment.html\">'Appointment'</see> resource in json format",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ExportVisitFhirRessourcesResponse": {
+        "required": [
+          "visitFhirRessources"
+        ],
+        "type": "object",
+        "properties": {
+          "visitFhirRessources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitFhirRessourceContainer"
+            },
+            "description": "Out-Argument of 'ExportVisitFhirRessources' (VisitFhirRessourceContainer[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'ExportVisitFhirRessources' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ExportVisitFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ImportVisitFhirRessourcesRequest": {
+        "required": [
+          "visitFhirRessources"
+        ],
+        "type": "object",
+        "properties": {
+          "visitFhirRessources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitFhirRessourceContainer"
+            },
+            "description": "Required Argument for 'ImportVisitFhirRessources' (VisitFhirRessourceContainer[]): A structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ImportVisitFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ImportVisitFhirRessourcesResponse": {
+        "required": [
+          "createdVisitUids",
+          "updatedVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "createdVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportVisitFhirRessources' (Guid[])"
+          },
+          "updatedVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportVisitFhirRessources' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ImportVisitFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ArchiveVisitsRequest": {
+        "required": [
+          "visitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'ArchiveVisits' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ArchiveVisits'."
+      },
+      "ArchiveVisitsResponse": {
+        "required": [
+          "archivedVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "archivedVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ArchiveVisits' (Guid[]): also including the Uids of already archived records"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ArchiveVisits'."
+      },
+      "UnarchiveVisitsRequest": {
+        "required": [
+          "visitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'UnarchiveVisits' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UnarchiveVisits'."
+      },
+      "UnarchiveVisitsResponse": {
+        "required": [
+          "unarchivedVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unarchivedVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'UnarchiveVisits' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UnarchiveVisits'."
+      },
+      "VisitMutation": {
+        "type": "object",
+        "properties": {
+          "visitProdecureName": {
+            "type": "string",
+            "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+            "nullable": true
+          },
+          "visitExecutionTitle": {
+            "type": "string",
+            "description": "unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+            "nullable": true
+          },
+          "executionState": {
+            "type": "integer",
+            "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+            "format": "int32",
+            "nullable": true
+          },
+          "executingPerson": {
+            "type": "string",
+            "description": "*this field is optional (use null as value)",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          },
+          "scheduledDateUtc": {
+            "type": "string",
+            "description": "the estimated date when the visit is scheduled for execution *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executionDateUtc": {
+            "type": "string",
+            "description": "the real date, when the visits was executed *this field is optional",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplyVisitMutationsRequest": {
+        "required": [
+          "mutationsByVisitUid"
+        ],
+        "type": "object",
+        "properties": {
+          "mutationsByVisitUid": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/VisitMutation"
+            },
+            "description": "Required Argument for 'ApplyVisitMutations' (Dictionary(Guid, VisitMutation))"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ApplyVisitMutations'."
+      },
+      "ApplyVisitMutationsResponse": {
+        "required": [
+          "updatedVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "updatedVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ApplyVisitMutations' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ApplyVisitMutations'."
+      },
+      "BatchableVisitMutation": {
+        "type": "object",
+        "properties": {
+          "visitProdecureName": {
+            "type": "string",
+            "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+            "nullable": true
+          },
+          "visitExecutionTitle": {
+            "type": "string",
+            "description": "unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
+            "nullable": true
+          },
+          "executionState": {
+            "type": "integer",
+            "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
+            "format": "int32",
+            "nullable": true
+          },
+          "executingPerson": {
+            "type": "string",
+            "description": "*this field is optional (use null as value)",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplyVisitBatchMutationRequest": {
+        "required": [
+          "mutation",
+          "visitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "visitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'ApplyVisitBatchMutation' (Guid[])"
+          },
+          "mutation": {
+            "$ref": "#/components/schemas/BatchableVisitMutation"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ApplyVisitBatchMutation'."
+      },
+      "ApplyVisitBatchMutationResponse": {
+        "required": [
+          "updatedVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "updatedVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ApplyVisitBatchMutation' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ApplyVisitBatchMutation'."
+      },
+      "ImportVisitsRequest": {
+        "required": [
+          "visits"
+        ],
+        "type": "object",
+        "properties": {
+          "visits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitStructure"
+            },
+            "description": "Required Argument for 'ImportVisits' (VisitStructure[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ImportVisits'."
+      },
+      "ImportVisitsResponse": {
+        "required": [
+          "createdVisitUids",
+          "updatedVisitUids"
+        ],
+        "type": "object",
+        "properties": {
+          "createdVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportVisits' (Guid[])"
+          },
+          "updatedVisitUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportVisits' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ImportVisits'."
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
