@@ -1,0 +1,2382 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ORSCF SubjectData-API",
+    "description": "NOTE: This is not intended be a 'RESTful' api, as it is NOT located on the persistence layer and is therefore NOT focused on doing CRUD operations! This HTTP-based API uses a 'call-based' approach to known BL operations. IN-, OUT- and return-arguments are transmitted using request-/response- wrappers (see [UJMW](https://github.com/KornSW/UnifiedJsonMessageWrapper)), which are very lightweight and are a compromise for broad support and adaptability in REST-inspired technologies as well as soap-inspired technologies!",
+    "contact": {
+      "name": "Open Research Study Communication Format",
+      "url": "https://orscf.org",
+      "email": "info@orscf.org"
+    },
+    "version": "1.8.0"
+  },
+  "paths": {
+    "/sdrApiInfo/getApiVersion": {
+      "post": {
+        "tags": [
+          "SdrApiInfo"
+        ],
+        "summary": "returns the version of the ORSCF specification which is implemented by this API, (this can be used for backward compatibility within inhomogeneous infrastructures)",
+        "description": "returns the version of the ORSCF specification which is implemented by this API, (this can be used for backward compatibility within inhomogeneous infrastructures)",
+        "operationId": "GetApiVersion",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetApiVersionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApiVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrApiInfo/getCapabilities": {
+      "post": {
+        "tags": [
+          "SdrApiInfo"
+        ],
+        "summary": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'SdrEventSubscription', 'SubjectConsume', 'SubjectSubmission', 'SubjectHL7Export' 'SubjectHL7Import'",
+        "description": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'SdrEventSubscription', 'SubjectConsume', 'SubjectSubmission', 'SubjectHL7Export' 'SubjectHL7Import'",
+        "operationId": "GetCapabilities",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCapabilitiesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCapabilitiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrApiInfo/getPermittedAuthScopes": {
+      "post": {
+        "tags": [
+          "SdrApiInfo"
+        ],
+        "summary": "returns a list of available capabilities (\"API:SubjectOverview\") and/or data-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\") which are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be: 0=auth needed / 1=authenticated / -1=auth expired / -2=auth invalid/disabled",
+        "description": "returns a list of available capabilities (\"API:SubjectOverview\") and/or data-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\") which are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be: 0=auth needed / 1=authenticated / -1=auth expired / -2=auth invalid/disabled",
+        "operationId": "GetPermittedAuthScopes",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPermittedAuthScopesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPermittedAuthScopesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrApiInfo/getOAuthTokenRequestUrl": {
+      "post": {
+        "tags": [
+          "SdrApiInfo"
+        ],
+        "summary": "OPTIONAL: If the authentication on the current service is mapped using tokens and should provide information about the source at this point, the login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here.",
+        "description": "OPTIONAL: If the authentication on the current service is mapped using tokens and should provide information about the source at this point, the login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here.",
+        "operationId": "GetOAuthTokenRequestUrl",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOAuthTokenRequestUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOAuthTokenRequestUrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrEventSubscription/subscribeForChangedSubjects": {
+      "post": {
+        "tags": [
+          "SdrEventSubscription"
+        ],
+        "summary": "Creates a subscription for changes which are affecting Subjects. On success, a 'SubscriptionUid' will be returned and a call will be made to the given subscriberUrl + '/ConfirmAsSubscriber'. After the subscription has been confirmed, the requested events will be pushed to subscriberUrl + '/NoticeChangedSubjects' (NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)",
+        "description": "Creates a subscription for changes which are affecting Subjects. On success, a 'SubscriptionUid' will be returned and a call will be made to the given subscriberUrl + '/ConfirmAsSubscriber'. After the subscription has been confirmed, the requested events will be pushed to subscriberUrl + '/NoticeChangedSubjects' (NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)",
+        "operationId": "SubscribeForChangedSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeForChangedSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeForChangedSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeForChangedSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribeForChangedSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrEventSubscription/noticeChangedSubjects": {
+      "post": {
+        "tags": [
+          "SdrEventSubscription"
+        ],
+        "summary": "Receives notifications about changes which are affecting Subjects. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "description": "Receives notifications about changes which are affecting Subjects. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "operationId": "NoticeChangedSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoticeChangedSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoticeChangedSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoticeChangedSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticeChangedSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrEventSubscription/confirmAsSubscriber": {
+      "post": {
+        "tags": [
+          "SdrEventSubscription"
+        ],
+        "summary": "Confirms a Subscription. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "description": "Confirms a Subscription. IMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber! So this can be called by an foreign service during the setup of a subscription, which was previously requested from here. The opposite case: any client subscribing to events from here, must provide its own http endpoint that has such a method!",
+        "operationId": "ConfirmAsSubscriber",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmAsSubscriberRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmAsSubscriberRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmAsSubscriberRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmAsSubscriberResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrEventSubscription/terminateSubscription": {
+      "post": {
+        "tags": [
+          "SdrEventSubscription"
+        ],
+        "summary": "Terminates a subscription (on publisher side) and returns a boolean, which indicates success.",
+        "description": "Terminates a subscription (on publisher side) and returns a boolean, which indicates success.",
+        "operationId": "TerminateSubscription",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TerminateSubscriptionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TerminateSubscriptionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TerminateSubscriptionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TerminateSubscriptionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdrEventSubscription/getSubsriptionsBySubscriberUrl": {
+      "post": {
+        "tags": [
+          "SdrEventSubscription"
+        ],
+        "summary": "Returns an array of subscriptionUid's. This method helps subscribers to evaluate whether current subscriptions are still active.",
+        "description": "Returns an array of subscriptionUid's. This method helps subscribers to evaluate whether current subscriptions are still active.",
+        "operationId": "GetSubsriptionsBySubscriberUrl",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSubsriptionsBySubscriberUrlResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectConsume/searchSubjects": {
+      "post": {
+        "tags": [
+          "SubjectConsume"
+        ],
+        "summary": "Searches Subjects by a given 'filter' (if provided), sorts the results by the given 'sortingField' (if provided) and returns an array of SubjectUids for the matching records.",
+        "description": "Searches Subjects by a given 'filter' (if provided), sorts the results by the given 'sortingField' (if provided) and returns an array of SubjectUids for the matching records.",
+        "operationId": "SearchSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectConsume/searchChangedSubjects": {
+      "post": {
+        "tags": [
+          "SubjectConsume"
+        ],
+        "summary": "Searches Subjects which have been modified after(or at) the given 'minTimestampUtc', matching to the given 'filter' (if provided). The result is sorted descenting by the timestamp of the modification (latest first) and will include archived records.",
+        "description": "Searches Subjects which have been modified after(or at) the given 'minTimestampUtc', matching to the given 'filter' (if provided). The result is sorted descenting by the timestamp of the modification (latest first) and will include archived records.",
+        "operationId": "SearchChangedSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchChangedSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchChangedSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchChangedSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchChangedSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectConsume/getCustomFieldDescriptorsForSubject": {
+      "post": {
+        "tags": [
+          "SubjectConsume"
+        ],
+        "summary": "GetCustomFieldDescriptorsForSubject",
+        "description": "GetCustomFieldDescriptorsForSubject",
+        "operationId": "GetCustomFieldDescriptorsForSubject",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomFieldDescriptorsForSubjectRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomFieldDescriptorsForSubjectRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomFieldDescriptorsForSubjectRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomFieldDescriptorsForSubjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectConsume/checkSubjectExisitence": {
+      "post": {
+        "tags": [
+          "SubjectConsume"
+        ],
+        "summary": "Checks the existence of 'Subjects' for a given list of subjectUids",
+        "description": "Checks the existence of 'Subjects' for a given list of subjectUids",
+        "operationId": "CheckSubjectExisitence",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckSubjectExisitenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckSubjectExisitenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckSubjectExisitenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckSubjectExisitenceResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectConsume/getSubjectFields": {
+      "post": {
+        "tags": [
+          "SubjectConsume"
+        ],
+        "summary": "loads the requested Subjects and returns lightweight json objects (without childs), which are optimized to be displayed as table (the most common UI use case). This models containig a combination of: essential fieds from the record, calculated fields (numbers of child records), custom fields (choosen by the service)",
+        "description": "loads the requested Subjects and returns lightweight json objects (without childs), which are optimized to be displayed as table (the most common UI use case). This models containig a combination of: essential fieds from the record, calculated fields (numbers of child records), custom fields (choosen by the service)",
+        "operationId": "GetSubjectFields",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubjectFieldsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubjectFieldsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetSubjectFieldsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSubjectFieldsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectConsume/exportSubjects": {
+      "post": {
+        "tags": [
+          "SubjectConsume"
+        ],
+        "summary": "exports full 'SubjectStructures'",
+        "description": "exports full 'SubjectStructures'",
+        "operationId": "ExportSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectHL7Export/exportSubjectFhirRessources": {
+      "post": {
+        "tags": [
+          "SubjectHL7Export"
+        ],
+        "summary": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "description": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "operationId": "ExportSubjectFhirRessources",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportSubjectFhirRessourcesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportSubjectFhirRessourcesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportSubjectFhirRessourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportSubjectFhirRessourcesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectHL7Import/importSubjectFhirRessources": {
+      "post": {
+        "tags": [
+          "SubjectHL7Import"
+        ],
+        "summary": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "description": "Exports a structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record.",
+        "operationId": "ImportSubjectFhirRessources",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportSubjectFhirRessourcesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportSubjectFhirRessourcesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportSubjectFhirRessourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportSubjectFhirRessourcesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectSubmission/archiveSubjects": {
+      "post": {
+        "tags": [
+          "SubjectSubmission"
+        ],
+        "summary": "ArchiveSubjects",
+        "description": "ArchiveSubjects",
+        "operationId": "ArchiveSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchiveSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectSubmission/unarchiveSubjects": {
+      "post": {
+        "tags": [
+          "SubjectSubmission"
+        ],
+        "summary": "UnarchiveSubjects",
+        "description": "UnarchiveSubjects",
+        "operationId": "UnarchiveSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnarchiveSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnarchiveSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnarchiveSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnarchiveSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectSubmission/applySubjectMutations": {
+      "post": {
+        "tags": [
+          "SubjectSubmission"
+        ],
+        "summary": "ApplySubjectMutations",
+        "description": "ApplySubjectMutations",
+        "operationId": "ApplySubjectMutations",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplySubjectMutationsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplySubjectMutationsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplySubjectMutationsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplySubjectMutationsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectSubmission/applySubjectBatchMutation": {
+      "post": {
+        "tags": [
+          "SubjectSubmission"
+        ],
+        "summary": "ApplySubjectBatchMutation",
+        "description": "ApplySubjectBatchMutation",
+        "operationId": "ApplySubjectBatchMutation",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplySubjectBatchMutationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplySubjectBatchMutationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplySubjectBatchMutationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplySubjectBatchMutationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjectSubmission/importSubjects": {
+      "post": {
+        "tags": [
+          "SubjectSubmission"
+        ],
+        "summary": "ImportSubjects",
+        "description": "ImportSubjects",
+        "operationId": "ImportSubjects",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportSubjectsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportSubjectsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportSubjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportSubjectsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetApiVersionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetApiVersion'.\r\nMethod: returns the version of the ORSCF specification which is implemented by this API,\r\n(this can be used for backward compatibility within inhomogeneous infrastructures)"
+      },
+      "GetApiVersionResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'GetApiVersion' (String)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetApiVersion'.\r\nMethod: returns the version of the ORSCF specification which is implemented by this API,\r\n(this can be used for backward compatibility within inhomogeneous infrastructures)"
+      },
+      "GetCapabilitiesRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'SdrEventSubscription',\r\n'SubjectConsume',\r\n'SubjectSubmission',\r\n'SubjectHL7Export'\r\n'SubjectHL7Import'"
+      },
+      "GetCapabilitiesResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Return-Value of 'GetCapabilities' (String[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'SdrEventSubscription',\r\n'SubjectConsume',\r\n'SubjectSubmission',\r\n'SubjectHL7Export'\r\n'SubjectHL7Import'"
+      },
+      "GetPermittedAuthScopesRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetPermittedAuthScopes'.\r\nMethod: returns a list of available capabilities (\"API:SubjectOverview\") and/or\r\ndata-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\")\r\nwhich are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be:\r\n0=auth needed /\r\n1=authenticated /\r\n-1=auth expired /\r\n-2=auth invalid/disabled"
+      },
+      "GetPermittedAuthScopesResponse": {
+        "required": [
+          "authState"
+        ],
+        "type": "object",
+        "properties": {
+          "authState": {
+            "type": "integer",
+            "description": "Out-Argument of 'GetPermittedAuthScopes' (Int32)",
+            "format": "int32"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Return-Value of 'GetPermittedAuthScopes' (String[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetPermittedAuthScopes'.\r\nMethod: returns a list of available capabilities (\"API:SubjectOverview\") and/or\r\ndata-scopes (\"Study:9B2C3F48-2941-2F8F-4D35-7D117D5C6F72\")\r\nwhich are permitted for the CURRENT ACCESSOR and gives information about its 'authState', which can be:\r\n0=auth needed /\r\n1=authenticated /\r\n-1=auth expired /\r\n-2=auth invalid/disabled"
+      },
+      "GetOAuthTokenRequestUrlRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
+      },
+      "GetOAuthTokenRequestUrlResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'GetOAuthTokenRequestUrl' (String)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
+      },
+      "SubjectFilter": {
+        "type": "object",
+        "properties": {
+          "studyUid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "siteUid": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "AS DECLARED BY <see href=\"https://www.hl7.org/fhir/valueset-research-subject-status.html\">HL7.ResearchSubjectStatus</see>:\r\ncandidate | eligible | follow-up | ineligible | not-registered | off-study | \r\non-study | on-study-intervention | on-study-observation | pending-on-study | \r\npotential-candidate | screening | withdrawn",
+            "nullable": true
+          },
+          "minPeriodStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "maxPeriodStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "minPeriodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "maxPeriodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "assignedArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "substudyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualSiteDefinedPatientIdentifier": {
+            "type": "string",
+            "description": "This can be the ID ('surrogate-key') of the Partient record within a site specific\r\n           patient management system. This MUST NOT be any natural key or plain readable name which \r\n           exposes the identity of the patient!",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscribeForChangedSubjectsRequest": {
+        "required": [
+          "subscriberUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriberUrl": {
+            "type": "string",
+            "description": "Required Argument for 'SubscribeForChangedSubjects' (string): the root-url of the subscriber which needs to provide at least the methods '/ConfirmAsSubscriber' and '/NoticeChangedSubjects'"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/SubjectFilter"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SubscribeForChangedSubjects'.\r\nMethod: Creates a subscription for changes which are affecting Subjects.\r\nOn success, a 'SubscriptionUid' will be returned and a call will be made to the given\r\nsubscriberUrl + '/ConfirmAsSubscriber'. After the subscription\r\nhas been confirmed, the requested events will be pushed to\r\nsubscriberUrl + '/NoticeChangedSubjects'\r\n(NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)"
+      },
+      "SubscribeForChangedSubjectsResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'SubscribeForChangedSubjects' (Guid)",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SubscribeForChangedSubjects'.\r\nMethod: Creates a subscription for changes which are affecting Subjects.\r\nOn success, a 'SubscriptionUid' will be returned and a call will be made to the given\r\nsubscriberUrl + '/ConfirmAsSubscriber'. After the subscription\r\nhas been confirmed, the requested events will be pushed to\r\nsubscriberUrl + '/NoticeChangedSubjects'\r\n(NOTICE: the receiving methods also are documented here, because this service itself can act as subscriber)"
+      },
+      "SubjectMetaRecord": {
+        "required": [
+          "actualSiteUid",
+          "isArchived",
+          "modificationTimestampUtc",
+          "studyUid",
+          "subjectIdentifier",
+          "subjectUid"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUid": {
+            "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actualSiteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NoticeChangedSubjectsRequest": {
+        "required": [
+          "archivedRecords",
+          "createdRecords",
+          "eventSignature",
+          "eventUid",
+          "modifiedRecords",
+          "publisherUrl",
+          "subscriptionUid"
+        ],
+        "type": "object",
+        "properties": {
+          "eventUid": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedSubjects' (Guid): a UUID which identifies the current event message",
+            "format": "uuid"
+          },
+          "eventSignature": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedSubjects' (string): a SHA256 Hash of SubscriptionSecret + EventUid (in lower string representation, without '-' characters!) Sample: SHA256('ThEs3Cr3T'+'c997dfb1c445fea84afe995307713b59') = 'a320ef5b0f563e8dcb16d759961739977afc98b90628d9dc3be519fb20701490'"
+          },
+          "subscriptionUid": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedSubjects' (Guid): a UUID which identifies the subscription for which this event is published",
+            "format": "uuid"
+          },
+          "publisherUrl": {
+            "type": "string",
+            "description": "Required Argument for 'NoticeChangedSubjects' (string): root-URL of the VDR-Service which is publishing this event"
+          },
+          "createdRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectMetaRecord"
+            },
+            "description": "Required Argument for 'NoticeChangedSubjects' (SubjectMetaRecord[]): an array, which contains one element per changed record"
+          },
+          "modifiedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectMetaRecord"
+            },
+            "description": "Required Argument for 'NoticeChangedSubjects' (SubjectMetaRecord[]): an array, which contains one element per modified record"
+          },
+          "archivedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectMetaRecord"
+            },
+            "description": "Required Argument for 'NoticeChangedSubjects' (SubjectMetaRecord[]): an array, which contains one element per archived record"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'NoticeChangedSubjects'.\r\nMethod: Receives notifications about changes which are affecting Subjects.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "NoticeChangedSubjectsResponse": {
+        "required": [
+          "terminateSubscription"
+        ],
+        "type": "object",
+        "properties": {
+          "terminateSubscription": {
+            "type": "boolean",
+            "description": "Out-Argument of 'NoticeChangedSubjects' (bool): an array, which contains one element per changed record"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'NoticeChangedSubjects'.\r\nMethod: Receives notifications about changes which are affecting Subjects.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "ConfirmAsSubscriberRequest": {
+        "required": [
+          "publisherUrl",
+          "subscriptionUid"
+        ],
+        "type": "object",
+        "properties": {
+          "publisherUrl": {
+            "type": "string",
+            "description": "Required Argument for 'ConfirmAsSubscriber' (string): root-URL of the VDR-Service on which the subscription was requested"
+          },
+          "subscriptionUid": {
+            "type": "string",
+            "description": "Required Argument for 'ConfirmAsSubscriber' (Guid): the Uid of the subscription which should be confirmed",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ConfirmAsSubscriber'.\r\nMethod: Confirms a Subscription.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "ConfirmAsSubscriberResponse": {
+        "required": [
+          "secret"
+        ],
+        "type": "object",
+        "properties": {
+          "secret": {
+            "type": "string",
+            "description": "Out-Argument of 'ConfirmAsSubscriber' (string): A secret which is generated by the subscriber and used to provide additional security. It will be required for the 'TerminateSubscription' method and it is used to generate SHA256 hashes for signing the delivered event messages. The secret should: have a minimum length of 32 characters. A null or empty string has the semantics that the subscriber refuses to confirm and cancels the subscription setup."
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ConfirmAsSubscriber'.\r\nMethod: Confirms a Subscription.\r\nIMPORTANT: this method is dedicated to the usecase, when this service itself acts as a subscriber!\r\nSo this can be called by an foreign service during the setup of a subscription, which was previously\r\nrequested from here.\r\nThe opposite case: any client subscribing to events from here,\r\nmust provide its own http endpoint that has such a method!"
+      },
+      "TerminateSubscriptionRequest": {
+        "required": [
+          "secret",
+          "subscriptionUid"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriptionUid": {
+            "type": "string",
+            "description": "Required Argument for 'TerminateSubscription' (Guid): the Uid of the subscription which should be terminated",
+            "format": "uuid"
+          },
+          "secret": {
+            "type": "string",
+            "description": "Required Argument for 'TerminateSubscription' (string): the (same) secret, which was given by the subscriber during the subscription setup"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'TerminateSubscription'.\r\nMethod: Terminates a subscription (on publisher side) and returns a boolean,\r\nwhich indicates success."
+      },
+      "TerminateSubscriptionResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'TerminateSubscription' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'TerminateSubscription'.\r\nMethod: Terminates a subscription (on publisher side) and returns a boolean,\r\nwhich indicates success."
+      },
+      "GetSubsriptionsBySubscriberUrlRequest": {
+        "required": [
+          "secret",
+          "subscriberUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriberUrl": {
+            "type": "string",
+            "description": "Required Argument for 'GetSubsriptionsBySubscriberUrl' (string)"
+          },
+          "secret": {
+            "type": "string",
+            "description": "Required Argument for 'GetSubsriptionsBySubscriberUrl' (string): the (same) secret, which was given by the subscriber during the subscription setup"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetSubsriptionsBySubscriberUrl'.\r\nMethod: Returns an array of subscriptionUid's.\r\nThis method helps subscribers to evaluate whether current subscriptions are still active."
+      },
+      "GetSubsriptionsBySubscriberUrlResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Return-Value of 'GetSubsriptionsBySubscriberUrl' (Guid[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetSubsriptionsBySubscriberUrl'.\r\nMethod: Returns an array of subscriptionUid's.\r\nThis method helps subscribers to evaluate whether current subscriptions are still active."
+      },
+      "SearchSubjectsRequest": {
+        "type": "object",
+        "properties": {
+          "sortingField": {
+            "type": "string",
+            "description": "Optional Argument for 'SearchSubjects' (string): A fieldname, which should be used to sort the result (can also be a 'CustomField'). If not provided, the result will be sorted by the creation date of the records",
+            "nullable": true
+          },
+          "sortDescending": {
+            "type": "boolean",
+            "description": "Optional Argument for 'SearchSubjects' (bool?): toggles the sorting direction",
+            "nullable": true
+          },
+          "filter": {
+            "$ref": "#/components/schemas/SubjectFilter"
+          },
+          "includeArchivedRecords": {
+            "type": "boolean",
+            "description": "Optional Argument for 'SearchSubjects' (bool?): includes archived records in the result",
+            "nullable": true
+          },
+          "limitResults": {
+            "type": "integer",
+            "description": "Optional Argument for 'SearchSubjects' (Int32?): a value greather than zero will represent a maximum count of results, that sould be returned",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchSubjects'.\r\nMethod: Searches Subjects by a given 'filter' (if provided),\r\nsorts the results by the given 'sortingField' (if provided) and\r\nreturns an array of SubjectUids for the matching records."
+      },
+      "SearchSubjectsResponse": {
+        "required": [
+          "result"
+        ],
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchSubjects' (SubjectMetaRecord[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchSubjects'.\r\nMethod: Searches Subjects by a given 'filter' (if provided),\r\nsorts the results by the given 'sortingField' (if provided) and\r\nreturns an array of SubjectUids for the matching records."
+      },
+      "SearchChangedSubjectsRequest": {
+        "required": [
+          "minTimestampUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "minTimestampUtc": {
+            "type": "integer",
+            "description": "Required Argument for 'SearchChangedSubjects' (Int64): start of the timespan to search (as UNIX-Timestamp)",
+            "format": "int64"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/SubjectFilter"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'SearchChangedSubjects'.\r\nMethod: Searches Subjects which have been modified after(or at) the given 'minTimestampUtc',\r\nmatching to the given 'filter' (if provided).\r\nThe result is sorted descenting by the timestamp of the modification (latest first) and will\r\ninclude archived records."
+      },
+      "SearchChangedSubjectsResponse": {
+        "required": [
+          "archivedRecords",
+          "createdRecords",
+          "latestTimestampUtc",
+          "modifiedRecords"
+        ],
+        "type": "object",
+        "properties": {
+          "latestTimestampUtc": {
+            "type": "integer",
+            "description": "Out-Argument of 'SearchChangedSubjects' (Int64): the exact timestamp of the search (as UNIX-Timestamp)",
+            "format": "int64"
+          },
+          "createdRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchChangedSubjects' (SubjectMetaRecord[])"
+          },
+          "modifiedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchChangedSubjects' (SubjectMetaRecord[])"
+          },
+          "archivedRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectMetaRecord"
+            },
+            "description": "Out-Argument of 'SearchChangedSubjects' (SubjectMetaRecord[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'SearchChangedSubjects'.\r\nMethod: Searches Subjects which have been modified after(or at) the given 'minTimestampUtc',\r\nmatching to the given 'filter' (if provided).\r\nThe result is sorted descenting by the timestamp of the modification (latest first) and will\r\ninclude archived records."
+      },
+      "GetCustomFieldDescriptorsForSubjectRequest": {
+        "type": "object",
+        "properties": {
+          "languagePref": {
+            "type": "string",
+            "description": "Optional Argument for 'GetCustomFieldDescriptorsForSubject' (string): Preferred language for the 'DisplayLabel' and 'InputDescription' fields of the returned descriptors. The default is 'EN'.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetCustomFieldDescriptorsForSubject'."
+      },
+      "CustomFieldDescriptor": {
+        "required": [
+          "displayLabel",
+          "isRequired",
+          "technicalName"
+        ],
+        "type": "object",
+        "properties": {
+          "technicalName": {
+            "type": "string"
+          },
+          "isRequired": {
+            "type": "boolean"
+          },
+          "displayLabel": {
+            "type": "string"
+          },
+          "inputDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "presets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "presetsOnly": {
+            "type": "boolean"
+          },
+          "regularExpression": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCustomFieldDescriptorsForSubjectResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldDescriptor"
+            },
+            "description": "Return-Value of 'GetCustomFieldDescriptorsForSubject' (CustomFieldDescriptor[])",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetCustomFieldDescriptorsForSubject'."
+      },
+      "CheckSubjectExisitenceRequest": {
+        "required": [
+          "subjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'CheckSubjectExisitence' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'CheckSubjectExisitence'.\r\nMethod: Checks the existence of 'Subjects' for a given list of subjectUids"
+      },
+      "CheckSubjectExisitenceResponse": {
+        "required": [
+          "availableSubjectUids",
+          "unavailableSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unavailableSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'CheckSubjectExisitence' (Guid[])"
+          },
+          "availableSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'CheckSubjectExisitence' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'CheckSubjectExisitence'.\r\nMethod: Checks the existence of 'Subjects' for a given list of subjectUids"
+      },
+      "GetSubjectFieldsRequest": {
+        "required": [
+          "subjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'GetSubjectFields' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetSubjectFields'.\r\nMethod: loads the requested Subjects and returns lightweight json objects (without childs),\r\nwhich are optimized to be displayed as table (the most common UI use case).\r\nThis models containig a combination of:\r\nessential fieds from the record,\r\ncalculated fields (numbers of child records),\r\ncustom fields (choosen by the service)"
+      },
+      "SubjectFields": {
+        "required": [
+          "actualSiteUid",
+          "enrollingSiteUid",
+          "isArchived",
+          "modificationTimestampUtc",
+          "status",
+          "studyUid",
+          "subjectIdentifier",
+          "subjectUid"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUid": {
+            "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actualSiteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          },
+          "enrollingSiteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "description": "AS DECLARED BY <see href=\"https://www.hl7.org/fhir/valueset-research-subject-status.html\">HL7.ResearchSubjectStatus</see>:\r\ncandidate | eligible | follow-up | ineligible | not-registered | off-study | \r\non-study | on-study-intervention | on-study-observation | pending-on-study | \r\npotential-candidate | screening | withdrawn"
+          },
+          "statusNote": {
+            "type": "string",
+            "description": "a note (manually written text) which provides some additional\r\ninformation about the reason why one transitioned to \r\nthe current status",
+            "nullable": true
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "assignedArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "substudyNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "actualSiteDefinedPatientIdentifier": {
+            "type": "string",
+            "description": "This can be the ID ('surrogate-key') of the Partient record within a site specific\r\n           patient management system. This MUST NOT be any natural key or plain readable name which \r\n           exposes the identity of the patient!",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetSubjectFieldsResponse": {
+        "required": [
+          "result",
+          "unavailableSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unavailableSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'GetSubjectFields' (Guid[])"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectFields"
+            },
+            "description": "Out-Argument of 'GetSubjectFields' (SubjectFields[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetSubjectFields'.\r\nMethod: loads the requested Subjects and returns lightweight json objects (without childs),\r\nwhich are optimized to be displayed as table (the most common UI use case).\r\nThis models containig a combination of:\r\nessential fieds from the record,\r\ncalculated fields (numbers of child records),\r\ncustom fields (choosen by the service)"
+      },
+      "ExportSubjectsRequest": {
+        "required": [
+          "subjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'ExportSubjects' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ExportSubjects'.\r\nMethod: exports full 'SubjectStructures'"
+      },
+      "SubjectStructure": {
+        "required": [
+          "actualSiteUid",
+          "enrollingSiteUid",
+          "isArchived",
+          "modificationTimestampUtc",
+          "status",
+          "studyUid",
+          "subjectIdentifier",
+          "subjectUid"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUid": {
+            "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actualSiteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          },
+          "enrollingSiteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "description": "AS DECLARED BY <see href=\"https://www.hl7.org/fhir/valueset-research-subject-status.html\">HL7.ResearchSubjectStatus</see>:\r\ncandidate | eligible | follow-up | ineligible | not-registered | off-study | \r\non-study | on-study-intervention | on-study-observation | pending-on-study | \r\npotential-candidate | screening | withdrawn"
+          },
+          "statusNote": {
+            "type": "string",
+            "description": "a note (manually written text) which provides some additional\r\ninformation about the reason why one transitioned to \r\nthe current status",
+            "nullable": true
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "assignedArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "substudyNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "actualSiteDefinedPatientIdentifier": {
+            "type": "string",
+            "description": "This can be the ID ('surrogate-key') of the Partient record within a site specific\r\n           patient management system. This MUST NOT be any natural key or plain readable name which \r\n           exposes the identity of the patient!",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExportSubjectsResponse": {
+        "required": [
+          "result",
+          "unavailableSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unavailableSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ExportSubjects' (Guid[])"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectStructure"
+            },
+            "description": "Out-Argument of 'ExportSubjects' (SubjectStructure[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ExportSubjects'.\r\nMethod: exports full 'SubjectStructures'"
+      },
+      "ExportSubjectFhirRessourcesRequest": {
+        "required": [
+          "subjectUid"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUid": {
+            "type": "string",
+            "description": "Required Argument for 'ExportSubjectFhirRessources' (Guid)",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ExportSubjectFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "SubjectFhirRessourceContainer": {
+        "required": [
+          "actualSiteUid",
+          "isArchived",
+          "modificationTimestampUtc",
+          "studyUid",
+          "subjectIdentifier",
+          "subjectUid"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUid": {
+            "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100"
+          },
+          "studyUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actualSiteUid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "This is an internal managed field, which is related to the state of records dedicated to the database.\r\nIt will be automatically set when a record is archived. A mapping during data import requires opt-in."
+          },
+          "modificationTimestampUtc": {
+            "type": "integer",
+            "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
+            "format": "int64"
+          },
+          "researchSubjectRessource": {
+            "type": "object",
+            "additionalProperties": { },
+            "description": "a HL7 <see href=\"https://www.hl7.org/fhir/researchsubject.html\">'ResearchSubject'</see> resource in json format",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ExportSubjectFhirRessourcesResponse": {
+        "required": [
+          "subjectFhirRessources"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectFhirRessources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectFhirRessourceContainer"
+            },
+            "description": "Out-Argument of 'ExportSubjectFhirRessources' (SubjectFhirRessourceContainer[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "boolean",
+            "description": "Return-Value of 'ExportSubjectFhirRessources' (Boolean)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ExportSubjectFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ImportSubjectFhirRessourcesRequest": {
+        "required": [
+          "subjectFhirRessources"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectFhirRessources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectFhirRessourceContainer"
+            },
+            "description": "Required Argument for 'ImportSubjectFhirRessources' (SubjectFhirRessourceContainer[]): A structure containing HL7/FHIR-Ressources (JSON only) and the essential fields which are required to qualify a ORSCF record."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ImportSubjectFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ImportSubjectFhirRessourcesResponse": {
+        "required": [
+          "createdSubjectUids",
+          "updatedSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "createdSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportSubjectFhirRessources' (Guid[])"
+          },
+          "updatedSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportSubjectFhirRessources' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ImportSubjectFhirRessources'.\r\nMethod: Exports a structure containing HL7/FHIR-Ressources (JSON only) and\r\nthe essential fields which are required to qualify a ORSCF record."
+      },
+      "ArchiveSubjectsRequest": {
+        "required": [
+          "subjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'ArchiveSubjects' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ArchiveSubjects'."
+      },
+      "ArchiveSubjectsResponse": {
+        "required": [
+          "archivedSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "archivedSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ArchiveSubjects' (Guid[]): also including the Uids of already archived records"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ArchiveSubjects'."
+      },
+      "UnarchiveSubjectsRequest": {
+        "required": [
+          "subjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'UnarchiveSubjects' (Guid[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'UnarchiveSubjects'."
+      },
+      "UnarchiveSubjectsResponse": {
+        "required": [
+          "unarchivedSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "unarchivedSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'UnarchiveSubjects' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'UnarchiveSubjects'."
+      },
+      "SubjectMutation": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "AS DECLARED BY <see href=\"https://www.hl7.org/fhir/valueset-research-subject-status.html\">HL7.ResearchSubjectStatus</see>:\r\ncandidate | eligible | follow-up | ineligible | not-registered | off-study | \r\non-study | on-study-intervention | on-study-observation | pending-on-study | \r\npotential-candidate | screening | withdrawn",
+            "nullable": true
+          },
+          "assignedArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          },
+          "statusNote": {
+            "type": "string",
+            "description": "a note (manually written text) which provides some additional\r\ninformation about the reason why one transitioned to \r\nthe current status",
+            "nullable": true
+          },
+          "substudyNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "actualSiteDefinedPatientIdentifier": {
+            "type": "string",
+            "description": "This can be the ID ('surrogate-key') of the Partient record within a site specific\r\n           patient management system. This MUST NOT be any natural key or plain readable name which \r\n           exposes the identity of the patient!",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplySubjectMutationsRequest": {
+        "required": [
+          "mutationsBySubjecttUid"
+        ],
+        "type": "object",
+        "properties": {
+          "mutationsBySubjecttUid": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/SubjectMutation"
+            },
+            "description": "Required Argument for 'ApplySubjectMutations' (Dictionary(Guid, SubjectMutation))"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ApplySubjectMutations'."
+      },
+      "ApplySubjectMutationsResponse": {
+        "required": [
+          "updatedSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "updatedSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ApplySubjectMutations' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ApplySubjectMutations'."
+      },
+      "BatchableSubjectMutation": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "AS DECLARED BY <see href=\"https://www.hl7.org/fhir/valueset-research-subject-status.html\">HL7.ResearchSubjectStatus</see>:\r\ncandidate | eligible | follow-up | ineligible | not-registered | off-study | \r\non-study | on-study-intervention | on-study-observation | pending-on-study | \r\npotential-candidate | screening | withdrawn",
+            "nullable": true
+          },
+          "assignedArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualArm": {
+            "type": "string",
+            "nullable": true
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplySubjectBatchMutationRequest": {
+        "required": [
+          "mutation",
+          "subjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "subjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Required Argument for 'ApplySubjectBatchMutation' (Guid[])"
+          },
+          "mutation": {
+            "$ref": "#/components/schemas/BatchableSubjectMutation"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ApplySubjectBatchMutation'."
+      },
+      "ApplySubjectBatchMutationResponse": {
+        "required": [
+          "updatedSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "updatedSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ApplySubjectBatchMutation' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ApplySubjectBatchMutation'."
+      },
+      "ImportSubjectsRequest": {
+        "required": [
+          "subjects"
+        ],
+        "type": "object",
+        "properties": {
+          "subjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubjectStructure"
+            },
+            "description": "Required Argument for 'ImportSubjects' (SubjectStructure[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'ImportSubjects'."
+      },
+      "ImportSubjectsResponse": {
+        "required": [
+          "createdSubjectUids",
+          "updatedSubjectUids"
+        ],
+        "type": "object",
+        "properties": {
+          "createdSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportSubjects' (Guid[])"
+          },
+          "updatedSubjectUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Out-Argument of 'ImportSubjects' (Guid[])"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'ImportSubjects'."
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
