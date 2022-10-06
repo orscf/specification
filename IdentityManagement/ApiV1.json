@@ -8,8 +8,13 @@
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.7.0"
+    "version": "1.8.0"
   },
+  "servers": [
+    {
+      "url": "/showcase/ims"
+    }
+  ],
   "paths": {
     "/identityUnblinding/requestUnblindingToken": {
       "post": {
@@ -812,7 +817,7 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Required Argument for 'GetOrCreatePseudonym' (Dictionary(string, string))"
+            "description": "Required Argument for 'GetOrCreatePseudonym' (Dictionary(String,String))"
           },
           "siteUid": {
             "type": "string",
@@ -883,7 +888,7 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Required Argument for 'GetExisitingPseudonym' (Dictionary(string, string))"
+            "description": "Required Argument for 'GetExisitingPseudonym' (Dictionary(String,String))"
           }
         },
         "additionalProperties": false,

@@ -8,8 +8,13 @@
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.8.0"
+    "version": "1.9.1"
   },
+  "servers": [
+    {
+      "url": "/showcase/sdr"
+    }
+  ],
   "paths": {
     "/sdrApiInfo/getApiVersion": {
       "post": {
@@ -1062,71 +1067,182 @@
         "additionalProperties": false,
         "description": "Contains results from calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
       },
+      "UidValueCriteria": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The value to match.",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UidFieldFilter": {
+        "type": "object",
+        "properties": {
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UidValueCriteria"
+            },
+            "description": "Specifies one or more values to match.\r\nDEFAULT (if this is undefined or null) will include everything (but NULL) to enable filtering based on 'excluded values'.\r\nAn empty array which just has no elements will be treaded as valid input and results in no value matching, so this\r\nonly makes sense when including NULL instead (if supported).\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "excludedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UidValueCriteria"
+            },
+            "description": "Specifies one or more values to be removed from the result set which was evaulated using the 'included values'.\r\nDEFAULT (if this is undefined or null) will just leave the filtering based on 'included values'.\r\nAn empty array which just has no elements will also be ignored.\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "Negates the outcome of the whole filter.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringValueCriteria": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The value to match."
+          },
+          "matchSubstring": {
+            "type": "boolean",
+            "description": "Enables, that the given value can just be a substring within the content of the target field.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringFieldFilter": {
+        "type": "object",
+        "properties": {
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StringValueCriteria"
+            },
+            "description": "Specifies one or more values to match.\r\nDEFAULT (if this is undefined or null) will include everything (but NULL) to enable filtering based on 'excluded values'.\r\nAn empty array which just has no elements will be treaded as valid input and results in no value matching, so this\r\nonly makes sense when including NULL instead (if supported).\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "excludedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StringValueCriteria"
+            },
+            "description": "Specifies one or more values to be removed from the result set which was evaulated using the 'included values'.\r\nDEFAULT (if this is undefined or null) will just leave the filtering based on 'included values'.\r\nAn empty array which just has no elements will also be ignored.\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "ignoreCasing": {
+            "type": "boolean",
+            "description": "Enables, that the included and excluded values are processed case-insenstive.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "Negates the outcome of the whole filter.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateValueCriteria": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The value to match.",
+            "format": "date-time"
+          },
+          "matchingBehaviour": {
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "type": "integer",
+            "description": "Declares, how the corresponding 'value' should be compared.\r\nDEFAULT (if this is undefined or null) is 'Equal'(1).",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateFieldFilter": {
+        "type": "object",
+        "properties": {
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DateValueCriteria"
+            },
+            "description": "Specifies one or more values to match.\r\nDEFAULT (if this is undefined or null) will include everything (but NULL) to enable filtering based on 'excluded values'.\r\nAn empty array which just has no elements will be treaded as valid input and results in no value matching, so this\r\nonly makes sense when including NULL instead (if supported).\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "excludedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DateValueCriteria"
+            },
+            "description": "Specifies one or more values to be removed from the result set which was evaulated using the 'included values'.\r\nDEFAULT (if this is undefined or null) will just leave the filtering based on 'included values'.\r\nAn empty array which just has no elements will also be ignored.\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "Negates the outcome of the whole filter.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
       "SubjectFilter": {
         "type": "object",
         "properties": {
           "studyUid": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
+            "$ref": "#/components/schemas/UidFieldFilter"
           },
           "siteUid": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
+            "$ref": "#/components/schemas/UidFieldFilter"
           },
           "subjectIdentifier": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100",
-            "nullable": true
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
           "status": {
-            "type": "string",
-            "description": "AS DECLARED BY <see href=\"https://www.hl7.org/fhir/valueset-research-subject-status.html\">HL7.ResearchSubjectStatus</see>:\r\ncandidate | eligible | follow-up | ineligible | not-registered | off-study | \r\non-study | on-study-intervention | on-study-observation | pending-on-study | \r\npotential-candidate | screening | withdrawn",
-            "nullable": true
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
-          "minPeriodStart": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
+          "periodStart": {
+            "$ref": "#/components/schemas/DateFieldFilter"
           },
-          "maxPeriodStart": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "minPeriodEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "maxPeriodEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
+          "periodEnd": {
+            "$ref": "#/components/schemas/DateFieldFilter"
           },
           "assignedArm": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
           "actualArm": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
           "substudyName": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
           "actualSiteDefinedPatientIdentifier": {
-            "type": "string",
-            "description": "This can be the ID ('surrogate-key') of the Partient record within a site specific\r\n           patient management system. This MUST NOT be any natural key or plain readable name which \r\n           exposes the identity of the patient!",
-            "nullable": true
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
           "customFields": {
             "type": "object",
             "additionalProperties": {
-              "type": "string"
+              "$ref": "#/components/schemas/StringFieldFilter"
             },
             "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
             "nullable": true

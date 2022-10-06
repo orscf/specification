@@ -8,9 +8,143 @@
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.7.0"
+    "version": "1.9.1"
   },
+  "servers": [
+    {
+      "url": "/showcase/vdr"
+    }
+  ],
   "paths": {
+    "/dataEnrollment/enrollDataForVisitExplicit": {
+      "post": {
+        "tags": [
+          "DataEnrollment"
+        ],
+        "summary": "Enrolls recorded data to be stored as 'DataRecording'-Record related to a explicitly addressed Visit inside of this repository. This goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned which can be used to query the state of this process via 'GetValidationState'.",
+        "description": "Enrolls recorded data to be stored as 'DataRecording'-Record related to a explicitly addressed Visit inside of this repository. This goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned which can be used to query the state of this process via 'GetValidationState'.",
+        "operationId": "EnrollDataForVisitExplicit",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollDataForVisitExplicitRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollDataForVisitExplicitRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollDataForVisitExplicitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrollDataForVisitExplicitResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataEnrollment/enrollDataForVisitImplicit": {
+      "post": {
+        "tags": [
+          "DataEnrollment"
+        ],
+        "summary": "Enrolls recorded data to be stored as 'DataRecording'-Record related to a visit inside of this repository (which is implicitely resolved using the given 'visitExecutionTitle' and 'subjectIdentifier') . This goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned which can be used to query the state of this process via 'GetValidationState'.",
+        "description": "Enrolls recorded data to be stored as 'DataRecording'-Record related to a visit inside of this repository (which is implicitely resolved using the given 'visitExecutionTitle' and 'subjectIdentifier') . This goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned which can be used to query the state of this process via 'GetValidationState'.",
+        "operationId": "EnrollDataForVisitImplicit",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollDataForVisitImplicitRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollDataForVisitImplicitRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollDataForVisitImplicitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrollDataForVisitImplicitResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataEnrollment/getValidationState": {
+      "post": {
+        "tags": [
+          "DataEnrollment"
+        ],
+        "summary": "Providing the current validation state for a given data enrollment process",
+        "description": "Providing the current validation state for a given data enrollment process",
+        "operationId": "GetValidationState",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetValidationStateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetValidationStateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetValidationStateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetValidationStateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/dataRecordingSubmission/importDataRecordings": {
       "post": {
         "tags": [
@@ -1003,11 +1137,206 @@
   },
   "components": {
     "schemas": {
+      "EnrollDataForVisitExplicitRequest": {
+        "required": [
+          "dataLanguage",
+          "dataSchemaKind",
+          "dataSchemaUrl",
+          "dataSchemaVersion",
+          "executionDateTimeUtc",
+          "recordedData",
+          "targetvisitUid",
+          "taskExecutionTitle"
+        ],
+        "type": "object",
+        "properties": {
+          "targetvisitUid": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (Guid): the ORSCF-Visit-UID to address the parent visit for which the given data should be submitted",
+            "format": "uuid"
+          },
+          "taskExecutionTitle": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (string): title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "executionDateTimeUtc": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (DateTime): the time, when the data was recorded",
+            "format": "date-time"
+          },
+          "dataSchemaKind": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (string): 'FhirQuestionaire' / 'XML' / 'CSV' / 'Custom'"
+          },
+          "dataSchemaUrl": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (string): the schema-url of the data which were stored inside of the 'RecordedData' field"
+          },
+          "dataSchemaVersion": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (string): version of schema, which is addressed by the 'DataSchemaUrl'"
+          },
+          "dataLanguage": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (string): Language of free-text information inside of the data content"
+          },
+          "recordedData": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitExplicit' (string): RAW data, in the schema as defined at the 'DataSchemaUrl'"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'EnrollDataForVisitExplicit'.\r\nMethod: Enrolls recorded data to be stored as 'DataRecording'-Record related to a explicitly addressed Visit inside of this repository.\r\nThis goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned\r\nwhich can be used to query the state of this process via 'GetValidationState'."
+      },
+      "EnrollDataForVisitExplicitResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'EnrollDataForVisitExplicit' (Guid)",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'EnrollDataForVisitExplicit'.\r\nMethod: Enrolls recorded data to be stored as 'DataRecording'-Record related to a explicitly addressed Visit inside of this repository.\r\nThis goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned\r\nwhich can be used to query the state of this process via 'GetValidationState'."
+      },
+      "EnrollDataForVisitImplicitRequest": {
+        "required": [
+          "dataLanguage",
+          "dataSchemaKind",
+          "dataSchemaUrl",
+          "dataSchemaVersion",
+          "executionDateTimeUtc",
+          "recordedData",
+          "studyUid",
+          "subjectIdentifier",
+          "taskExecutionTitle",
+          "visitExecutionTitle"
+        ],
+        "type": "object",
+        "properties": {
+          "studyUid": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (Guid): the ORSCF-Study-UID which is used to lookup for the target visit for which the given data should be submitted",
+            "format": "uuid"
+          },
+          "subjectIdentifier": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): the study related identity of the patient (usually a pseudonym) which is used to lookup for the target visit for which the given data should be submitted"
+          },
+          "visitExecutionTitle": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): unique title of the visit execution as defined in the 'StudyWorkflowDefinition' which is used to lookup for the target visit for which the given data should be submitted"
+          },
+          "taskExecutionTitle": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): title of the task execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+          },
+          "executionDateTimeUtc": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (DateTime): the time, when the data was recorded",
+            "format": "date-time"
+          },
+          "dataSchemaKind": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): 'FhirQuestionaire' / 'XML' / 'CSV' / 'Custom'"
+          },
+          "dataSchemaUrl": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): the schema-url of the data which were stored inside of the 'RecordedData' field"
+          },
+          "dataSchemaVersion": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): version of schema, which is addressed by the 'DataSchemaUrl'"
+          },
+          "dataLanguage": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): Language of free-text information inside of the data content"
+          },
+          "recordedData": {
+            "type": "string",
+            "description": "Required Argument for 'EnrollDataForVisitImplicit' (string): RAW data, in the schema as defined at the 'DataSchemaUrl'"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'EnrollDataForVisitImplicit'.\r\nMethod: Enrolls recorded data to be stored as 'DataRecording'-Record related to a visit inside of this repository\r\n(which is implicitely resolved using the given 'visitExecutionTitle' and 'subjectIdentifier') .\r\nThis goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned\r\nwhich can be used to query the state of this process via 'GetValidationState'."
+      },
+      "EnrollDataForVisitImplicitResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "string",
+            "description": "Return-Value of 'EnrollDataForVisitImplicit' (Guid)",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'EnrollDataForVisitImplicit'.\r\nMethod: Enrolls recorded data to be stored as 'DataRecording'-Record related to a visit inside of this repository\r\n(which is implicitely resolved using the given 'visitExecutionTitle' and 'subjectIdentifier') .\r\nThis goes ahead with an validation process for each enrollment, therefore a dataEnrollmentUid will be returned\r\nwhich can be used to query the state of this process via 'GetValidationState'."
+      },
+      "GetValidationStateRequest": {
+        "required": [
+          "dataEnrollmentUid"
+        ],
+        "type": "object",
+        "properties": {
+          "dataEnrollmentUid": {
+            "type": "string",
+            "description": "Required Argument for 'GetValidationState' (Guid)",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GetValidationState'.\r\nMethod: Providing the current validation state for a given data enrollment process"
+      },
+      "GetValidationStateResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              11,
+              12,
+              13,
+              21,
+              22,
+              23,
+              24,
+              -1
+            ],
+            "type": "integer",
+            "description": "Return-Value of 'GetValidationState' (DataEnrollmentValidationState): Declares, which portion of the corresponding 'value' should be compared. DEFAULT (if this is undefined or null) is 'Date'(3).",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GetValidationState'.\r\nMethod: Providing the current validation state for a given data enrollment process"
+      },
       "DataRecordingStructure": {
         "required": [
           "dataRecordingName",
           "dataRecordingUid",
+          "dataSchemaKind",
           "dataSchemaUrl",
+          "dataSchemaVersion",
           "executionState",
           "isArchived",
           "modificationTimestampUtc",
@@ -1019,6 +1348,7 @@
         "properties": {
           "dataRecordingUid": {
             "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
             "format": "uuid"
           },
           "visitUid": {
@@ -1062,6 +1392,19 @@
           "dataSchemaUrl": {
             "type": "string",
             "description": "schema-url of the data which were stored inside of the 'RecordedData' field"
+          },
+          "dataSchemaVersion": {
+            "type": "string",
+            "description": "version of schema, which is addressed by the 'DataSchemaUrl'"
+          },
+          "dataSchemaKind": {
+            "type": "string",
+            "description": "'FhirQuestionaire' / 'XML' / 'CSV' / 'Custom'"
+          },
+          "dataLanguage": {
+            "type": "string",
+            "description": "Language of free-text information inside of the data content",
+            "nullable": true
           },
           "notesRegardingOutcome": {
             "type": "string",
@@ -1239,66 +1582,228 @@
         "additionalProperties": false,
         "description": "Contains results from calling 'GetOAuthTokenRequestUrl'.\r\nMethod: OPTIONAL: If the authentication on the current service is mapped\r\nusing tokens and should provide information about the source at this point,\r\nthe login URL to be called up via browser (OAuth <see href=\"https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html\">'CIBA-Flow'</see>) is returned here."
       },
-      "VisitFilter": {
+      "UidValueCriteria": {
         "required": [
-          "visitExecutionTitle"
+          "value"
         ],
         "type": "object",
         "properties": {
-          "studyUid": {
+          "value": {
             "type": "string",
-            "format": "uuid",
+            "description": "The value to match.",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UidFieldFilter": {
+        "type": "object",
+        "properties": {
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UidValueCriteria"
+            },
+            "description": "Specifies one or more values to match.\r\nDEFAULT (if this is undefined or null) will include everything (but NULL) to enable filtering based on 'excluded values'.\r\nAn empty array which just has no elements will be treaded as valid input and results in no value matching, so this\r\nonly makes sense when including NULL instead (if supported).\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
             "nullable": true
+          },
+          "excludedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UidValueCriteria"
+            },
+            "description": "Specifies one or more values to be removed from the result set which was evaulated using the 'included values'.\r\nDEFAULT (if this is undefined or null) will just leave the filtering based on 'included values'.\r\nAn empty array which just has no elements will also be ignored.\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "Negates the outcome of the whole filter.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringValueCriteria": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The value to match."
+          },
+          "matchSubstring": {
+            "type": "boolean",
+            "description": "Enables, that the given value can just be a substring within the content of the target field.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringFieldFilter": {
+        "type": "object",
+        "properties": {
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StringValueCriteria"
+            },
+            "description": "Specifies one or more values to match.\r\nDEFAULT (if this is undefined or null) will include everything (but NULL) to enable filtering based on 'excluded values'.\r\nAn empty array which just has no elements will be treaded as valid input and results in no value matching, so this\r\nonly makes sense when including NULL instead (if supported).\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "excludedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StringValueCriteria"
+            },
+            "description": "Specifies one or more values to be removed from the result set which was evaulated using the 'included values'.\r\nDEFAULT (if this is undefined or null) will just leave the filtering based on 'included values'.\r\nAn empty array which just has no elements will also be ignored.\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "ignoreCasing": {
+            "type": "boolean",
+            "description": "Enables, that the included and excluded values are processed case-insenstive.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "Negates the outcome of the whole filter.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "IntegerValueCriteria": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "description": "The value to match.",
+            "format": "int32"
+          },
+          "matchingBehaviour": {
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "type": "integer",
+            "description": "Declares, how the corresponding 'value' should be compared.\r\nDEFAULT (if this is undefined or null) is 'Equal'(1).",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IntegerFieldFilter": {
+        "type": "object",
+        "properties": {
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegerValueCriteria"
+            },
+            "description": "Specifies one or more values to match.\r\nDEFAULT (if this is undefined or null) will include everything (but NULL) to enable filtering based on 'excluded values'.\r\nAn empty array which just has no elements will be treaded as valid input and results in no value matching, so this\r\nonly makes sense when including NULL instead (if supported).\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "excludedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegerValueCriteria"
+            },
+            "description": "Specifies one or more values to be removed from the result set which was evaulated using the 'included values'.\r\nDEFAULT (if this is undefined or null) will just leave the filtering based on 'included values'.\r\nAn empty array which just has no elements will also be ignored.\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "Negates the outcome of the whole filter.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateValueCriteria": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The value to match.",
+            "format": "date-time"
+          },
+          "matchingBehaviour": {
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "type": "integer",
+            "description": "Declares, how the corresponding 'value' should be compared.\r\nDEFAULT (if this is undefined or null) is 'Equal'(1).",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateFieldFilter": {
+        "type": "object",
+        "properties": {
+          "includedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DateValueCriteria"
+            },
+            "description": "Specifies one or more values to match.\r\nDEFAULT (if this is undefined or null) will include everything (but NULL) to enable filtering based on 'excluded values'.\r\nAn empty array which just has no elements will be treaded as valid input and results in no value matching, so this\r\nonly makes sense when including NULL instead (if supported).\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "excludedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DateValueCriteria"
+            },
+            "description": "Specifies one or more values to be removed from the result set which was evaulated using the 'included values'.\r\nDEFAULT (if this is undefined or null) will just leave the filtering based on 'included values'.\r\nAn empty array which just has no elements will also be ignored.\r\nAn array containing multiple elements, will require at least ONE of the criteria to match (OR-linked)!",
+            "nullable": true
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "Negates the outcome of the whole filter.\r\nDEFAULT (if this is undefined or null) is 'false'."
+          }
+        },
+        "additionalProperties": false
+      },
+      "VisitFilter": {
+        "type": "object",
+        "properties": {
+          "studyUid": {
+            "$ref": "#/components/schemas/UidFieldFilter"
           },
           "siteUid": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
+            "$ref": "#/components/schemas/UidFieldFilter"
           },
           "subjectIdentifier": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "identity of the patient which is usually a pseudonym from a corr. 'IdentiyManagementSystem'\r\n(the exact semantic is defined per study)\r\n*this field has a max length of 100",
-            "nullable": true
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
-          "visitProdecureName": {
-            "type": "string",
-            "nullable": true
+          "visitProcedureName": {
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
           "visitExecutionTitle": {
-            "type": "string",
-            "description": "unique title of the visit execution as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
+            "$ref": "#/components/schemas/StringFieldFilter"
           },
           "executionState": {
-            "type": "integer",
-            "description": "0=Unscheduled / 1=Sheduled / 2=Executed / 3=AbortDuringExecution / 4=Skipped / 5=Removed",
-            "format": "int32",
-            "nullable": true
+            "$ref": "#/components/schemas/IntegerFieldFilter"
           },
-          "minScheduledDateUtc": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
+          "scheduledDateUtc": {
+            "$ref": "#/components/schemas/DateFieldFilter"
           },
-          "maxScheduledDateUtc": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "minExecutionDateUtc": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "maxExecutionDateUtc": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
+          "executionDateUtc": {
+            "$ref": "#/components/schemas/DateFieldFilter"
           },
           "customFields": {
             "type": "object",
             "additionalProperties": {
-              "type": "string"
+              "$ref": "#/components/schemas/StringFieldFilter"
             },
             "description": "Custom fields as defined by the Service.\r\nCall 'GetCustomFieldDescriptors' to get information about supported/required fields.\r\nAny passed values for undefined fields will be ignored.",
             "nullable": true
@@ -1316,7 +1821,7 @@
             "type": "string",
             "description": "Required Argument for 'SubscribeForChangedVisits' (string): the root-url of the subscriber which needs to provide at least the methods '/ConfirmAsSubscriber' and '/NoticeChangedVisits'"
           },
-          "scopeToStudyUid": {
+          "filter": {
             "$ref": "#/components/schemas/VisitFilter"
           }
         },
@@ -1353,6 +1858,7 @@
         "properties": {
           "visitUid": {
             "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
             "format": "uuid"
           },
           "studyUid": {
@@ -1778,7 +2284,7 @@
       },
       "CheckVisitExisitenceResponse": {
         "required": [
-          "availableUids",
+          "availableVisitUids",
           "unavailableVisitUids"
         ],
         "type": "object",
@@ -1791,7 +2297,7 @@
             },
             "description": "Out-Argument of 'CheckVisitExisitence' (Guid[])"
           },
-          "availableUids": {
+          "availableVisitUids": {
             "type": "array",
             "items": {
               "type": "string",
@@ -1835,13 +2341,14 @@
           "studyUid",
           "subjectIdentifier",
           "visitExecutionTitle",
-          "visitProdecureName",
+          "visitProcedureName",
           "visitUid"
         ],
         "type": "object",
         "properties": {
           "visitUid": {
             "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
             "format": "uuid"
           },
           "studyUid": {
@@ -1866,7 +2373,7 @@
             "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
             "format": "int64"
           },
-          "visitProdecureName": {
+          "visitProcedureName": {
             "type": "string",
             "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
           },
@@ -1965,13 +2472,14 @@
           "studyUid",
           "subjectIdentifier",
           "visitExecutionTitle",
-          "visitProdecureName",
+          "visitProcedureName",
           "visitUid"
         ],
         "type": "object",
         "properties": {
           "visitUid": {
             "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
             "format": "uuid"
           },
           "studyUid": {
@@ -1996,7 +2504,7 @@
             "description": "This is an internal managed field (UNIX-Timestamp), which is related to the state of records dedicated to the database.\r\nIt will be automatically set to the current time when a record is created, updated, archived or unarchived,\r\nbut cannot be updated from outside and must not be mapped during data imports.",
             "format": "int64"
           },
-          "visitProdecureName": {
+          "visitProcedureName": {
             "type": "string",
             "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)"
           },
@@ -2103,6 +2611,7 @@
         "properties": {
           "visitUid": {
             "type": "string",
+            "description": "An <see href=\"https://de.wikipedia.org/wiki/Universally_Unique_Identifier\">Universally Unique Identifier</see>\r\nwhich can be generated by any origin system and is used to address this ORSCF conform data record in\r\ndecentralized environments. Note that this Identity must not be changed any more!",
             "format": "uuid"
           },
           "studyUid": {
@@ -2297,7 +2806,7 @@
       "VisitMutation": {
         "type": "object",
         "properties": {
-          "visitProdecureName": {
+          "visitProcedureName": {
             "type": "string",
             "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
             "nullable": true
@@ -2384,7 +2893,7 @@
       "BatchableVisitMutation": {
         "type": "object",
         "properties": {
-          "visitProdecureName": {
+          "visitProcedureName": {
             "type": "string",
             "description": "unique invariant name of the visit-procedure as defined in the 'StudyWorkflowDefinition' (originated from the sponsor)",
             "nullable": true
