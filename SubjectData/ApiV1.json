@@ -1,4 +1,4 @@
-{
+﻿{
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF SubjectData-API",
@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "/showcase/sdr"
+      "url": "/sdr"
     }
   ],
   "paths": {
