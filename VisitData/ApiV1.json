@@ -1,4 +1,4 @@
-{
+﻿{
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF VisitData-API",
@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "/showcase/vdr"
+      "url": "/vdr"
     }
   ],
   "paths": {
