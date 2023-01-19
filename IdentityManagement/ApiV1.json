@@ -1,4 +1,4 @@
-{
+﻿{
   "openapi": "3.0.1",
   "info": {
     "title": "ORSCF IdentityManagement-API",
@@ -8,38 +8,38 @@
       "url": "https://orscf.org",
       "email": "info@orscf.org"
     },
-    "version": "1.8.0"
+    "version": "1.9.0"
   },
   "servers": [
     {
-      "url": "/showcase/ims"
+      "url": "/ims"
     }
   ],
   "paths": {
-    "/identityUnblinding/requestUnblindingToken": {
+    "/ageEvaluation/evaluateAge": {
       "post": {
         "tags": [
-          "IdentityUnblinding"
+          "AgeEvaluation"
         ],
-        "summary": "returns an unblindingToken which is not activated",
-        "description": "returns an unblindingToken which is not activated",
-        "operationId": "RequestUnblindingToken",
+        "summary": "Calculates the age (only the integer Year) of several persons for a given date. This is supporting the very common usecase to evaluate inclusion criteria for research studies where the date of birth is not present alongside of the medical data. It allows for minimalist access disclosing the date of birth information (as happening when unblinding).",
+        "description": "Calculates the age (only the integer Year) of several persons for a given date. This is supporting the very common usecase to evaluate inclusion criteria for research studies where the date of birth is not present alongside of the medical data. It allows for minimalist access disclosing the date of birth information (as happening when unblinding).",
+        "operationId": "EvaluateAge",
         "requestBody": {
           "description": "request capsule containing the method arguments",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+                "$ref": "#/components/schemas/EvaluateAgeRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+                "$ref": "#/components/schemas/EvaluateAgeRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+                "$ref": "#/components/schemas/EvaluateAgeRequest"
               }
             }
           },
@@ -51,93 +51,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RequestUnblindingTokenResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/identityUnblinding/getUnblindingTokenState": {
-      "post": {
-        "tags": [
-          "IdentityUnblinding"
-        ],
-        "summary": "0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used",
-        "description": "0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used",
-        "operationId": "GetUnblindingTokenState",
-        "requestBody": {
-          "description": "request capsule containing the method arguments",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetUnblindingTokenStateRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetUnblindingTokenStateRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetUnblindingTokenStateRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetUnblindingTokenStateResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/identityUnblinding/unblindSubject": {
-      "post": {
-        "tags": [
-          "IdentityUnblinding"
-        ],
-        "summary": "(only works with an activated unblindingOtp )",
-        "description": "(only works with an activated unblindingOtp )",
-        "operationId": "UnblindSubject",
-        "requestBody": {
-          "description": "request capsule containing the method arguments",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UnblindSubjectRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UnblindSubjectRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UnblindSubjectRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnblindSubjectResponse"
+                  "$ref": "#/components/schemas/EvaluateAgeResponse"
                 }
               }
             }
@@ -193,8 +107,8 @@
         "tags": [
           "ImsApiInfo"
         ],
-        "summary": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'Pseudonymization', 'IdentityUnblinding',",
-        "description": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'Pseudonymization', 'IdentityUnblinding',",
+        "summary": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'ImsApiInfo', 'Pseudonymization', 'AgeEvaluation', 'Unblinding', 'UnblindingClearanceAwaiter'  (backend workflow for \"PASSIVE-APPROVAL\"), 'UnblindingClearanceGranting' (backend workflow for \"ACTIVE-APPROVAL\")",
+        "description": "returns a list of API-features (there are several 'services' for different use cases, described by ORSCF) supported by this implementation. The following values are possible: 'ImsApiInfo', 'Pseudonymization', 'AgeEvaluation', 'Unblinding', 'UnblindingClearanceAwaiter'  (backend workflow for \"PASSIVE-APPROVAL\"), 'UnblindingClearanceGranting' (backend workflow for \"ACTIVE-APPROVAL\")",
         "operationId": "GetCapabilities",
         "requestBody": {
           "description": "request capsule containing the method arguments",
@@ -317,10 +231,10 @@
         }
       }
     },
-    "/pseudonymization/getExtendedFieldDescriptors": {
+    "/imsApiInfo/getExtendedFieldDescriptors": {
       "post": {
         "tags": [
-          "Pseudonymization"
+          "ImsApiInfo"
         ],
         "summary": "GetExtendedFieldDescriptors",
         "description": "GetExtendedFieldDescriptors",
@@ -445,182 +359,227 @@
           }
         }
       }
+    },
+    "/unblinding/requestUnblindingToken": {
+      "post": {
+        "tags": [
+          "Unblinding"
+        ],
+        "summary": "Returns: 1: if clearance granted (token can be DIRECTLY used to call 'TryUnblind') / 0: if no realtime response is possible (delayed approval is outstanding) -1: if a new unblindingToken is required (because the current has expired or has been repressed) / -2: if the access is denied for addressed scope of data",
+        "description": "Returns: 1: if clearance granted (token can be DIRECTLY used to call 'TryUnblind') / 0: if no realtime response is possible (delayed approval is outstanding) -1: if a new unblindingToken is required (because the current has expired or has been repressed) / -2: if the access is denied for addressed scope of data",
+        "operationId": "RequestUnblindingToken",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUnblindingTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestUnblindingTokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unblinding/tryUnblind": {
+      "post": {
+        "tags": [
+          "Unblinding"
+        ],
+        "summary": "Returns: 1: on SUCCESS (unblindedIdentities should contain data) / 0: if no realtime response is possible (delayed approval is outstanding) -1: if a new unblindingToken is required (because the current has expired or has been repressed) / -2: if the access is denied for addressed scope of data",
+        "description": "Returns: 1: on SUCCESS (unblindedIdentities should contain data) / 0: if no realtime response is possible (delayed approval is outstanding) -1: if a new unblindingToken is required (because the current has expired or has been repressed) / -2: if the access is denied for addressed scope of data",
+        "operationId": "TryUnblind",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TryUnblindRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TryUnblindRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TryUnblindRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TryUnblindResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unblindingClearanceAwaiter/grantClearanceForUnblinding": {
+      "post": {
+        "tags": [
+          "UnblindingClearanceAwaiter"
+        ],
+        "summary": "GrantClearanceForUnblinding",
+        "description": "GrantClearanceForUnblinding",
+        "operationId": "GrantClearanceForUnblinding",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrantClearanceForUnblindingRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrantClearanceForUnblindingRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrantClearanceForUnblindingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GrantClearanceForUnblindingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unblindingClearanceGranting/hasClearanceForUnblinding": {
+      "post": {
+        "tags": [
+          "UnblindingClearanceGranting"
+        ],
+        "summary": "Returns: 1: if clearance granted / 0: if no realtime response is possible (delayed approval) -1: if a new unblindingToken is required (because the current has expired or has been repressed) / -2: if the access is denied for addressed scope of data",
+        "description": "Returns: 1: if clearance granted / 0: if no realtime response is possible (delayed approval) -1: if a new unblindingToken is required (because the current has expired or has been repressed) / -2: if the access is denied for addressed scope of data",
+        "operationId": "HasClearanceForUnblinding",
+        "requestBody": {
+          "description": "request capsule containing the method arguments",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HasClearanceForUnblindingRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HasClearanceForUnblindingRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HasClearanceForUnblindingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HasClearanceForUnblindingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "RequestUnblindingTokenRequest": {
+      "EvaluateAgeRequest": {
         "required": [
-          "reason",
-          "requestingPerson",
-          "researchStudyName",
-          "subjectId"
+          "momentOfValuation",
+          "pseudonymesToEvaluate"
         ],
         "type": "object",
         "properties": {
-          "researchStudyName": {
+          "momentOfValuation": {
             "type": "string",
-            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+            "description": "Required Argument for 'EvaluateAge' (DateTime)",
+            "format": "date-time"
           },
-          "subjectId": {
-            "type": "string",
-            "description": "Required Argument for 'RequestUnblindingToken' (string)"
-          },
-          "reason": {
-            "type": "string",
-            "description": "Required Argument for 'RequestUnblindingToken' (string)"
-          },
-          "requestingPerson": {
-            "type": "string",
-            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+          "pseudonymesToEvaluate": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'EvaluateAge' (string[])"
           }
         },
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'RequestUnblindingToken'.\r\nMethod: returns an unblindingToken which is not activated"
+        "description": "Contains arguments for calling 'EvaluateAge'.\r\nMethod: Calculates the age (only the integer Year) of several persons for a given date.\r\nThis is supporting the very common usecase to evaluate inclusion criteria for research studies where the date of birth is not present alongside of the medical data.\r\nIt allows for minimalist access disclosing the date of birth information (as happening when unblinding)."
       },
-      "RequestUnblindingTokenResponse": {
+      "EvaluateAgeResponse": {
+        "required": [
+          "ages"
+        ],
         "type": "object",
         "properties": {
+          "ages": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Out-Argument of 'EvaluateAge' (Int32[]): Returns an array with the same amount of fields as the given 'pseudonymesToEvaluate'-array. If it was not possible to evalute the age beacuse of not present data, then the corresponding array-field will contain a value of -1!"
+          },
           "fault": {
             "type": "string",
             "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
             "nullable": true
-          },
-          "return": {
-            "type": "string",
-            "description": "Return-Value of 'RequestUnblindingToken' (String)",
-            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'RequestUnblindingToken'.\r\nMethod: returns an unblindingToken which is not activated"
-      },
-      "GetUnblindingTokenStateRequest": {
-        "required": [
-          "unblindingToken"
-        ],
-        "type": "object",
-        "properties": {
-          "unblindingToken": {
-            "type": "string",
-            "description": "Required Argument for 'GetUnblindingTokenState' (string)"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Contains arguments for calling 'GetUnblindingTokenState'.\r\nMethod: 0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used"
-      },
-      "GetUnblindingTokenStateResponse": {
-        "type": "object",
-        "properties": {
-          "fault": {
-            "type": "string",
-            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
-            "nullable": true
-          },
-          "return": {
-            "type": "integer",
-            "description": "Return-Value of 'GetUnblindingTokenState' (Int32)",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Contains results from calling 'GetUnblindingTokenState'.\r\nMethod: 0: not activated yet, 1=activated (can be used for 'UnblindSubject'), 2=expired/already used"
-      },
-      "UnblindSubjectRequest": {
-        "required": [
-          "researchStudyName",
-          "subjectId",
-          "unblindingToken"
-        ],
-        "type": "object",
-        "properties": {
-          "researchStudyName": {
-            "type": "string",
-            "description": "Required Argument for 'UnblindSubject' (string)"
-          },
-          "subjectId": {
-            "type": "string",
-            "description": "Required Argument for 'UnblindSubject' (string)"
-          },
-          "unblindingToken": {
-            "type": "string",
-            "description": "Required Argument for 'UnblindSubject' (string)"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Contains arguments for calling 'UnblindSubject'.\r\nMethod: (only works with an activated unblindingOtp )"
-      },
-      "IdentityDetails": {
-        "type": "object",
-        "properties": {
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "street": {
-            "type": "string",
-            "nullable": true
-          },
-          "houseNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "postCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "state": {
-            "type": "string",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "description": "two letter ISO code",
-            "nullable": true
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "dateOfDeath": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UnblindSubjectResponse": {
-        "type": "object",
-        "properties": {
-          "fault": {
-            "type": "string",
-            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
-            "nullable": true
-          },
-          "return": {
-            "$ref": "#/components/schemas/IdentityDetails"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Contains results from calling 'UnblindSubject'.\r\nMethod: (only works with an activated unblindingOtp )"
+        "description": "Contains results from calling 'EvaluateAge'.\r\nMethod: Calculates the age (only the integer Year) of several persons for a given date.\r\nThis is supporting the very common usecase to evaluate inclusion criteria for research studies where the date of birth is not present alongside of the medical data.\r\nIt allows for minimalist access disclosing the date of birth information (as happening when unblinding)."
       },
       "GetApiVersionRequest": {
         "type": "object",
@@ -647,7 +606,7 @@
       "GetCapabilitiesRequest": {
         "type": "object",
         "additionalProperties": false,
-        "description": "Contains arguments for calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'Pseudonymization', 'IdentityUnblinding',"
+        "description": "Contains arguments for calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'ImsApiInfo',\r\n'Pseudonymization',\r\n'AgeEvaluation',\r\n'Unblinding',\r\n'UnblindingClearanceAwaiter'  (backend workflow for \"PASSIVE-APPROVAL\"),\r\n'UnblindingClearanceGranting' (backend workflow for \"ACTIVE-APPROVAL\")"
       },
       "GetCapabilitiesResponse": {
         "type": "object",
@@ -667,7 +626,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Contains results from calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'Pseudonymization', 'IdentityUnblinding',"
+        "description": "Contains results from calling 'GetCapabilities'.\r\nMethod: returns a list of API-features (there are several 'services' for different use cases, described by ORSCF)\r\nsupported by this implementation. The following values are possible:\r\n'ImsApiInfo',\r\n'Pseudonymization',\r\n'AgeEvaluation',\r\n'Unblinding',\r\n'UnblindingClearanceAwaiter'  (backend workflow for \"PASSIVE-APPROVAL\"),\r\n'UnblindingClearanceGranting' (backend workflow for \"ACTIVE-APPROVAL\")"
       },
       "GetPermittedAuthScopesRequest": {
         "type": "object",
@@ -729,7 +688,7 @@
         "properties": {
           "languagePref": {
             "type": "string",
-            "description": "Optional Argument for 'GetExtendedFieldDescriptors' (string): Preferred language for the 'DisplayLabel' and 'InputDescription' fields of the returned descriptors.",
+            "description": "Optional Argument for 'GetExtendedFieldDescriptors' (string): Preferred language for the 'DisplayLabel' and 'InputDescription' fields of the returned descriptors. ONLY RELEVANT FOR THE UI!",
             "nullable": true
           }
         },
@@ -789,20 +748,13 @@
           "birthDate",
           "extendedFields",
           "familyName",
-          "givenName",
-          "researchStudyUid",
-          "siteUid"
+          "givenName"
         ],
         "type": "object",
         "properties": {
-          "researchStudyUid": {
-            "type": "string",
-            "description": "Required Argument for 'GetOrCreatePseudonym' (Guid): A UUID",
-            "format": "uuid"
-          },
           "givenName": {
             "type": "string",
-            "description": "Required Argument for 'GetOrCreatePseudonym' (string): the Firstname a the paticipant (named as in the HL7 standard)"
+            "description": "Required Argument for 'GetOrCreatePseudonym' (string): the Firstname a person (named as in the HL7 standard)"
           },
           "familyName": {
             "type": "string",
@@ -817,12 +769,7 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Required Argument for 'GetOrCreatePseudonym' (Dictionary(String,String))"
-          },
-          "siteUid": {
-            "type": "string",
-            "description": "Required Argument for 'GetOrCreatePseudonym' (Guid): A UUID",
-            "format": "uuid"
+            "description": "Required Argument for 'GetOrCreatePseudonym' (Dictionary(String,String)): additional values for each 'extendedField' that is mandatory within (and specific to) the current IMS-System. To retrieve the declarations for such fields call 'GetExtendedFieldDescriptors'"
           }
         },
         "additionalProperties": false,
@@ -861,16 +808,10 @@
           "birthDate",
           "extendedFields",
           "familyName",
-          "givenName",
-          "researchStudyUid"
+          "givenName"
         ],
         "type": "object",
         "properties": {
-          "researchStudyUid": {
-            "type": "string",
-            "description": "Required Argument for 'GetExisitingPseudonym' (Guid): A UUID",
-            "format": "uuid"
-          },
           "givenName": {
             "type": "string",
             "description": "Required Argument for 'GetExisitingPseudonym' (string)"
@@ -888,7 +829,7 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Required Argument for 'GetExisitingPseudonym' (Dictionary(String,String))"
+            "description": "Required Argument for 'GetExisitingPseudonym' (Dictionary(String,String)): additional values for each 'extendedField' that is mandatory within (and specific to) the current IMS-System. To retrieve the declarations for such fields call 'GetExtendedFieldDescriptors'"
           }
         },
         "additionalProperties": false,
@@ -916,6 +857,222 @@
         },
         "additionalProperties": false,
         "description": "Contains results from calling 'GetExisitingPseudonym'."
+      },
+      "RequestUnblindingTokenRequest": {
+        "required": [
+          "pseudonymsToUnblind",
+          "requestBy",
+          "requestReason"
+        ],
+        "type": "object",
+        "properties": {
+          "pseudonymsToUnblind": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'RequestUnblindingToken' (string[])"
+          },
+          "requestReason": {
+            "type": "string",
+            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+          },
+          "requestBy": {
+            "type": "string",
+            "description": "Required Argument for 'RequestUnblindingToken' (string)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'RequestUnblindingToken'.\r\nMethod: Returns:\r\n1: if clearance granted (token can be DIRECTLY used to call 'TryUnblind') /\r\n0: if no realtime response is possible (delayed approval is outstanding)\r\n-1: if a new unblindingToken is required (because the current has expired or has been repressed) /\r\n-2: if the access is denied for addressed scope of data"
+      },
+      "RequestUnblindingTokenResponse": {
+        "required": [
+          "unblindingToken"
+        ],
+        "type": "object",
+        "properties": {
+          "unblindingToken": {
+            "type": "string",
+            "description": "Out-Argument of 'RequestUnblindingToken' (string)"
+          },
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "integer",
+            "description": "Return-Value of 'RequestUnblindingToken' (Int32)",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'RequestUnblindingToken'.\r\nMethod: Returns:\r\n1: if clearance granted (token can be DIRECTLY used to call 'TryUnblind') /\r\n0: if no realtime response is possible (delayed approval is outstanding)\r\n-1: if a new unblindingToken is required (because the current has expired or has been repressed) /\r\n-2: if the access is denied for addressed scope of data"
+      },
+      "IdentityDetails": {
+        "required": [
+          "birthDate",
+          "familyName",
+          "givenName"
+        ],
+        "type": "object",
+        "properties": {
+          "givenName": {
+            "type": "string",
+            "description": "the firstname a person (named as in the HL7 standard)"
+          },
+          "familyName": {
+            "type": "string",
+            "description": "the lastname a person (named as in the HL7 standard)"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "date in format 'yyyy-MM-dd' (must NOT be a partial date for this usecase!)"
+          },
+          "extendedFields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "additional values for each 'extendedField' that is mandatory within (and specific to) the current IMS-System.\r\nTo retrieve the declarations for such fields call 'GetExtendedFieldDescriptors'",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TryUnblindRequest": {
+        "required": [
+          "pseudonymsToUnblind",
+          "unblindedIdentities",
+          "unblindingToken"
+        ],
+        "type": "object",
+        "properties": {
+          "unblindingToken": {
+            "type": "string",
+            "description": "Required Argument for 'TryUnblind' (string)"
+          },
+          "pseudonymsToUnblind": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'TryUnblind' (string[])"
+          },
+          "unblindedIdentities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityDetails"
+            },
+            "description": "Required Argument for 'TryUnblind' (IdentityDetails[])"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'TryUnblind'.\r\nMethod: Returns:\r\n1: on SUCCESS (unblindedIdentities should contain data) /\r\n0: if no realtime response is possible (delayed approval is outstanding)\r\n-1: if a new unblindingToken is required (because the current has expired or has been repressed) /\r\n-2: if the access is denied for addressed scope of data"
+      },
+      "TryUnblindResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "integer",
+            "description": "Return-Value of 'TryUnblind' (Int32)",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'TryUnblind'.\r\nMethod: Returns:\r\n1: on SUCCESS (unblindedIdentities should contain data) /\r\n0: if no realtime response is possible (delayed approval is outstanding)\r\n-1: if a new unblindingToken is required (because the current has expired or has been repressed) /\r\n-2: if the access is denied for addressed scope of data"
+      },
+      "GrantClearanceForUnblindingRequest": {
+        "required": [
+          "grantedUnitl",
+          "pseudonymsToUnblind",
+          "unblindingToken"
+        ],
+        "type": "object",
+        "properties": {
+          "unblindingToken": {
+            "type": "string",
+            "description": "Required Argument for 'GrantClearanceForUnblinding' (string)"
+          },
+          "pseudonymsToUnblind": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'GrantClearanceForUnblinding' (string[])"
+          },
+          "grantedUnitl": {
+            "type": "string",
+            "description": "Required Argument for 'GrantClearanceForUnblinding' (DateTime)",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'GrantClearanceForUnblinding'."
+      },
+      "GrantClearanceForUnblindingResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'GrantClearanceForUnblinding'."
+      },
+      "HasClearanceForUnblindingRequest": {
+        "required": [
+          "accessRelatedDetails",
+          "pseudonymsToUnblind",
+          "unblindingToken"
+        ],
+        "type": "object",
+        "properties": {
+          "unblindingToken": {
+            "type": "string",
+            "description": "Required Argument for 'HasClearanceForUnblinding' (string)"
+          },
+          "pseudonymsToUnblind": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'HasClearanceForUnblinding' (string[])"
+          },
+          "accessRelatedDetails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Required Argument for 'HasClearanceForUnblinding' (Dictionary(String,String)): an optional container that can contain for example the ipadress or JWT token of the accessor or some MFA related information"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains arguments for calling 'HasClearanceForUnblinding'.\r\nMethod: Returns:\r\n1: if clearance granted /\r\n0: if no realtime response is possible (delayed approval)\r\n-1: if a new unblindingToken is required (because the current has expired or has been repressed) /\r\n-2: if the access is denied for addressed scope of data"
+      },
+      "HasClearanceForUnblindingResponse": {
+        "type": "object",
+        "properties": {
+          "fault": {
+            "type": "string",
+            "description": "This field contains error text equivalent to an Exception message! (note that only 'fault' XOR 'return' can have a value != null)",
+            "nullable": true
+          },
+          "return": {
+            "type": "integer",
+            "description": "Return-Value of 'HasClearanceForUnblinding' (Int32)",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results from calling 'HasClearanceForUnblinding'.\r\nMethod: Returns:\r\n1: if clearance granted /\r\n0: if no realtime response is possible (delayed approval)\r\n-1: if a new unblindingToken is required (because the current has expired or has been repressed) /\r\n-2: if the access is denied for addressed scope of data"
       }
     },
     "securitySchemes": {
